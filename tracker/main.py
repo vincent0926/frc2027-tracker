@@ -11,7 +11,9 @@ from pathlib import Path
 import requests
 import yaml
 
+from .analyze import analyze
 from .fetch import PoliteFetcher
+from .site import build_site
 from .sources import COLLECTORS, classify, diff_snapshots, is_document_link, is_relevant
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -79,6 +81,7 @@ def run(config_path: Path, data_dir: Path, report_dir: Path, today: str) -> dict
             print(f"[完成] {src['name']}: +{len(d['added'])} / -{len(d['removed'])} 行")
 
     save_json(data_dir / "state.json", state)
+    save_json(data_dir / "daily" / f"{today}.json", result)
     md = render_markdown(result, kws, cats)
     report_dir.mkdir(parents=True, exist_ok=True)
     (report_dir / f"{today}.md").write_text(md, "utf-8")
@@ -108,7 +111,7 @@ def render_markdown(r: dict, kws: list[str], cats: dict) -> str:
             out += ["", f"### {cat}（{len(group)}）"]
             for i in group:
                 tags = " ".join(f"`{c}`" for c in i["categories"][1:])
-                date = i["date"][:10] if i["date"] and i["date"][0].isdigit() else i["date"][:16]
+                date = i["date"]
                 out.append(f"- **[{i['title']}]({i['url']})** — {i['source']} · {date} {tags}".rstrip())
                 if i["summary"]:
                     out.append(f"  > {i['summary']}")
@@ -169,9 +172,18 @@ def main() -> None:
     ap.add_argument("--config", default=ROOT / "config.yaml", type=Path)
     ap.add_argument("--data", default=ROOT / "data", type=Path)
     ap.add_argument("--reports", default=ROOT / "reports", type=Path)
+    ap.add_argument("--site", default=ROOT / "site", type=Path)
     ap.add_argument("--date", default=dt.date.today().isoformat())
+    ap.add_argument("--site-only", action="store_true", help="不抓資料，只用現有資料重建網站")
     a = ap.parse_args()
+    if a.site_only:
+        build_site(a.data, a.site)
+        print(f"網站已建立：{a.site / 'index.html'}")
+        return
     r = run(a.config, a.data, a.reports, a.date)
+    analyze(r, a.data / "analysis")
+    build_site(a.data, a.site)
+    print(f"網站已建立：{a.site / 'index.html'}")
     hook = os.environ.get("DISCORD_WEBHOOK_URL")
     has_news = r["items"] or any(not p["baseline"] for p in r["pages"])
     if hook and has_news:

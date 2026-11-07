@@ -1,0 +1,43 @@
+{
+ "method": "claude",
+ "model": "Claude（本期在對話中人工判讀）",
+ "top_pick": {
+  "url": "https://www.firstinspires.org/community-blog/2026-event-robot-rule-preview-for-2027-season-part-2",
+  "title": "2027 Event & Robot Rule Preview - Part 2",
+  "source": "FIRST 官方部落格 (RSS)",
+  "reason": "這是 FIRST 官方提前公布的 2027 機器人規則草案，專門挑出「會影響賽季前採購」的變動：Relay 將不再是合法的電源控制裝置（SystemCore 不能驅動 Relay，氣動要改用專用氣動控制器）；SystemCore 不能直接替 servo 供電，必須透過 REV Servo Hub、GoBilda 6V Servo Power Injector 等合法模組；馬達電路禁止使用自製 PCB 連接。另外新增多個合法裝置，包含 REV SPARK Lite、AndyMark Koors40 CAN、ThriftyBot Power Hub 與 VH-109 Radio V2。搭配 Part 1 提到的馬達數量上限，這兩篇是隊伍在 1/9 Kickoff 前規劃預算和訂貨最重要的依據。"
+ },
+ "headline": "今天是追蹤器第一天，共收錄 102 則 2027 相關內容；最重要的是官方規則預告，其次是 SystemCore 與 WPILib 2027 的軟體遷移問題。",
+ "highlights": [
+  {
+   "category": "規則/比賽手冊",
+   "text": "官方規則預告 Part 1、Part 2 已出：馬達數量上限、Relay 移除、servo 需專用供電模組，並新增 SPARK Lite、Thrifty Power Hub 等合法裝置。2027 賽季名稱為 BIOCORE，正式 Game Manual 會在 2027/1/9 Kickoff 發布，Season Materials 頁面目前仍是 2026 文件。"
+  },
+  {
+   "category": "軟體更新",
+   "text": "WPILib 2027 已進入 alpha 7/8 測試，社群在討論遷移時遇到的變化：REVLib 2027 alpha 移除了 SparkMax 的 position/velocity conversion factor 設定、LinearSystem 與 SendableChooser 的寫法改變，CTRE vendor library 的安裝方式也不同。"
+  },
+  {
+   "category": "硬體/控制系統",
+   "text": "2027 起 SystemCore 取代 roboRIO，新手常問兩者差異；beta 隊伍回報狀態燈異常、5 條 CAN bus 的規劃、LED 控制方式等問題。FIRST 已發布 SystemCore 價格與供貨文章。REV、AndyMark、SWYFT、Larkspur 等廠商都開了 2026-27 新品討論串。"
+  },
+  {
+   "category": "行政/賽事",
+   "text": "2027 志工報名已開放（含 2027 FIRST Championship）。官方行事曆：Kickoff 2027/1/9、官方 Q&A 1/13 開放、Digital Animation Award 1/12 截止、Woodie Flowers 與 Leadership Award 2/4 截止、Impact Award 2/11 截止、Championship 4/28–5/1。"
+  },
+  {
+   "category": "隊伍建造紀錄",
+   "text": "已有 12 個 Open Alliance 隊伍開了 2027 建造紀錄（如 157、1710、4481、5422、571），包含 6328、1678 等強隊的 SystemCore alpha 測試串，適合參考別人怎麼準備新控制系統。"
+  },
+  {
+   "category": "其他",
+   "text": "社群開始猜測 BIOCORE 的玩法（Guesses for FRC 2027?），屬於猜測性質，參考即可。"
+  }
+ ],
+ "action_items": [
+  "機構和電控組一起讀規則預告 Part 1、Part 2，盤點庫存：用 Relay 的氣動或燈光、直接接控制器的 servo、超過馬達上限的設計都要改。",
+  "程式組現在就在 WPILib 2027 alpha/beta 上試著移植去年的程式，特別檢查 REVLib conversion factor 被移除的部分。",
+  "把 1/9 Kickoff、1/13 Q&A 開放、2/4 與 2/11 的獎項截止日寫進隊伍行事曆。",
+  "邀請家長或畢業學長姐報名賽事志工。"
+ ]
+}

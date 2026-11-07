@@ -6,7 +6,9 @@ on:
   workflow_dispatch:         # 也可以在 Actions 頁面手動按「Run workflow」
 
 permissions:
-  contents: write            # 需要把新的報告 commit 回 repo
+  contents: write            # 把新的報告與資料 commit 回 repo
+  pages: write               # 部署網站到 GitHub Pages
+  id-token: write
 
 concurrency:
   group: frc2027-tracker
@@ -22,14 +24,28 @@ jobs:
           python-version: "3.12"
           cache: pip
       - run: pip install -r requirements.txt
-      - name: 執行爬蟲
+      - name: 爬取、分析、建立網站
         env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}       # 選用：有設定才由 Claude 挑精選、寫整理
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}   # 選用
         run: python -m tracker.main --date "$(TZ=Asia/Taipei date +%F)"
-      - name: 提交報告與快照
+      - name: 提交報告與資料
         run: |
           git config user.name "frc2027-tracker-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add reports data
+          git add reports data site
           git diff --cached --quiet || git commit -m "每日報告 $(TZ=Asia/Taipei date +%F)"
           git push
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: crawl
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

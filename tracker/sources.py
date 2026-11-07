@@ -5,6 +5,7 @@ item 格式：{"id", "title", "url", "date", "summary"}
 from __future__ import annotations
 
 import difflib
+import email.utils
 import html
 import re
 import xml.etree.ElementTree as ET
@@ -15,6 +16,19 @@ from bs4 import BeautifulSoup
 from .fetch import PoliteFetcher
 
 ATOM = "{http://www.w3.org/2005/Atom}"
+
+
+def _iso_date(s: str | None) -> str:
+    """RSS 的 'Fri, 30 Oct 2026 15:53:39 GMT' 或 Atom 的 ISO 時間 -> '2026-10-30'。"""
+    s = (s or "").strip()
+    if not s:
+        return ""
+    if s[:4].isdigit():
+        return s[:10]
+    try:
+        return email.utils.parsedate_to_datetime(s).date().isoformat()
+    except (TypeError, ValueError):
+        return s
 
 
 def _strip_html(s: str | None, limit: int = 400) -> str:
@@ -39,7 +53,7 @@ def parse_feed(xml_text: str) -> list[dict]:
                 "id": (e.findtext(f"{ATOM}id") or "").strip(),
                 "title": (e.findtext(f"{ATOM}title") or "").strip(),
                 "url": link.get("href") if link is not None else "",
-                "date": (e.findtext(f"{ATOM}updated") or "").strip(),
+                "date": _iso_date(e.findtext(f"{ATOM}updated")),
                 "summary": _strip_html(content.text if content is not None else ""),
             })
     else:  # RSS 2.0
@@ -49,7 +63,7 @@ def parse_feed(xml_text: str) -> list[dict]:
                 "id": (it.findtext("guid") or link).strip(),
                 "title": (it.findtext("title") or "").strip(),
                 "url": link,
-                "date": (it.findtext("pubDate") or "").strip(),
+                "date": _iso_date(it.findtext("pubDate")),
                 "summary": _strip_html(it.findtext("description")),
             })
     return items
