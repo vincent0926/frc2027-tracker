@@ -1,0 +1,178 @@
+# FRC 2027 變更追蹤器設定檔
+# 想新增來源，照下面的格式加一筆即可。
+
+user_agent: "frc2027-tracker/0.1 (personal FRC season-change monitor)"
+request_delay_seconds: 2      # 每次請求之間的間隔（對網站禮貌）
+timeout_seconds: 30
+
+# 「2027 相關」判斷關鍵字（不分大小寫，任一出現即算）
+relevance_keywords:
+  - "2027"
+  - "systemcore"
+  - "biocore"
+
+sources:
+  # ---------- FIRST 官方 ----------
+  - id: first_blog
+    name: "FIRST 官方部落格 (RSS)"
+    type: feed
+    url: "https://www.firstinspires.org/community-blog/rss.xml"
+    filter: relevant           # relevant = 只保留含關鍵字的；all = 全收
+
+  - id: first_frc_blog
+    name: "FIRST 官方部落格 FRC 分類頁"
+    type: page
+    url: "https://www.firstinspires.org/community-blog/topic/frc"
+
+  - id: frc_season_materials
+    name: "FRC Season Materials（手冊、Team Update、規則文件）"
+    type: page
+    url: "https://www.firstinspires.org/resources/library/frc/season-materials"
+    ignore_links: ["calendar.google.com"]   # 「加入行事曆」按鈕不算變動
+
+  # ---------- 軟體 ----------
+  - id: wpilib_new_for_2027
+    name: "WPILib 文件：New for 2027"
+    type: page
+    url: "https://docs.wpilib.org/en/latest/docs/yearly-overview/yearly-changelog.html"
+    selector: "article"        # 只看主要內容區塊
+
+  - id: wpilib_releases
+    name: "WPILib (allwpilib) GitHub Releases"
+    type: feed
+    url: "https://github.com/wpilibsuite/allwpilib/releases.atom"
+    filter: relevant
+
+  - id: ctre_releases
+    name: "CTRE Phoenix Releases"
+    type: feed
+    url: "https://github.com/CrossTheRoadElec/Phoenix-Releases/releases.atom"
+    filter: relevant
+
+  - id: rev_releases
+    name: "REV Software Binaries Releases"
+    type: feed
+    url: "https://github.com/REVrobotics/REV-Software-Binaries/releases.atom"
+    filter: relevant
+
+  - id: photonvision_releases
+    name: "PhotonVision Releases"
+    type: feed
+    url: "https://github.com/PhotonVision/photonvision/releases.atom"
+    filter: relevant
+
+  - id: advantagekit_releases
+    name: "AdvantageKit Releases"
+    type: feed
+    url: "https://github.com/Mechanical-Advantage/AdvantageKit/releases.atom"
+    filter: relevant
+
+  # ---------- 社群 ----------
+  - id: cd_latest
+    name: "Chief Delphi 最新討論（篩選 2027 相關）"
+    type: feed
+    url: "https://www.chiefdelphi.com/latest.rss"
+    filter: relevant
+
+  - id: cd_tag_2027
+    name: "Chief Delphi 標籤 #2027"
+    type: feed
+    url: "https://www.chiefdelphi.com/tag/2027.rss"
+    filter: all
+
+  - id: cd_tag_systemcore
+    name: "Chief Delphi 標籤 #systemcore"
+    type: feed
+    url: "https://www.chiefdelphi.com/tag/systemcore.rss"
+    filter: all
+
+  - id: cd_tag_frc_blog
+    name: "Chief Delphi #frc-blog（官方 FRC Blog 轉貼）"
+    type: feed
+    url: "https://www.chiefdelphi.com/tag/frc-blog.rss"
+    filter: all
+
+  - id: cd_tag_rules
+    name: "Chief Delphi #rules（規則討論，篩選 2027 相關）"
+    type: feed
+    url: "https://www.chiefdelphi.com/tag/rules.rss"
+    filter: relevant
+
+  - id: cd_tag_kickoff
+    name: "Chief Delphi #kickoff（Kickoff，篩選 2027 相關）"
+    type: feed
+    url: "https://www.chiefdelphi.com/tag/kickoff.rss"
+    filter: relevant
+
+  - id: cd_tag_wpilib
+    name: "Chief Delphi #wpilib（WPILib，篩選 2027 相關）"
+    type: feed
+    url: "https://www.chiefdelphi.com/tag/wpilib.rss"
+    filter: relevant
+
+  - id: cd_tag_programming
+    name: "Chief Delphi #programming（程式，篩選 2027 相關）"
+    type: feed
+    url: "https://www.chiefdelphi.com/tag/programming.rss"
+    filter: relevant
+
+  - id: cd_tag_rev
+    name: "Chief Delphi #rev（REV，篩選 2027 相關）"
+    type: feed
+    url: "https://www.chiefdelphi.com/tag/rev.rss"
+    filter: relevant
+
+  - id: cd_tag_ctre
+    name: "Chief Delphi #ctre（CTRE，篩選 2027 相關）"
+    type: feed
+    url: "https://www.chiefdelphi.com/tag/ctre.rss"
+    filter: relevant
+
+  - id: cd_tag_photonvision
+    name: "Chief Delphi #photonvision（PhotonVision，篩選 2027 相關）"
+    type: feed
+    url: "https://www.chiefdelphi.com/tag/photonvision.rss"
+    filter: relevant
+
+  - id: cd_tag_advantagekit
+    name: "Chief Delphi #advantagekit（AdvantageKit，篩選 2027 相關）"
+    type: feed
+    url: "https://www.chiefdelphi.com/tag/advantagekit.rss"
+    filter: relevant
+
+  - id: cd_tag_limelight
+    name: "Chief Delphi #limelight（Limelight，篩選 2027 相關）"
+    type: feed
+    url: "https://www.chiefdelphi.com/tag/limelight.rss"
+    filter: relevant
+
+  - id: cd_tag_motors
+    name: "Chief Delphi #motors（馬達，篩選 2027 相關）"
+    type: feed
+    url: "https://www.chiefdelphi.com/tag/motors.rss"
+    filter: relevant
+
+  - id: cd_tag_firmware
+    name: "Chief Delphi #firmware（韌體，篩選 2027 相關）"
+    type: feed
+    url: "https://www.chiefdelphi.com/tag/firmware.rss"
+    filter: relevant
+
+# 分類規則：依序比對標題（標題沒中才看內文），可同時屬於多類；
+# 報告中依第一個符合的分類分組，所以越「特定」的分類放越前面。
+categories:
+  "隊伍建造紀錄":
+    ["build thread", "open alliance", "build blog"]
+  "軟體更新":
+    [wpilib, software, firmware, phoenix, revlib, advantagekit, photonvision, "driver station",
+     vscode, robotpy, labview, imager, library, vendordep, " api", java, "c++", python,
+     alpha, beta, " sim ", simulation, code]
+  "硬體/控制系統":
+    [systemcore, roborio, hardware, motor, controller, radio, battery, " pdh ", pneumatic,
+     sensor, "legal device", "kit of parts", kitbot, cots, camera, limelight, product]
+  "規則/比賽手冊":
+    ["game manual", " rule", "team update", "q&a", biocore, inspection, bumper, penalty,
+     manual, "game animation", " field", "game reveal"]
+  "行政/賽事":
+    [registration, fee, deadline, event, district, championship, schedule, award,
+     volunteer, grant, kickoff, calendar, policy]
