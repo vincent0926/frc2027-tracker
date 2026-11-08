@@ -17,7 +17,11 @@
   --chip: #e3e9f0;
   --warn-bg: #fdf0e1; --warn-ink: #8a4b0b;
   --hi: #c4303a; --mid: #b7791f; --lo: #8592a0;
-  --c-team: #6b5aa6; --c-soft: #1d7a8c; --c-hard: #a8641a; --c-rule: #c4303a; --c-admin: #3d7a2e; --c-other: #6b7682;
+  /* 分類色：依 CAT_ORDER 固定順序取自已驗證的類別調色盤（validate_palette.js 淺/深色皆 PASS） */
+  --c-rule: #2a78d6; --c-soft: #eb6834; --c-hard: #1baf7a; --c-admin: #eda100; --c-team: #e87ba4; --c-other: #8b939c;
+  /* 狀態色（緊急度）：固定，不隨主題變，一律搭配圖示＋文字 */
+  --st-critical: #d03b3b; --st-serious: #ec835a; --st-warning: #fab219; --st-ink-dark: #0b0b0b;
+  --grid: #e1e0d9; --axis: #c3c2b7; --untracked: #f1f3f5; --series: #2a78d6;
   --k-off-bg: #dce8f8; --k-off-ink: #164a96; --k-vendor-bg: #fdf0e1; --k-vendor-ink: #8a4b0b; --k-rel-bg: #dcf1f4; --k-rel-ink: #135f6d;
   --f-display: "Barlow Condensed", "Noto Sans TC", "Arial Narrow", sans-serif;
   --f-body: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
@@ -28,7 +32,8 @@
     --bg: #0f151b; --panel: #172029; --ink: #e4eaf0; --muted: #94a2b0; --line: #2a3642;
     --blue: #6aa4f5; --red: #f0626b; --chip: #22303c; --warn-bg: #3a2a16; --warn-ink: #f2c38a;
     --hi: #f0626b; --mid: #e0a84a; --lo: #7d8a97;
-    --c-team: #a99ae0; --c-soft: #5ec3d6; --c-hard: #e3a55a; --c-rule: #f0626b; --c-admin: #86c774; --c-other: #9aa6b2;
+    --c-rule: #3987e5; --c-soft: #d95926; --c-hard: #199e70; --c-admin: #c98500; --c-team: #d55181; --c-other: #7d8a97;
+    --grid: #2a3642; --axis: #3b4856; --untracked: #1b252f; --series: #3987e5;
     --k-off-bg: #1f3550; --k-off-ink: #cfe0f7; --k-vendor-bg: #3a2a16; --k-vendor-ink: #f2c38a; --k-rel-bg: #163a40; --k-rel-ink: #9fdde8;
     color-scheme: dark;
   }
@@ -37,7 +42,8 @@
   --bg: #0f151b; --panel: #172029; --ink: #e4eaf0; --muted: #94a2b0; --line: #2a3642;
   --blue: #6aa4f5; --red: #f0626b; --chip: #22303c; --warn-bg: #3a2a16; --warn-ink: #f2c38a;
   --hi: #f0626b; --mid: #e0a84a; --lo: #7d8a97;
-  --c-team: #a99ae0; --c-soft: #5ec3d6; --c-hard: #e3a55a; --c-rule: #f0626b; --c-admin: #86c774; --c-other: #9aa6b2;
+  --c-rule: #3987e5; --c-soft: #d95926; --c-hard: #199e70; --c-admin: #c98500; --c-team: #d55181; --c-other: #7d8a97;
+  --grid: #2a3642; --axis: #3b4856; --untracked: #1b252f; --series: #3987e5;
   --k-off-bg: #1f3550; --k-off-ink: #cfe0f7; --k-vendor-bg: #3a2a16; --k-vendor-ink: #f2c38a; --k-rel-bg: #163a40; --k-rel-ink: #9fdde8;
   color-scheme: dark;
 }
@@ -64,6 +70,44 @@ a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible
 .daynav button, .daynav select { font-family: var(--f-mono); font-size: .85rem; height: 36px; border: 1px solid var(--line); background: var(--panel); color: var(--ink); border-radius: 6px; padding: 0 10px; cursor: pointer; }
 .daynav button:disabled { opacity: .4; cursor: default; }
 
+/* 賽季時間軸（頁首倒數下方） */
+.season { flex: 1 1 100%; min-width: 0; padding-top: 4px; }
+.season .track-wrap { position: relative; height: 66px; margin: 0 4px; }
+.season .rail { position: absolute; left: 0; right: 0; top: 32px; height: 4px; border-radius: 2px; background: var(--line); }
+.season .past { position: absolute; left: 0; top: 32px; height: 4px; border-radius: 2px; background: var(--muted); opacity: .45; }
+.season .seg { position: absolute; top: 29px; height: 10px; border-radius: 3px; background: var(--blue); opacity: .85; }
+.season .seg.champs { background: var(--red); }
+.season .mtick { position: absolute; top: 12px; font-family: var(--f-mono); font-size: .66rem; color: var(--muted); transform: translateX(-50%); white-space: nowrap; }
+.season .mtick::before { content: ""; position: absolute; left: 50%; top: 15px; width: 1px; height: 4px; background: var(--axis); }
+.season .today { position: absolute; top: 10px; width: 2px; height: 34px; background: var(--ink); transform: translateX(-1px); border-radius: 1px; }
+.season .today span { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); font-size: .7rem; font-weight: 700; white-space: nowrap; background: var(--panel); padding: 0 4px; border-radius: 3px; z-index: 1; }
+.season .mk { position: absolute; top: 27px; width: 14px; height: 14px; margin-left: -7px; padding: 0; border: 2px solid var(--panel); border-radius: 50%; background: var(--muted); cursor: pointer; }
+.season .mk.deadline { border-radius: 3px; transform: rotate(45deg); width: 13px; height: 13px; margin-left: -6.5px; top: 27.5px; }
+.season .mk.kickoff { width: 18px; height: 18px; margin-left: -9px; top: 25px; background: var(--blue); }
+.season .mk.other { width: 8px; height: 8px; margin-left: -4px; top: 30px; border-width: 1px; opacity: .7; }
+.season .mk.past { opacity: .35; }
+.season .tl { position: absolute; top: 48px; font-size: .72rem; font-weight: 500; white-space: nowrap; transform: translateX(-50%); }
+.season .tl.left { transform: none; } .season .tl.right { transform: translateX(-100%); }
+.season .tl.up { top: 4px; }
+.season .tl.in { top: 26px; font-size: .62rem; color: #fff; font-weight: 700; pointer-events: none; }
+.season-legend { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: .72rem; color: var(--muted); margin: 2px 4px 0; }
+.season-legend i { display: inline-block; width: 9px; height: 9px; margin-right: 5px; vertical-align: -1px; background: var(--muted); border-radius: 50%; }
+.season-legend i.d { border-radius: 2px; transform: rotate(45deg); background: var(--st-critical); }
+.season-legend i.s { border-radius: 2px; width: 14px; height: 6px; vertical-align: 1px; background: var(--blue); }
+
+/* 緊急度（狀態色＋圖示＋文字） */
+.urg { display: inline-flex; align-items: center; gap: 3px; font-size: .68rem; font-weight: 700; padding: 1px 6px 1px 4px; border-radius: 4px; color: #fff; line-height: 1.5; white-space: nowrap; }
+.urg svg { width: 11px; height: 11px; flex: none; }
+.urg.critical { background: var(--st-critical); }
+.urg.serious { background: var(--st-serious); color: var(--st-ink-dark); }
+.urg.warning { background: var(--st-warning); color: var(--st-ink-dark); }
+
+/* 共用浮動提示 */
+.tip { position: fixed; z-index: 20; max-width: 280px; background: var(--ink); color: var(--panel); font-size: .8rem; line-height: 1.45; padding: 8px 10px; border-radius: 8px; pointer-events: none; box-shadow: 0 4px 14px rgba(0,0,0,.18); }
+.tip b { display: block; font-family: var(--f-mono); font-size: .72rem; opacity: .8; margin-bottom: 2px; }
+.tip ul { margin: 0; padding-left: 1.1em; }
+.tip .sw { display: inline-block; width: 8px; height: 8px; border-radius: 2px; margin-right: 6px; }
+
 /* 快速跳轉列 */
 .jump { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--panel); border-bottom: 1px solid var(--line); }
 .jump .wrap { display: flex; gap: 4px; overflow-x: auto; padding-block: 6px; scrollbar-width: none; }
@@ -84,12 +128,15 @@ section { min-width: 0; }
 .tldr li:first-child { font-weight: 700; }
 .nextdl { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; display: grid; gap: 10px; }
 .nextdl h3 { margin: 0; font-size: .8rem; font-family: var(--f-mono); letter-spacing: .08em; color: var(--muted); font-weight: 600; }
-.dl { display: grid; grid-template-columns: auto 1fr; gap: 10px; align-items: center; }
-.dl .d { font-family: var(--f-display); font-weight: 700; font-size: 1.7rem; line-height: 1; min-width: 2.2em; text-align: center; font-variant-numeric: tabular-nums; }
-.dl .d small { display: block; font-family: var(--f-mono); font-size: .6rem; font-weight: 400; color: var(--muted); letter-spacing: .05em; }
-.dl.urgent .d { color: var(--red); }
+.dl { display: grid; grid-template-columns: 56px 1fr; gap: 12px; align-items: center; }
+.ring { position: relative; width: 56px; height: 56px; }
+.ring svg { width: 56px; height: 56px; transform: rotate(-90deg); }
+.ring .track { stroke: var(--line); }
+.ring .n { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; font-family: var(--f-display); font-weight: 700; font-size: 1.35rem; line-height: 1; font-variant-numeric: tabular-nums; }
+.ring .n small { font-family: var(--f-body); font-size: .58rem; font-weight: 500; color: var(--muted); }
+.dl .w .urg { margin-bottom: 2px; }
 .dl .w { font-size: .88rem; line-height: 1.4; min-width: 0; }
-.dl .w span { display: block; font-family: var(--f-mono); font-size: .72rem; color: var(--muted); }
+.dl .w .when { display: block; font-family: var(--f-mono); font-size: .72rem; color: var(--muted); }
 
 /* ---------- 今日精選 ---------- */
 .pick { background: var(--panel); border: 1px solid var(--line); border-left: 6px solid var(--red); border-radius: 4px 10px 10px 4px; padding: 20px 22px; display: grid; gap: 12px; }
@@ -121,10 +168,47 @@ section { min-width: 0; }
 .ev .dt b { display: block; font-family: var(--f-display); font-size: 1.25rem; }
 .ev .nm { font-size: .88rem; line-height: 1.35; min-width: 0; overflow-wrap: anywhere; }
 .ev .nm small { display: block; color: var(--muted); font-size: .72rem; }
-.ev.deadline { border-color: color-mix(in srgb, var(--red) 45%, var(--line)); }
-.ev.deadline .dt b { color: var(--red); }
-.ev .flag { font-size: .68rem; font-weight: 700; color: var(--red); letter-spacing: .05em; }
+.ev { border-left-width: 5px; }
+.ev.u-critical { border-left-color: var(--st-critical); }
+.ev.u-serious { border-left-color: var(--st-serious); }
+.ev.u-warning { border-left-color: var(--st-warning); }
+.ev .flag { font-size: .68rem; font-weight: 700; letter-spacing: .05em; margin-right: 4px; }
+.ev .nm .urg { margin-right: 4px; vertical-align: 1px; }
 .more { margin-top: 10px; font: inherit; font-size: .85rem; color: var(--blue); background: none; border: 0; padding: 4px 0; cursor: pointer; }
+
+/* ---------- 趨勢 ---------- */
+.trend-note { margin: 0 0 12px; font-size: .88rem; color: var(--muted); display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
+.trend-note b { color: var(--ink); font-weight: 500; }
+.chart-card { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px 12px; min-width: 0; display: grid; gap: 8px; }
+.chart-card + .chart-card { margin-top: 12px; }
+.chart-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; }
+.chart-head h3 { margin: 0; font-size: 1rem; }
+.chart-head span { font-size: .8rem; color: var(--muted); }
+.chart-head button { margin-left: auto; font: inherit; font-size: .8rem; color: var(--blue); background: none; border: 0; cursor: pointer; padding: 0; }
+.legend { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: .8rem; }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.legend i { width: 10px; height: 10px; border-radius: 2px; background: var(--cat); }
+.chart { position: relative; width: 100%; min-width: 0; }
+.chart svg { display: block; width: 100%; overflow: visible; }
+.chart text { fill: var(--muted); font-family: var(--f-mono); font-size: 10px; }
+.chart .gl { stroke: var(--grid); stroke-width: 1; }
+.chart .base { stroke: var(--axis); stroke-width: 1; }
+.chart .hit { fill: transparent; cursor: default; }
+.chart .hit:hover, .chart .hit.on { fill: var(--ink); fill-opacity: .05; }
+.chart .untracked { fill: var(--untracked); }
+.chart .sel { fill: var(--blue); fill-opacity: .08; }
+.tbl-wrap { overflow-x: auto; }
+.tbl-wrap table { border-collapse: collapse; font-size: .8rem; width: 100%; font-variant-numeric: tabular-nums; }
+.tbl-wrap th, .tbl-wrap td { padding: 4px 8px; border-bottom: 1px solid var(--line); text-align: right; white-space: nowrap; }
+.tbl-wrap th:first-child, .tbl-wrap td:first-child { text-align: left; }
+.multiples { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
+.mult { border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px 6px; min-width: 0; }
+.mult h4 { margin: 0; font-size: .85rem; display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.mult h4 b { font-family: var(--f-display); font-size: 1.4rem; line-height: 1; font-variant-numeric: tabular-nums; }
+.mult p { margin: 0 0 4px; font-size: .72rem; color: var(--muted); }
+.mult .line { fill: none; stroke: var(--series); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+.mult .area { fill: var(--series); fill-opacity: .1; }
+.mult .dot { fill: var(--series); stroke: var(--panel); stroke-width: 2; }
 
 /* ---------- 分類整理 ---------- */
 .headline { font-size: 1.05rem; font-weight: 500; margin: 0 0 14px; max-width: 70ch; }
@@ -186,6 +270,9 @@ details.box[open] summary { margin-bottom: 8px; }
 footer { color: var(--muted); font-size: .8rem; border-top: 1px solid var(--line); }
 footer .wrap { padding-block: 18px 28px; }
 
+@media (max-width: 560px) {
+  .season .tl.hide-sm { display: none; }
+}
 @media (max-width: 760px) {
   .brief { grid-template-columns: 1fr; }
   .tldr li { font-size: 1.05rem; grid-template-columns: 26px 1fr; }
@@ -217,6 +304,13 @@ footer .wrap { padding-block: 18px 28px; }
       <select id="day" aria-label="選擇日期"></select>
       <button id="next" type="button" aria-label="後一天">▶</button>
     </nav>
+    <div class="season" id="season" aria-label="2027 賽季時間軸">
+      <div class="track-wrap" id="season-track"></div>
+      <div class="season-legend">
+        <span><i class="d"></i>截止日（顏色＝緊急度）</span><span><i></i>其他官方日期</span><span><i class="s"></i>比賽週／世界賽</span>
+        <span>滑過或點一下標記可看細節</span>
+      </div>
+    </div>
   </div>
 </header>
 <nav class="jump" aria-label="跳到區塊">
@@ -225,6 +319,7 @@ footer .wrap { padding-block: 18px 28px; }
     <a href="#s-pick">今日精選</a>
     <a href="#s-dates">重要日期</a>
     <a href="#s-sum">分類整理</a>
+    <a href="#s-trend">趨勢</a>
     <a href="#s-all">訊息清單<span class="c" id="jump-n"></span></a>
   </div>
 </nav>
@@ -256,6 +351,22 @@ footer .wrap { padding-block: 18px 28px; }
       <div class="hl-grid" id="highlights"></div>
     </section>
 
+    <section id="s-trend" aria-labelledby="l-trend">
+      <p class="label" id="l-trend">趨勢</p>
+      <p class="trend-note" id="trend-note"></p>
+      <div class="chart-card">
+        <div class="chart-head"><h3>每日新消息</h3><span id="trend-sub">近 30 天，依分類堆疊</span>
+          <button type="button" id="trend-tbl-btn" aria-expanded="false">顯示數據表</button></div>
+        <div class="legend" id="trend-legend"></div>
+        <div class="chart" id="trend-bars"></div>
+        <div class="tbl-wrap" id="trend-tbl" hidden></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-head"><h3>話題熱度</h3><span>每天新消息中提到該話題的則數，近 30 天</span></div>
+        <div class="multiples" id="topics"></div>
+      </div>
+    </section>
+
     <section id="s-all" aria-labelledby="l-all">
       <p class="label" id="l-all">訊息清單</p>
       <div class="filters">
@@ -273,6 +384,7 @@ footer .wrap { padding-block: 18px 28px; }
   </div>
 </main>
 <footer><div class="wrap" id="foot"></div></footer>
+<div class="tip" id="tip" role="tooltip" hidden></div>
 
 <script type="application/json" id="data">/*__DATA__*/</script>
 <script>
@@ -323,6 +435,61 @@ footer .wrap { padding-block: 18px 28px; }
     return (day.result.events || []).filter(function (e) { return e.date >= day.date; });
   }
 
+
+  /* ---------- 共用：緊急度、圖示、提示 ---------- */
+  var SVGNS = "http://www.w3.org/2000/svg";
+  function svg(tag, attrs, kids) {
+    var n = document.createElementNS(SVGNS, tag);
+    for (var k in attrs || {}) if (attrs[k] != null) n.setAttribute(k, attrs[k]);
+    (kids || []).forEach(function (c) { if (c) n.appendChild(c); });
+    return n;
+  }
+  // 截止日剩幾天 → 狀態等級（固定狀態色，永遠搭配圖示與文字）
+  function urgency(n) {
+    if (n < 0) return null;
+    if (n <= 7) return { key: "critical", text: "緊急" };
+    if (n <= 14) return { key: "serious", text: "注意" };
+    if (n <= 30) return { key: "warning", text: "即將" };
+    return null;
+  }
+  function urgIcon(key) {
+    var paths = {
+      critical: "M8 1.5 15 14H1z M8 6v4 M8 11.6v.4",          // 三角形驚嘆號
+      serious: "M8 1.5a6.5 6.5 0 1 0 0 13a6.5 6.5 0 1 0 0-13z M8 4.8v4 M8 10.6v.4",  // 圓形驚嘆號
+      warning: "M8 1.5a6.5 6.5 0 1 0 0 13a6.5 6.5 0 1 0 0-13z M8 4.5V8l2.5 1.6"      // 時鐘
+    };
+    return svg("svg", { viewBox: "0 0 16 16", "aria-hidden": "true" },
+      [svg("path", { d: paths[key], fill: "none", stroke: "currentColor", "stroke-width": "1.8", "stroke-linecap": "round", "stroke-linejoin": "round" })]);
+  }
+  function urgPill(u) { return u ? el("span", { class: "urg " + u.key }, [urgIcon(u.key), u.text]) : null; }
+
+  var tipEl = null;
+  function showTip(target, title, lines) {
+    tipEl = tipEl || $("tip");
+    clear(tipEl);
+    tipEl.appendChild(el("b", { text: title }));
+    var ul = el("ul");
+    lines.forEach(function (l) { ul.appendChild(typeof l === "string" ? el("li", { text: l }) : l); });
+    tipEl.appendChild(ul);
+    tipEl.hidden = false;
+    var r = target.getBoundingClientRect(), tw = tipEl.offsetWidth, th = tipEl.offsetHeight;
+    var x = Math.min(Math.max(8, r.left + r.width / 2 - tw / 2), window.innerWidth - tw - 8);
+    var y = r.top - th - 8; if (y < 8) y = r.bottom + 8;
+    tipEl.style.left = x + "px"; tipEl.style.top = y + "px";
+  }
+  function hideTip() { if (tipEl) tipEl.hidden = true; }
+  function bindTip(node, fn) {
+    node.addEventListener("mouseenter", function () { fn(node); });
+    node.addEventListener("mouseleave", hideTip);
+    node.addEventListener("focus", function () { fn(node); });
+    node.addEventListener("blur", hideTip);
+    node.addEventListener("click", function (e) { e.stopPropagation(); fn(node); });
+  }
+  document.addEventListener("click", hideTip);
+  window.addEventListener("scroll", hideTip, { passive: true });
+
+  function addDays(d, n) { var t = new Date(Date.parse(d + "T00:00:00Z") + n * 86400000); return t.toISOString().slice(0, 10); }
+
   /* ---------- 30 秒重點 ---------- */
   function renderBrief(day) {
     var a = day.analysis || {}, ol = $("tldr"); clear(ol);
@@ -341,10 +508,18 @@ footer .wrap { padding-block: 18px 28px; }
     if (!byDate.length) { box.appendChild(el("p", { class: "muted", text: "行事曆上沒有即將到來的截止日。" })); box.hidden = !(day.result.events || []).length; return; }
     box.hidden = false;
     byDate.slice(0, 2).forEach(function (g) {
-      var n = daysBetween(day.date, g.date);
-      box.appendChild(el("div", { class: "dl" + (n <= 14 ? " urgent" : "") }, [
-        el("div", { class: "d" }, [n === 0 ? "今天" : String(n), el("small", { text: n === 0 ? "" : "天後" })]),
-        el("div", { class: "w" }, [g.names.join("、"), el("span", { text: md(g.date) })])]));
+      var n = daysBetween(day.date, g.date), u = urgency(n);
+      // 圓環＝30 天視窗內還剩多少時間：剩 30 天以上是滿圈，越接近截止越短
+      var R = 23, C = 2 * Math.PI * R, frac = Math.max(0, Math.min(n, 30)) / 30;
+      var color = u ? "var(--st-" + u.key + ")" : "var(--muted)";
+      var ring = el("div", { class: "ring", role: "img", "aria-label": "剩 " + n + " 天" + (u ? "，" + u.text : "") }, [
+        svg("svg", { viewBox: "0 0 56 56" }, [
+          svg("circle", { class: "track", cx: 28, cy: 28, r: R, fill: "none", "stroke-width": 5 }),
+          svg("circle", { cx: 28, cy: 28, r: R, fill: "none", stroke: color, "stroke-width": 5, "stroke-linecap": "round",
+                          "stroke-dasharray": (C * frac).toFixed(1) + " " + C.toFixed(1) })]),
+        el("div", { class: "n" }, [n === 0 ? "今天" : String(n), el("small", { text: n === 0 ? "" : "天" })])]);
+      box.appendChild(el("div", { class: "dl" }, [ring,
+        el("div", { class: "w" }, [u ? el("div", {}, [urgPill(u)]) : null, g.names.join("、"), el("span", { class: "when", text: md(g.date) + (n > 30 ? "（圓環以 30 天為一圈）" : "") })])]));
     });
   }
 
@@ -395,10 +570,10 @@ footer .wrap { padding-block: 18px 28px; }
     $("s-dates").hidden = !evs.length;
     var shown = state.showAllEv ? evs : evs.slice(0, 8);
     shown.forEach(function (e) {
-      var n = daysBetween(day.date, e.date), dl = DEADLINE.test(e.label);
-      box.appendChild(el("div", { class: "ev" + (dl ? " deadline" : "") }, [
+      var n = daysBetween(day.date, e.date), dl = DEADLINE.test(e.label), u = dl ? urgency(n) : null;
+      box.appendChild(el("div", { class: "ev" + (u ? " u-" + u.key : "") }, [
         el("div", { class: "dt" }, [el("b", { text: md(e.date) }), n === 0 ? "今天" : n + " 天後"]),
-        el("div", { class: "nm" }, [dl ? el("span", { class: "flag", text: "截止 " }) : null, dl ? evName(e).replace(/截止$/, "") : evName(e),
+        el("div", { class: "nm" }, [u ? urgPill(u) : (dl ? el("span", { class: "flag", text: "截止" }) : null), dl ? evName(e).replace(/截止$/, "") : evName(e),
           e.zh ? el("small", { text: e.label }) : null])]));
     });
     var more = $("ev-more");
@@ -514,6 +689,225 @@ footer .wrap { padding-block: 18px 28px; }
     errs.forEach(function (e) { ul.appendChild(el("li", { text: e.source + "：" + e.error })); });
   }
 
+
+  /* ---------- 賽季時間軸 ---------- */
+  function evType(e) {
+    if (DEADLINE.test(e.label)) return "deadline";
+    if (/Robotics Competition Kickoff/.test(e.label)) return "kickoff";
+    if (/^Week (Zero|\d)/.test(e.label)) return "week";
+    if (/^FIRST Championship$/.test(e.label)) return "champs";
+    return "other";
+  }
+  function renderSeason(day) {
+    var box = $("season-track"); clear(box);
+    var evs = (day.result.events || []).slice();
+    $("season").hidden = !evs.length;
+    if (!evs.length) return;
+    var start = addDays(day.date, -14);
+    var last = evs.reduce(function (m, e) { return e.date > m ? e.date : m; }, day.date);
+    var end = addDays(last, 5), span = daysBetween(start, end);
+    function pos(d) { return Math.max(0, Math.min(100, daysBetween(start, d) / span * 100)); }
+    function label(text, p, cls) {
+      var align = p < 6 ? " left" : p > 94 ? " right" : "";
+      return el("span", { class: "tl" + align + (cls ? " " + cls : ""), style: "left:" + p + "%", text: text });
+    }
+    box.appendChild(el("div", { class: "rail" }));
+    box.appendChild(el("div", { class: "past", style: "width:" + pos(day.date) + "%" }));
+    // 月份刻度
+    var m = start.slice(0, 7) + "-01";
+    while (m <= end) {
+      if (m > start) box.appendChild(el("span", { class: "mtick", style: "left:" + pos(m) + "%", text: +m.slice(5, 7) + "月" }));
+      var y = +m.slice(0, 4), mo = +m.slice(5, 7) + 1; if (mo > 12) { mo = 1; y++; }
+      m = y + "-" + (mo < 10 ? "0" : "") + mo + "-01";
+    }
+    // 比賽週、世界賽：區段
+    var weeks = evs.filter(function (e) { return evType(e) === "week"; }).map(function (e) { return e.date; }).sort();
+    if (weeks.length) {
+      var w0 = weeks[0], w1 = addDays(weeks[weeks.length - 1], 6);
+      var seg = el("div", { class: "seg", style: "left:" + pos(w0) + "%;width:" + (pos(w1) - pos(w0)) + "%", tabindex: "0", role: "button",
+                            "aria-label": "比賽週 " + md(w0) + "–" + md(w1) });
+      bindTip(seg, function (n) { showTip(n, md(w0) + " – " + md(w1), weeks.map(function (d, i) { return md(d) + "　" + (i === 0 ? "Week 0 熱身賽" : "第 " + i + " 週賽事"); })); });
+      box.appendChild(seg);
+      box.appendChild(label("比賽週", (pos(w0) + pos(w1)) / 2, "hide-sm"));
+    }
+    var champs = evs.filter(function (e) { return evType(e) === "champs"; })[0];
+    if (champs) {
+      var c1 = addDays(champs.date, 3);
+      var cs = el("div", { class: "seg champs", style: "left:" + pos(champs.date) + "%;width:" + Math.max(1.2, pos(c1) - pos(champs.date)) + "%", tabindex: "0", role: "button", "aria-label": "FIRST 世界賽 " + md(champs.date) });
+      bindTip(cs, function (n) { showTip(n, md(champs.date) + " – " + md(c1), ["FIRST 世界賽"]); });
+      box.appendChild(cs);
+      box.appendChild(label("世界賽", pos(champs.date)));
+    }
+    // 依日期合併的事件標記
+    var groups = {};
+    evs.forEach(function (e) { var t = evType(e); if (t === "week" || t === "champs") return; (groups[e.date] = groups[e.date] || []).push(e); });
+    var nextDeadline = null;
+    Object.keys(groups).sort().forEach(function (d) {
+      if (d < start) return;
+      var g = groups[d], n = daysBetween(day.date, d);
+      var type = g.some(function (e) { return evType(e) === "kickoff"; }) ? "kickoff" : g.some(function (e) { return evType(e) === "deadline"; }) ? "deadline" : "other";
+      var u = type === "deadline" ? urgency(n) : null;
+      var mk = el("button", { type: "button", class: "mk " + type + (n < 0 ? " past" : ""), style: "left:" + pos(d) + "%" + (u ? ";background:var(--st-" + u.key + ")" : type === "deadline" && n >= 0 ? ";background:var(--muted)" : ""),
+                              "aria-label": md(d) + "：" + g.map(evName).join("、") });
+      bindTip(mk, function (node) {
+        showTip(node, md(d) + "（" + (n === 0 ? "今天" : n > 0 ? n + " 天後" : -n + " 天前") + "）" + (u ? "・" + u.text : ""), g.map(evName));
+      });
+      box.appendChild(mk);
+      if (type === "deadline" && n >= 0 && !nextDeadline) nextDeadline = { d: d, p: pos(d), k: g.length };
+      if (type === "kickoff") box.appendChild(label("Kickoff " + md(d), pos(d)));
+    });
+    if (nextDeadline) box.appendChild(label(md(nextDeadline.d) + " 截止" + (nextDeadline.k > 1 ? " ×" + nextDeadline.k : ""), nextDeadline.p));
+    // 今天
+    box.appendChild(el("div", { class: "today", style: "left:" + pos(day.date) + "%" }, [el("span", { text: "今天 " + md(day.date) })]));
+  }
+
+  /* ---------- 趨勢 ---------- */
+  var TOPICS = [
+    { name: "SystemCore", kw: ["systemcore", "system core"] },
+    { name: "WPILib", kw: ["wpilib"] },
+    { name: "BIOCORE", kw: ["biocore"] },
+    { name: "規則與手冊", kw: ["rule", "manual", "team update"] }
+  ];
+  function trendWindow(day) {
+    var byDate = {};
+    DATA.days.forEach(function (d) { byDate[d.date] = d; });
+    var out = [];
+    for (var i = 29; i >= 0; i--) {
+      var date = addDays(day.date, -i), d = byDate[date];
+      if (!d) { out.push({ date: date, tracked: false }); continue; }
+      var items = (d.result.items || []).filter(function (it) { return !it.baseline; });
+      var baselineDay = (d.result.items || []).length > 0 && !items.length && (d.result.items || []).every(function (it) { return it.baseline; });
+      var counts = {}; CAT_ORDER.forEach(function (c) { counts[c] = 0; });
+      items.forEach(function (it) { counts[it.categories[0]] = (counts[it.categories[0]] || 0) + 1; });
+      var topics = TOPICS.map(function (t) {
+        return baselineDay ? null : items.filter(function (it) {
+          var txt = (it.title + " " + (it.summary || "")).toLowerCase();
+          return t.kw.some(function (k) { return txt.indexOf(k) >= 0; });
+        }).length;
+      });
+      out.push({ date: date, tracked: true, baseline: baselineDay, total: items.length, counts: counts, topics: topics });
+    }
+    return out;
+  }
+  function niceMax(v) { if (v <= 4) return 4; var p = Math.pow(10, Math.floor(Math.log10(v))), f = v / p; return (f <= 2 ? 2 : f <= 5 ? 5 : 10) * p; }
+  function roundTop(x, y, w, h, r) {
+    r = Math.min(r, w / 2, h);
+    return "M" + x + "," + (y + h) + "V" + (y + r) + "Q" + x + "," + y + " " + (x + r) + "," + y + "H" + (x + w - r) + "Q" + (x + w) + "," + y + " " + (x + w) + "," + (y + r) + "V" + (y + h) + "Z";
+  }
+  function renderTrends(day) {
+    var win = trendWindow(day);
+    var tracked = win.filter(function (w) { return w.tracked && !w.baseline; }).length;
+    var note = $("trend-note"); clear(note);
+    if (tracked < 14) {
+      note.appendChild(el("b", { text: "資料累積中：已有 " + tracked + " 天的新消息紀錄（首日建立基準不計）。" }));
+      note.appendChild(document.createTextNode("至少累積 14 天後，趨勢才看得出變化。"));
+    } else note.appendChild(document.createTextNode("只計算每天「新出現」的訊息，不含首次監控時已存在的文章。"));
+
+    // 圖例
+    var leg = $("trend-legend"); clear(leg);
+    var sums = {}; CAT_ORDER.forEach(function (c) { sums[c] = 0; });
+    win.forEach(function (w) { if (w.tracked) CAT_ORDER.forEach(function (c) { sums[c] += w.counts[c] || 0; }); });
+    CAT_ORDER.forEach(function (c) { leg.appendChild(el("span", { style: catStyle(c) }, [el("i"), c + " " + sums[c]])); });
+
+    // 堆疊長條圖
+    var host = $("trend-bars"); clear(host);
+    var W = Math.max(280, host.clientWidth || 600), H = 170, L = 26, R = 6, T = 10, B = 24;
+    var pw = W - L - R, ph = H - T - B, slot = pw / win.length, bw = Math.min(18, slot * 0.62);
+    var max = niceMax(Math.max.apply(null, win.map(function (w) { return w.tracked ? w.total : 0; }).concat([1])));
+    function Y(v) { return T + ph - v / max * ph; }
+    var root = svg("svg", { viewBox: "0 0 " + W + " " + H, height: H, role: "img", "aria-label": "近 30 天每日新消息數量，依分類堆疊" });
+    // 尚未追蹤的區域
+    var firstTracked = win.findIndex(function (w) { return w.tracked; });
+    if (firstTracked > 0) {
+      root.appendChild(svg("rect", { class: "untracked", x: L, y: T, width: slot * firstTracked, height: ph }));
+      if (slot * firstTracked > 90) {
+        var ut = svg("text", { x: L + slot * firstTracked / 2, y: T + ph / 2, "text-anchor": "middle" }); ut.textContent = "尚未開始追蹤"; root.appendChild(ut);
+      }
+    }
+    [0, max / 2, max].forEach(function (v) {
+      root.appendChild(svg("line", { class: v === 0 ? "base" : "gl", x1: L, x2: W - R, y1: Y(v), y2: Y(v) }));
+      var t = svg("text", { x: L - 6, y: Y(v) + 3, "text-anchor": "end" }); t.textContent = String(v); root.appendChild(t);
+    });
+    win.forEach(function (w, i) {
+      var cx = L + slot * i + slot / 2;
+      if (w.date === day.date) root.appendChild(svg("rect", { class: "sel", x: L + slot * i, y: T, width: slot, height: ph }));
+      if (w.tracked && !w.baseline) {
+        var y0 = T + ph, segs = CAT_ORDER.filter(function (c) { return w.counts[c]; });
+        segs.forEach(function (c, k) {
+          var h = w.counts[c] / max * ph, top = k === segs.length - 1;
+          var gap = k > 0 ? 2 : 0;  // 段與段之間 2px 表面間隙
+          var hh = Math.max(1, h - gap);
+          var color = getComputedStyle(document.documentElement).getPropertyValue(CAT_COLOR[c]).trim();
+          root.appendChild(top ? svg("path", { d: roundTop(cx - bw / 2, y0 - h, bw, hh, 4), fill: color })
+                               : svg("rect", { x: cx - bw / 2, y: y0 - h, width: bw, height: hh, fill: color }));
+          y0 -= h;
+        });
+      }
+      if (w.baseline) {
+        var bt = svg("text", { x: cx, y: T + ph - 6, "text-anchor": "middle" }); bt.textContent = "基準"; root.appendChild(bt);
+      }
+      var lab = i === 0 || i === win.length - 1 || (i % 7 === 0 && win.length - 1 - i >= 4);
+      if (lab) { var xt = svg("text", { x: cx, y: H - 6, "text-anchor": i === 0 ? "start" : i === win.length - 1 ? "end" : "middle" }); xt.textContent = md(w.date); root.appendChild(xt); }
+      var hit = svg("rect", { class: "hit", x: L + slot * i, y: T, width: slot, height: ph + B, tabindex: w.tracked ? 0 : -1 });
+      bindTip(hit, function (node) {
+        if (!w.tracked) return showTip(node, md(w.date), ["尚未開始追蹤"]);
+        if (w.baseline) return showTip(node, md(w.date), ["首次監控：建立基準，不計入新消息"]);
+        var lines = CAT_ORDER.filter(function (c) { return w.counts[c]; }).map(function (c) {
+          return el("li", {}, [el("span", { class: "sw", style: "background:var(" + CAT_COLOR[c] + ")" }), c + "　" + w.counts[c]]);
+        });
+        showTip(node, md(w.date) + "・新消息 " + w.total + " 則", lines.length ? lines : ["沒有新消息"]);
+      });
+      root.appendChild(hit);
+    });
+    host.appendChild(root);
+
+    // 數據表（淺色模式部分顏色對比不足，數據表是必備的替代閱讀方式）
+    var tw = $("trend-tbl"); clear(tw);
+    var rows = win.filter(function (w) { return w.tracked; }).reverse();
+    var head = el("tr", {}, [el("th", { text: "日期" })].concat(CAT_ORDER.map(function (c) { return el("th", { text: c }); }), [el("th", { text: "合計" })]));
+    var tb = el("tbody");
+    rows.forEach(function (w) {
+      tb.appendChild(el("tr", {}, [el("td", { text: w.date + (w.baseline ? "（基準）" : "") })].concat(
+        CAT_ORDER.map(function (c) { return el("td", { text: w.baseline ? "—" : String(w.counts[c] || 0) }); }),
+        [el("td", { text: w.baseline ? "—" : String(w.total) })])));
+    });
+    tw.appendChild(el("table", {}, [el("thead", {}, [head]), tb]));
+
+    // 話題熱度：小倍數折線（同一種量，所以同一個顏色）
+    var tp = $("topics"); clear(tp);
+    TOPICS.forEach(function (t, ti) {
+      var vals = win.map(function (w) { return w.tracked ? w.topics[ti] : null; });
+      var today = vals[vals.length - 1], week = vals.slice(-7).reduce(function (a, v) { return a + (v || 0); }, 0);
+      var card = el("div", { class: "mult" }, [
+        el("h4", {}, [t.name, el("b", { text: today == null ? "—" : String(today) })]),
+        el("p", { text: "今天 · 近 7 天共 " + week + " 則" })]);
+      var w2 = 220, h2 = 46, pad = 5, mx = Math.max(2, Math.max.apply(null, vals.map(function (v) { return v || 0; })));
+      var sx = function (i) { return pad + i * (w2 - pad * 2) / (vals.length - 1); }, sy = function (v) { return h2 - pad - v / mx * (h2 - pad * 2); };
+      var sv = svg("svg", { viewBox: "0 0 " + w2 + " " + h2, height: h2, preserveAspectRatio: "none", role: "img", "aria-label": t.name + " 近 30 天每日則數" });
+      sv.appendChild(svg("line", { class: "base", x1: pad, x2: w2 - pad, y1: h2 - pad, y2: h2 - pad, "vector-effect": "non-scaling-stroke" }));
+      var pts = []; vals.forEach(function (v, i) { if (v != null) pts.push([sx(i), sy(v), i]); });
+      if (pts.length > 1) {
+        var dLine = pts.map(function (p, k) { return (k ? "L" : "M") + p[0].toFixed(1) + "," + p[1].toFixed(1); }).join("");
+        sv.appendChild(svg("path", { class: "area", d: dLine + "L" + pts[pts.length - 1][0] + "," + (h2 - pad) + "L" + pts[0][0] + "," + (h2 - pad) + "Z" }));
+        sv.appendChild(svg("path", { class: "line", d: dLine, "vector-effect": "non-scaling-stroke" }));
+      }
+      var chart = el("div", { class: "chart" }, [sv]);
+      if (pts.length) {
+        var lp = pts[pts.length - 1];
+        // 端點用 HTML 圓點，避免被拉伸變形
+        chart.appendChild(el("span", { style: "position:absolute;width:9px;height:9px;border-radius:50%;background:var(--series);box-shadow:0 0 0 2px var(--panel);left:calc(" + (lp[0] / w2 * 100) + "% - 4.5px);top:" + (lp[1] - 4.5) + "px" }));
+      }
+      // 每一天的感應區
+      vals.forEach(function (v, i) {
+        var hz = el("span", { tabindex: "-1", style: "position:absolute;top:0;bottom:0;left:" + (i / vals.length * 100) + "%;width:" + (100 / vals.length) + "%" });
+        bindTip(hz, function (node) { showTip(node, md(win[i].date) + "・" + t.name, [v == null ? (win[i].tracked ? "首日基準不計" : "尚未開始追蹤") : v + " 則"]); });
+        chart.appendChild(hz);
+      });
+      card.appendChild(chart);
+      tp.appendChild(card);
+    });
+  }
+
   function show(idx) {
     var day = DATA.days[idx];
     if (!day) return;
@@ -523,7 +917,7 @@ footer .wrap { padding-block: 18px 28px; }
     $("next").disabled = idx <= 0;
     var k = daysBetween(day.date, "2027-01-09");
     $("cd-n").textContent = k > 0 ? k : "已開始";
-    renderBrief(day); renderPick(day, idx); renderDates(day); renderSummary(day);
+    renderSeason(day); renderBrief(day); renderPick(day, idx); renderDates(day); renderSummary(day); renderTrends(day);
     renderChips(day); renderList(day); renderPages(day); renderErrors(day);
     var a = day.analysis || {};
     $("foot").textContent = "資料日期 " + day.date + " · 精選與整理：" +
@@ -554,6 +948,11 @@ footer .wrap { padding-block: 18px 28px; }
     });
   });
   window.addEventListener("hashchange", function () { show(indexFromHash()); });
+  $("trend-tbl-btn").addEventListener("click", function () {
+    var t = $("trend-tbl"), open = t.hidden; t.hidden = !open;
+    this.textContent = open ? "隱藏數據表" : "顯示數據表"; this.setAttribute("aria-expanded", String(open));
+  });
+  var rz; window.addEventListener("resize", function () { clearTimeout(rz); rz = setTimeout(function () { renderTrends(DATA.days[+$("day").value]); }, 150); });
   show(indexFromHash());
 })();
 </script>
