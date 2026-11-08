@@ -22,22 +22,8 @@
   --f-body: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
   --f-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
 }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #0f151b; --panel: #172029; --ink: #e4eaf0; --muted: #94a2b0; --line: #2a3642;
-    --blue: #6aa4f5; --red: #f0626b; --chip: #22303c; --warn-bg: #3a2a16; --warn-ink: #f2c38a;
-    --hi: #f0626b; --mid: #e0a84a; --lo: #7d8a97;
-    --c-team: #a99ae0; --c-soft: #5ec3d6; --c-hard: #e3a55a; --c-rule: #f0626b; --c-admin: #86c774; --c-other: #9aa6b2;
-    color-scheme: dark;
-  }
-}
-:root[data-theme="dark"] {
-  --bg: #0f151b; --panel: #172029; --ink: #e4eaf0; --muted: #94a2b0; --line: #2a3642;
-  --blue: #6aa4f5; --red: #f0626b; --chip: #22303c; --warn-bg: #3a2a16; --warn-ink: #f2c38a;
-  --hi: #f0626b; --mid: #e0a84a; --lo: #7d8a97;
-  --c-team: #a99ae0; --c-soft: #5ec3d6; --c-hard: #e3a55a; --c-rule: #f0626b; --c-admin: #86c774; --c-other: #9aa6b2;
-  color-scheme: dark;
-}
+/* 固定亮色系：不跟隨系統深色模式 */
+:root { color-scheme: light; }
 * { box-sizing: border-box; }
 html { scroll-padding-top: calc(56px + env(safe-area-inset-top, 0px)); }
 body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.65; }
