@@ -72,3 +72,19 @@ def test_calendar_events_and_names():
                    {"date": "2027-01-13", "label": "Official Q&A Opens"}]
     assert event_zh("Week 3 Competition Events") == "第 3 週賽事"
     assert event_zh("Volunteer Registration Opens") == ""
+
+
+def test_collect_systemcore_aggregates_and_tags(tmp_path):
+    from tracker.site import collect_systemcore
+    data = tmp_path / "data"
+    (data / "daily").mkdir(parents=True)
+    d1 = dict(RESULT, items=[_item("Looking for Systemcore pricing details", "Chief Delphi 標籤 #systemcore", "2026-09-06"),
+                             _item("Motor count", "Chief Delphi", "2026-09-01")])
+    d2 = dict(RESULT, date="2026-11-08",
+              items=[_item("Getting LEDs working on SystemCore", "Chief Delphi", "2026-11-08")])
+    (data / "daily" / "2026-11-07.json").write_text(json.dumps(d1), "utf-8")
+    (data / "daily" / "2026-11-08.json").write_text(json.dumps(d2), "utf-8")
+    sc = collect_systemcore(data)
+    assert [i["title"] for i in sc["items"]] == ["Getting LEDs working on SystemCore", "Looking for Systemcore pricing details"]
+    assert sc["items"][1]["tags"] == ["價格與供貨"] and "硬體與接線" in sc["items"][0]["tags"]
+    assert sc["curated"] is None

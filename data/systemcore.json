@@ -1,0 +1,54 @@
+{
+ "updated": "2026-11-08",
+ "intro": "SystemCore 是 2027 賽季起 FRC 唯一合法的機器人主控制器，取代使用多年的 NI roboRIO。軟體由 WPILib 與 Limelight 團隊開發。",
+ "stats": [
+  {"value": "$550", "label": "4 GB 版價格", "note": "Raspberry Pi Compute Module 5", "url": "https://www.firstinspires.org/community-blog/2026-systemcore-pricing-and-availability"},
+  {"value": "$450", "label": "2 GB 版價格", "note": "今年稍晚開賣，日期另行公布", "url": "https://www.firstinspires.org/community-blog/2026-systemcore-pricing-and-availability"},
+  {"value": "11/18", "label": "Storefront 開賣", "note": "首批每隊限購 1 台 4 GB", "url": "https://www.firstinspires.org/community-blog/2026-systemcore-pricing-and-availability"},
+  {"value": "18", "label": "馬達數量上限", "note": "2027 新規則，約 10% 隊伍受影響", "url": "https://www.firstinspires.org/community-blog/2026-event-robot-rule-preview-for-2027-season-part-1"}
+ ],
+ "facts": [
+  {"kind": "官方", "text": "2027 賽季所有 FRC 隊伍都必須使用 SystemCore。", "source": "Systemcore Pricing and Availability", "url": "https://www.firstinspires.org/community-blog/2026-systemcore-pricing-and-availability"},
+  {"kind": "官方", "text": "每隊都會在 Kickoff Kit 的「2027 賽季專屬箱」收到 1 台 4 GB SystemCore。", "source": "Systemcore Pricing and Availability", "url": "https://www.firstinspires.org/community-blog/2026-systemcore-pricing-and-availability"},
+  {"kind": "官方", "text": "首批只賣給已註冊並完成報名的 FRC 隊伍，每隊限購 1 台 4 GB；之後會改由多家廠商販售，限購也可能取消。", "source": "Systemcore Pricing and Availability", "url": "https://www.firstinspires.org/community-blog/2026-systemcore-pricing-and-availability"},
+  {"kind": "官方", "text": "4 GB 版適合要在機器上跑多個相機、機上程式工具的隊伍；2 GB 版比賽中能做的事相同，只是餘裕較少。", "source": "Systemcore Pricing and Availability", "url": "https://www.firstinspires.org/community-blog/2026-systemcore-pricing-and-availability"},
+  {"kind": "官方", "text": "量產版和 alpha 測試機不同：電源與 CAN 不再使用 wire-to-board 接頭。SystemCore 附電源輸入線，Black Tote 內有 Molex-SL 線材與零件。", "source": "Systemcore Pricing and Availability", "url": "https://www.firstinspires.org/community-blog/2026-systemcore-pricing-and-availability"},
+  {"kind": "官方", "text": "拿到機器後即可用 Systemcore Testing GitHub 上的 2027 軟體做 beta 測試，正式文件會陸續更新在 WPILib Docs。", "source": "Systemcore Pricing and Availability", "url": "https://www.firstinspires.org/community-blog/2026-systemcore-pricing-and-availability"},
+  {"kind": "官方", "text": "2027 搭配新的 WPILib Driver Station；10 月 SoCal Showdown 整場比賽已用 SystemCore 測試 FMS 連線。", "source": "Systemcore Pricing and Availability", "url": "https://www.firstinspires.org/community-blog/2026-systemcore-pricing-and-availability"},
+  {"kind": "官方", "text": "FTC 2026-27 賽季（BIOBUZZ）不能使用 SystemCore；A301 馬達、電池方案與 MotionCore 的價格還沒公布。", "source": "Systemcore Pricing and Availability", "url": "https://www.firstinspires.org/community-blog/2026-systemcore-pricing-and-availability"},
+  {"kind": "社群", "text": "社群整理：SystemCore 有 5 條原生 CAN bus（CAN 0/1、CAN 2、CAN 3/4 分別使用 3 組 SPI）。非官方資訊，以 WPILib 文件為準。", "source": "Chief Delphi 討論", "url": "https://www.chiefdelphi.com/t/how-is-your-team-planning-to-use-all-the-5-systemcore-can-buses/523278"}
+ ],
+ "rules": [
+  {"item": "Relay", "before": "可用 Relay 控制氣動、燈光等", "after": "Relay 不再是合法的電源控制裝置（SystemCore 不能驅動 Relay）", "todo": "氣動改用專用氣動控制器，其他用途改用馬達控制器", "url": "https://www.firstinspires.org/community-blog/2026-event-robot-rule-preview-for-2027-season-part-2"},
+  {"item": "Servo 供電", "before": "可由控制器直接供電", "after": "SystemCore 不能直接替 servo 供電", "todo": "使用 REV Servo Hub、REV Servo Power Module、GoBilda 6V Servo Power Injector 或 Studica Servo Power Block", "url": "https://www.firstinspires.org/community-blog/2026-event-robot-rule-preview-for-2027-season-part-2"},
+  {"item": "馬達數量", "before": "沒有總數上限", "after": "最多 18 顆馬達", "todo": "設計階段就先數清楚馬達數量", "url": "https://www.firstinspires.org/community-blog/2026-event-robot-rule-preview-for-2027-season-part-1"},
+  {"item": "CAN bus", "before": "可用 CANivore 增加 CAN bus", "after": "2027 仍可用 CANivore 增加 CAN bus（過渡措施），2028 起所有 CAN bus 必須從 SystemCore 原生 bus 出發", "todo": "2027 可沿用 CANivore，但規劃時以 SystemCore 原生 bus 為主", "url": "https://www.firstinspires.org/community-blog/2026-event-robot-rule-preview-for-2027-season-part-1"},
+  {"item": "馬達電路接線", "before": "—", "after": "馬達電路禁止用自製 PCB 連接，必須使用 COTS 接頭（R623 改寫）", "todo": "檢查自製的電源分配板或轉接板", "url": "https://www.firstinspires.org/community-blog/2026-event-robot-rule-preview-for-2027-season-part-2"},
+  {"item": "舊控制器與馬達", "before": "Talon、VictorSP 合法；BAG、Mini-CIM 在清單上", "after": "移除 Talon、VictorSP；BAG、Mini-CIM 只能接 20A 以下斷路器", "todo": "汰換倉庫裡的舊控制器", "url": "https://www.firstinspires.org/community-blog/2026-event-robot-rule-preview-for-2027-season-part-1"}
+ ],
+ "dates": [
+  {"date": "2026-11-17", "label": "賽事與 Kit／Kickoff 報名截止（完成報名才能加購 SystemCore）"},
+  {"date": "2026-11-18", "label": "FIRST Storefront 開賣 4 GB SystemCore（每隊限 1 台）", "url": "https://www.firstinspires.org/community-blog/2026-systemcore-pricing-and-availability"},
+  {"date": "2027-01-09", "label": "Kickoff：Kit 內附 1 台 4 GB SystemCore"}
+ ],
+ "checklist": [
+  {"id": "buy-spare", "group": "採購", "text": "決定是否在 11/18 加購備用 SystemCore（4 GB $550，每隊限 1 台）"},
+  {"id": "register", "group": "採購", "text": "11/17 前完成賽事與 Kickoff Kit 報名"},
+  {"id": "servo-power", "group": "採購", "text": "準備合法的 servo 供電模組（如 REV Servo Hub）"},
+  {"id": "pneumatics", "group": "採購", "text": "用 Relay 的機構改用氣動控制器或馬達控制器"},
+  {"id": "motor-count", "group": "電控", "text": "確認機器人設計不超過 18 顆馬達"},
+  {"id": "can-plan", "group": "電控", "text": "重新規劃 CAN 佈線（SystemCore 原生 bus；2027 仍可用 CANivore）"},
+  {"id": "molex", "group": "電控", "text": "熟悉 Molex-SL 接頭與 Kit 附的線材"},
+  {"id": "old-controllers", "group": "電控", "text": "汰換 Talon、VictorSP 等已不合法的控制器"},
+  {"id": "wpilib-beta", "group": "程式", "text": "安裝 WPILib 2027 beta，試著移植去年的程式"},
+  {"id": "vendordeps", "group": "程式", "text": "更新 vendor library（REVLib 2027 移除 conversion factor、CTRE 安裝方式改變）"},
+  {"id": "new-ds", "group": "程式", "text": "練習使用新的 WPILib Driver Station"},
+  {"id": "dashboard", "group": "程式", "text": "自動模式選擇器改用 SmartDashboard 以外的方式（社群指出 SmartDashboard 將被移除）"}
+ ],
+ "links": [
+  {"title": "Systemcore Pricing and Availability（官方，2026/9/23）", "url": "https://www.firstinspires.org/community-blog/2026-systemcore-pricing-and-availability"},
+  {"title": "2027 Event & Robot Rule Preview - Part 1（官方，2026/8/31）", "url": "https://www.firstinspires.org/community-blog/2026-event-robot-rule-preview-for-2027-season-part-1"},
+  {"title": "2027 Event & Robot Rule Preview - Part 2（官方，2026/10/22）", "url": "https://www.firstinspires.org/community-blog/2026-event-robot-rule-preview-for-2027-season-part-2"},
+  {"title": "WPILib 文件：New for 2027", "url": "https://docs.wpilib.org/en/latest/docs/yearly-overview/yearly-changelog.html"}
+ ]
+}

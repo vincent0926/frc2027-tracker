@@ -46,14 +46,51 @@ def collect_days(data_dir: Path) -> list[dict]:
     return days
 
 
-def render_fragment(days: list[dict]) -> str:
+# ---------------- SystemCore 專頁 ----------------
+SC_RE = re.compile(r"systemcore|system core|motioncore|future robot controller|2027 control system", re.I)
+SC_TOPICS = [
+    ("價格與供貨", r"pric|purchase|black tote|storefront|availab|budget|cost|free of charge"),
+    ("硬體與接線", r"electrical|\bcan\b|can bus|\bleds?\b|wir(e|ing)|molex|status (light|signal)|power|hardware|i2c|\bports?\b"),
+    ("軟體與程式", r"wpilib|\bcode\b|firmware|toolchain|\bgit\b|blocks|driver ?station|\bds\b|sendable|ntcore|advantagescope|ipk|\bhal\b|program"),
+    ("規則", r"\brules?\b|\blegal\b"),
+    ("測試回報", r"alpha|beta|testing"),
+]
+
+
+def collect_systemcore(data_dir: Path) -> dict:
+    """彙整所有日期中與 SystemCore 有關的訊息（不受網站 90 天限制），加上主題標籤。"""
+    items: dict[str, dict] = {}
+    for f in sorted((data_dir / "daily").glob("20*.json")):
+        day = f.stem
+        a = data_dir / "analysis" / f.name
+        zh = (json.loads(a.read_text("utf-8")).get("items_zh") or {}) if a.exists() else {}
+        for it in json.loads(f.read_text("utf-8")).get("items", []):
+            text = f"{it['title']} {it.get('summary', '')}"
+            if not SC_RE.search(text):
+                continue
+            entry = items.setdefault(it["url"], {
+                "url": it["url"], "title": it["title"], "summary": it.get("summary", "")[:220],
+                "date": it.get("date", ""), "first_seen": day, "baseline": it.get("baseline", False),
+                "tags": [name for name, pat in SC_TOPICS if re.search(pat, text, re.I)] or ["其他"],
+            })
+            entry["kind"], entry["src"] = source_kind(it)
+            if it["url"] in zh:
+                entry["zh"] = zh[it["url"]]
+    curated_path = data_dir / "systemcore.json"
+    curated = json.loads(curated_path.read_text("utf-8")) if curated_path.exists() else None
+    return {"curated": curated,
+            "items": sorted(items.values(), key=lambda x: x["date"], reverse=True),
+            "topics": [name for name, _ in SC_TOPICS]}
+
+
+def render_fragment(days: list[dict], systemcore: dict | None = None) -> str:
     # 防止資料內容提早結束 <script>
-    payload = json.dumps({"days": days}, ensure_ascii=False).replace("</", "<\\/")
+    payload = json.dumps({"days": days, "systemcore": systemcore}, ensure_ascii=False).replace("</", "<\\/")
     return TEMPLATE.read_text("utf-8").replace("/*__DATA__*/", payload)
 
 
 def build_site(data_dir: Path, site_dir: Path) -> Path:
-    frag = render_fragment(collect_days(data_dir))
+    frag = render_fragment(collect_days(data_dir), collect_systemcore(data_dir))
     site_dir.mkdir(parents=True, exist_ok=True)
     # GitHub Pages 用完整 HTML；fragment.html 給 Claude Artifact 預覽用
     (site_dir / "fragment.html").write_text(frag, "utf-8")

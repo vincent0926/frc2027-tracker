@@ -48,6 +48,7 @@
   color-scheme: dark;
 }
 * { box-sizing: border-box; }
+[hidden] { display: none !important; }
 html { scroll-padding-top: calc(56px + env(safe-area-inset-top, 0px)); }
 body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.65; }
 body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--panel); }
@@ -115,7 +116,56 @@ a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible
 .jump a:hover { background: var(--chip); color: var(--ink); }
 .jump a .c { font-family: var(--f-mono); font-size: .72rem; margin-left: 4px; }
 
-main .wrap { display: grid; gap: 32px; padding-block: 24px 48px; }
+main .wrap { padding-block: 24px 48px; }
+.view { display: grid; gap: 32px; min-width: 0; }
+/* 分頁 */
+.tabs { display: flex; gap: 2px; flex: none; }
+.jump .tab { font-size: .9rem; font-weight: 700; color: var(--muted); text-decoration: none; padding: 6px 12px; border-radius: 8px; white-space: nowrap; }
+.jump .tab[aria-current="page"] { background: var(--ink); color: var(--panel); }
+.jump .tab:not([aria-current="page"]):hover { background: var(--chip); color: var(--ink); }
+.jsep { flex: none; width: 1px; background: var(--line); margin: 4px 6px; }
+#jump-links { display: contents; }
+
+/* ---------- SystemCore 專頁 ---------- */
+.sc-hero { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 22px; display: grid; gap: 14px; }
+.sc-hero h2 { margin: 0; font-family: var(--f-display); font-size: 2.2rem; line-height: 1; letter-spacing: .01em; }
+.sc-hero h2 span { display: block; font-family: var(--f-body); font-size: .9rem; font-weight: 500; color: var(--muted); letter-spacing: 0; margin-top: 6px; }
+.sc-hero p { margin: 0; max-width: 70ch; }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; }
+.stat { border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; display: grid; gap: 2px; text-decoration: none; color: var(--ink); min-width: 0; }
+.stat:hover { border-color: var(--blue); }
+.stat b { font-family: var(--f-display); font-size: 2rem; line-height: 1.05; font-variant-numeric: tabular-nums; }
+.stat span { font-size: .85rem; font-weight: 500; }
+.stat small { font-size: .74rem; color: var(--muted); }
+.sc-updated { font-size: .78rem; color: var(--muted); }
+.sc-dates { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 8px; }
+.facts { margin: 0; padding: 0; list-style: none; display: grid; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+.facts li { padding: 11px 16px; border-top: 1px solid var(--line); display: grid; gap: 4px; }
+.facts li:first-child { border-top: 0; }
+.facts .src { font-size: .76rem; color: var(--muted); display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.rules { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 10px; }
+.rule { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; display: grid; gap: 6px; align-content: start; min-width: 0; }
+.rule h3 { margin: 0; font-size: 1rem; }
+.rule dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 4px 10px; font-size: .88rem; }
+.rule dt { color: var(--muted); font-family: var(--f-mono); font-size: .74rem; padding-top: 2px; }
+.rule dd { margin: 0; min-width: 0; }
+.rule dd.todo { font-weight: 500; }
+.rule a { font-size: .78rem; }
+.check-head { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; margin-bottom: 10px; }
+.progress { flex: 1 1 200px; height: 8px; border-radius: 4px; background: var(--chip); overflow: hidden; min-width: 120px; }
+.progress i { display: block; height: 100%; background: var(--blue); border-radius: 4px; transition: width .2s; }
+.check-head b { font-variant-numeric: tabular-nums; font-size: .9rem; }
+.check-head button { font: inherit; font-size: .8rem; color: var(--muted); background: none; border: 0; cursor: pointer; text-decoration: underline; }
+.checks { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 10px; }
+.cgroup { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; display: grid; gap: 6px; align-content: start; }
+.cgroup h3 { margin: 0 0 2px; font-size: .9rem; display: flex; justify-content: space-between; }
+.cgroup h3 span { font-family: var(--f-mono); font-size: .75rem; color: var(--muted); font-weight: 400; }
+.cgroup label { display: grid; grid-template-columns: 20px 1fr; gap: 8px; font-size: .9rem; line-height: 1.45; cursor: pointer; padding: 3px 0; }
+.cgroup input { width: 16px; height: 16px; margin: 3px 0 0; accent-color: var(--blue); }
+.cgroup input:checked + span { color: var(--muted); text-decoration: line-through; }
+.links { margin: 0; padding-left: 1.2em; display: grid; gap: 4px; font-size: .9rem; }
+.newb { font-size: .68rem; font-weight: 700; padding: 0 6px; border-radius: 4px; background: var(--blue); color: var(--panel); }
+.tagc { font-size: .7rem; padding: 0 6px; border-radius: 4px; background: var(--chip); color: var(--ink); }
 section { min-width: 0; }
 .label { font-family: var(--f-mono); font-size: .72rem; letter-spacing: .12em; color: var(--muted); margin: 0 0 10px; display: flex; align-items: center; gap: 8px; }
 .label::after { content: ""; flex: 1; height: 1px; background: var(--line); }
@@ -313,19 +363,33 @@ footer .wrap { padding-block: 18px 28px; }
     </div>
   </div>
 </header>
-<nav class="jump" aria-label="跳到區塊">
+<nav class="jump" aria-label="分頁與區塊">
   <div class="wrap">
+    <div class="tabs">
+      <a class="tab" id="tab-daily" href="#daily" aria-current="page">每日情報</a>
+      <a class="tab" id="tab-sc" href="#systemcore">SystemCore</a>
+    </div>
+    <span class="jsep" aria-hidden="true"></span>
+    <span id="jump-links">
     <a href="#s-brief">30 秒重點</a>
     <a href="#s-pick">今日精選</a>
     <a href="#s-dates">重要日期</a>
     <a href="#s-sum">分類整理</a>
     <a href="#s-trend">趨勢</a>
     <a href="#s-all">訊息清單<span class="c" id="jump-n"></span></a>
+    </span>
+    <span id="jump-sc" hidden style="display:contents">
+    <a href="#sc-facts">重點事實</a>
+    <a href="#sc-rules">規則影響</a>
+    <a href="#sc-check">準備清單</a>
+    <a href="#sc-news">相關討論</a>
+    </span>
   </div>
 </nav>
 
 <main>
   <div class="wrap">
+   <div class="view" id="view-daily">
     <section id="s-brief" aria-labelledby="l-brief">
       <p class="label" id="l-brief">30 秒看重點</p>
       <div class="brief">
@@ -381,6 +445,44 @@ footer .wrap { padding-block: 18px 28px; }
       <details class="box" id="pages-box"><summary id="pages-sum">監控頁面</summary><div id="pages"></div></details>
     </section>
     <details class="box" id="errors" hidden><summary id="err-sum"></summary><ul id="err-list"></ul></details>
+   </div>
+
+   <div class="view" id="view-sc" hidden>
+    <section class="sc-hero" aria-labelledby="sc-title">
+      <h2 id="sc-title">SystemCore<span>2027 FRC 機器人主控制器專頁</span></h2>
+      <p id="sc-intro"></p>
+      <div class="stats" id="sc-stats"></div>
+      <span class="sc-updated" id="sc-updated"></span>
+    </section>
+    <section aria-labelledby="l-scd">
+      <p class="label" id="l-scd">相關日期</p>
+      <div class="sc-dates" id="sc-dates"></div>
+    </section>
+    <section id="sc-facts" aria-labelledby="l-scf">
+      <p class="label" id="l-scf">你需要知道的事</p>
+      <ul class="facts" id="sc-facts-list"></ul>
+    </section>
+    <section id="sc-rules" aria-labelledby="l-scr">
+      <p class="label" id="l-scr">2027 規則對 SystemCore 的影響</p>
+      <div class="rules" id="sc-rules-list"></div>
+    </section>
+    <section id="sc-check" aria-labelledby="l-scc">
+      <p class="label" id="l-scc">從 roboRIO 換到 SystemCore 的準備清單</p>
+      <div class="check-head"><b id="sc-prog-t"></b><div class="progress" role="progressbar" aria-label="準備清單完成度" id="sc-prog"><i></i></div>
+        <button type="button" id="sc-reset">全部取消勾選</button></div>
+      <div class="checks" id="sc-checks"></div>
+      <p class="note">勾選狀態只存在你自己的瀏覽器裡，不會分享給其他人。</p>
+    </section>
+    <section id="sc-news" aria-labelledby="l-scn">
+      <p class="label" id="l-scn">SystemCore 相關討論與公告</p>
+      <div class="filters" id="sc-chips"></div>
+      <div class="list" id="sc-list"></div>
+    </section>
+    <section aria-labelledby="l-scl">
+      <p class="label" id="l-scl">官方資料</p>
+      <ul class="links" id="sc-links"></ul>
+    </section>
+   </div>
   </div>
 </main>
 <footer><div class="wrap" id="foot"></div></footer>
@@ -908,6 +1010,111 @@ footer .wrap { padding-block: 18px 28px; }
     });
   }
 
+
+  /* ---------- SystemCore 專頁 ---------- */
+  var SC = DATA.systemcore || { items: [], topics: [] };
+  var scState = { tag: null };
+  var SC_KEY = "frc2027-sc-checklist";
+  function loadChecks() { try { return JSON.parse(localStorage.getItem(SC_KEY) || "{}"); } catch (e) { return {}; } }
+  function saveChecks(v) { try { localStorage.setItem(SC_KEY, JSON.stringify(v)); } catch (e) {} }
+
+  function renderSC() {
+    var c = SC.curated || {}, today = DATA.days.length ? DATA.days[0].date : "";
+    $("sc-intro").textContent = c.intro || "";
+    $("sc-updated").textContent = c.updated ? "重點整理更新於 " + c.updated + "；下方討論每天自動更新。" : "";
+    var st = $("sc-stats"); clear(st);
+    (c.stats || []).forEach(function (x) {
+      st.appendChild(el("a", { class: "stat", href: x.url }, [el("b", { text: x.value }), el("span", { text: x.label }), el("small", { text: x.note })]));
+    });
+    // 相關日期（含緊急度）
+    var dbox = $("sc-dates"); clear(dbox);
+    (c.dates || []).forEach(function (d) {
+      var n = daysBetween(today, d.date), u = urgency(n), dl = /截止/.test(d.label);
+      var nm = el("div", { class: "nm" }, [dl && u ? urgPill(u) : null, d.label]);
+      dbox.appendChild(el("div", { class: "ev" + (dl && u ? " u-" + u.key : "") }, [
+        el("div", { class: "dt" }, [el("b", { text: md(d.date) }), n === 0 ? "今天" : n > 0 ? n + " 天後" : -n + " 天前"]), nm]));
+    });
+    var fl = $("sc-facts-list"); clear(fl);
+    (c.facts || []).forEach(function (f) {
+      fl.appendChild(el("li", {}, [el("span", { text: f.text }),
+        el("span", { class: "src" }, [kindTag(f.kind), el("a", { href: f.url, text: f.source })])]));
+    });
+    var rl = $("sc-rules-list"); clear(rl);
+    (c.rules || []).forEach(function (r) {
+      rl.appendChild(el("div", { class: "rule" }, [el("h3", { text: r.item }),
+        el("dl", {}, [el("dt", { text: "以前" }), el("dd", { text: r.before }), el("dt", { text: "2027" }), el("dd", { text: r.after }),
+                      el("dt", { text: "要做的事" }), el("dd", { class: "todo", text: r.todo })]),
+        el("a", { href: r.url, text: "官方來源" })]));
+    });
+    renderChecklist();
+    var ll = $("sc-links"); clear(ll);
+    (c.links || []).forEach(function (l) { ll.appendChild(el("li", {}, [el("a", { href: l.url, text: l.title })])); });
+    renderSCNews();
+  }
+  function renderChecklist() {
+    var c = SC.curated || {}, done = loadChecks(), box = $("sc-checks"); clear(box);
+    var list = c.checklist || [], groups = [];
+    list.forEach(function (x) { if (groups.indexOf(x.group) < 0) groups.push(x.group); });
+    groups.forEach(function (g) {
+      var items = list.filter(function (x) { return x.group === g; });
+      var n = items.filter(function (x) { return done[x.id]; }).length;
+      var grp = el("div", { class: "cgroup" }, [el("h3", {}, [g, el("span", { text: n + "/" + items.length })])]);
+      items.forEach(function (x) {
+        var cb = el("input", { type: "checkbox", id: "chk-" + x.id });
+        cb.checked = !!done[x.id];
+        cb.addEventListener("change", function () { var d = loadChecks(); if (cb.checked) d[x.id] = 1; else delete d[x.id]; saveChecks(d); renderChecklist(); });
+        grp.appendChild(el("label", { for: "chk-" + x.id }, [cb, el("span", { text: x.text })]));
+      });
+      box.appendChild(grp);
+    });
+    var total = list.length, k = list.filter(function (x) { return done[x.id]; }).length;
+    $("sc-prog-t").textContent = "已完成 " + k + " / " + total;
+    $("sc-prog").setAttribute("aria-valuenow", String(total ? Math.round(k / total * 100) : 0));
+    $("sc-prog").firstChild.style.width = (total ? k / total * 100 : 0) + "%";
+  }
+  function renderSCNews() {
+    var chips = $("sc-chips"); clear(chips);
+    var items = SC.items || [], latest = DATA.days.length ? DATA.days[0].date : "";
+    var tags = ["官方"].concat(SC.topics || []);
+    function count(t) { return items.filter(function (i) { return t === "官方" ? /官方/.test(i.kind) : i.tags.indexOf(t) >= 0; }).length; }
+    function make(label, t, n) {
+      var b = el("button", { class: "chipbtn", type: "button", "aria-pressed": String(scState.tag === t) }, [label, el("span", { class: "c", text: String(n) })]);
+      b.addEventListener("click", function () { scState.tag = t; renderSCNews(); });
+      return b;
+    }
+    chips.appendChild(make("全部", null, items.length));
+    tags.forEach(function (t) { var n = count(t); if (n) chips.appendChild(make(t, t, n)); });
+    var list = $("sc-list"); clear(list);
+    items.filter(function (i) { return !scState.tag || (scState.tag === "官方" ? /官方/.test(i.kind) : i.tags.indexOf(scState.tag) >= 0); })
+      .forEach(function (i) {
+        var isNew = !i.baseline && daysBetween(i.first_seen, latest) <= 7;
+        list.appendChild(el("div", { class: "item" }, [el("span", { class: "bar", style: "background:var(--blue)" }),
+          el("div", { class: "body" }, [
+            el("div", { class: "t" }, [isNew ? el("span", { class: "newb", text: "新" }) : null, el("a", { href: i.url, text: i.zh ? i.zh.title : i.title })]),
+            i.zh ? el("div", { class: "orig", text: i.title }) : null,
+            el("p", { class: "s", text: i.zh ? i.zh.blurb : i.summary }),
+            el("div", { class: "m" }, [kindTag(i.kind), el("span", { text: i.src }), el("span", { class: "sep", text: i.date ? i.date + "（" + rel(i.date, latest) + "）" : "" })]
+              .concat(i.tags.map(function (t) { return el("span", { class: "tagc", text: t }); })))])]));
+      });
+    if (!list.firstChild) list.appendChild(el("div", { class: "empty", text: "沒有符合條件的訊息。" }));
+  }
+
+  /* ---------- 分頁切換 ---------- */
+  var scRendered = false;
+  function setView(v) {
+    var sc = v === "sc";
+    $("view-daily").hidden = sc; $("view-sc").hidden = !sc;
+    $("jump-links").hidden = sc; $("jump-sc").hidden = !sc;
+    document.querySelector(".daynav").hidden = sc;
+    $("tab-daily").setAttribute("aria-current", sc ? "false" : "page");
+    $("tab-sc").setAttribute("aria-current", sc ? "page" : "false");
+    if (sc && !scRendered) { renderSC(); scRendered = true; }
+  }
+  function route() {
+    if (location.hash === "#systemcore") { setView("sc"); renderSeason(DATA.days[+$("day").value || 0]); }
+    else { setView("daily"); show(indexFromHash()); }
+  }
+
   function show(idx) {
     var day = DATA.days[idx];
     if (!day) return;
@@ -923,7 +1130,7 @@ footer .wrap { padding-block: 18px 28px; }
     $("foot").textContent = "資料日期 " + day.date + " · 精選與整理：" +
       (a.method === "claude" ? "Claude" + (a.model ? "（" + a.model + "）" : "") : "規則評分") +
       " · 內容摘錄自原始來源，請以官方文件為準。";
-    try { history.replaceState(null, "", "#d" + day.date); } catch (e) {}
+    if (location.hash !== "#systemcore") { try { history.replaceState(null, "", "#d" + day.date); } catch (e) {} }
   }
   function indexFromHash() {
     var m = /^#d(\d{4}-\d{2}-\d{2})$/.exec(location.hash);
@@ -940,19 +1147,22 @@ footer .wrap { padding-block: 18px 28px; }
   $("q").addEventListener("input", function (e) { state.q = e.target.value; renderList(DATA.days[+$("day").value]); });
   $("ev-more").addEventListener("click", function () { state.showAllEv = !state.showAllEv; renderDates(DATA.days[+$("day").value]); });
   // 跳轉列用捲動，不改網址 hash（hash 用來記錄日期）
-  Array.prototype.forEach.call(document.querySelectorAll(".jump a"), function (a) {
+  Array.prototype.forEach.call(document.querySelectorAll("#jump-links a, #jump-sc a"), function (a) {
     a.addEventListener("click", function (e) {
       e.preventDefault();
       var t = document.querySelector(a.getAttribute("href"));
       if (t) t.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
     });
   });
-  window.addEventListener("hashchange", function () { show(indexFromHash()); });
+  window.addEventListener("hashchange", route);
+  $("tab-daily").addEventListener("click", function (e) { e.preventDefault(); location.hash = "#d" + DATA.days[+$("day").value || 0].date; });
+  $("sc-reset").addEventListener("click", function () { saveChecks({}); renderChecklist(); });
   $("trend-tbl-btn").addEventListener("click", function () {
     var t = $("trend-tbl"), open = t.hidden; t.hidden = !open;
     this.textContent = open ? "隱藏數據表" : "顯示數據表"; this.setAttribute("aria-expanded", String(open));
   });
   var rz; window.addEventListener("resize", function () { clearTimeout(rz); rz = setTimeout(function () { renderTrends(DATA.days[+$("day").value]); }, 150); });
   show(indexFromHash());
+  route();
 })();
 </script>
