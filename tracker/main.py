@@ -37,7 +37,7 @@ def run(config_path: Path, data_dir: Path, report_dir: Path, today: str) -> dict
                             cfg.get("timeout_seconds", 30))
     state = load_json(data_dir / "state.json", {"seen": {}})
 
-    result = {"date": today, "items": [], "pages": [], "errors": [], "baselines": []}
+    result = {"date": today, "items": [], "pages": [], "errors": [], "baselines": [], "events": []}
     reported_urls: set[str] = set()   # 同一篇文章可能出現在多個 feed，只報一次
     for src in cfg["sources"]:
         sid = src["id"]
@@ -71,6 +71,8 @@ def run(config_path: Path, data_dir: Path, report_dir: Path, today: str) -> dict
             snap_path = data_dir / "snapshots" / f"{sid}.json"
             d = diff_snapshots(load_json(snap_path, None), snap)
             save_json(snap_path, snap)
+            for ev in snap.get("events", []):
+                result["events"].append({**ev, "source": src["name"], "url": src["url"]})
             if d["baseline"]:
                 result["baselines"].append(src["name"])
                 docs = {u: t for u, t in snap["links"].items()

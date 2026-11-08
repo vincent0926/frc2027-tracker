@@ -9,7 +9,7 @@ import email.utils
 import html
 import re
 import xml.etree.ElementTree as ET
-from urllib.parse import urljoin
+from urllib.parse import parse_qs, urljoin, urlparse
 
 from bs4 import BeautifulSoup
 
@@ -97,6 +97,27 @@ def page_snapshot(html_text: str, base_url: str, selector: str | None = None,
     return {"lines": lines, "links": links}
 
 
+def extract_calendar_events(html_text: str) -> list[dict]:
+    """從「Add to Calendar」(Google Calendar) 連結取出官方事件名稱與日期。
+
+    名稱含 Close/Due/Deadline 的事件取結束日，其他取開始日。
+    """
+    soup = BeautifulSoup(html_text, "html.parser")
+    events = {}
+    for a in soup.find_all("a", href=True):
+        if "calendar.google.com" not in a["href"]:
+            continue
+        q = parse_qs(urlparse(html.unescape(a["href"])).query)
+        label = " ".join((q.get("text") or [""])[0].split())
+        dates = (q.get("dates") or [""])[0].split("/")
+        if not label or not dates[0][:8].isdigit():
+            continue
+        pick = dates[-1] if re.search(r"clos|due|deadline|end", label, re.I) else dates[0]
+        d = f"{pick[:4]}-{pick[4:6]}-{pick[6:8]}"
+        events[(d, label)] = {"date": d, "label": html.unescape(label)}
+    return sorted(events.values(), key=lambda e: (e["date"], e["label"]))
+
+
 def diff_snapshots(old: dict | None, new: dict) -> dict:
     """比對兩份快照，回傳新增/刪除的文字行與連結。"""
     if old is None:
@@ -119,7 +140,10 @@ def diff_snapshots(old: dict | None, new: dict) -> dict:
 
 def collect_page(f: PoliteFetcher, src: dict) -> tuple[None, dict]:
     r = f.get(src["url"])
-    return None, page_snapshot(r.text, r.url, src.get("selector"), src.get("ignore_links"))
+    snap = page_snapshot(r.text, r.url, src.get("selector"), src.get("ignore_links"))
+    if src.get("calendar"):
+        snap["events"] = extract_calendar_events(r.text)
+    return None, snap
 
 
 COLLECTORS = {

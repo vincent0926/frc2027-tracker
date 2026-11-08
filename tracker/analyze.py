@@ -9,8 +9,11 @@ from __future__ import annotations
 import datetime as dt
 import json
 import os
+import re
 import sys
 from pathlib import Path
+
+from .events import event_zh
 
 MODEL = "claude-opus-5-5"
 
@@ -21,7 +24,7 @@ KEYWORD_WEIGHT = {
     "team update": 7, "game manual": 7, "rule": 5, "legal": 4, "preview": 3, "deadline": 3,
     "registration": 3, "pricing": 3, "price": 2, "fee": 3, "systemcore": 3, "release": 2,
     "beta": 2, "kickoff": 3, "breaking": 3, "removes": 2, "change": 2,
-    "build thread": -4, "open alliance": -3, "guesses": -3, "predictions": -3, "help": -1,
+    "build thread": -4, "open alliance": -3, "guesses": -3, "predictions": -3, "help": -1, "looking for": -2,
 }
 
 
@@ -44,8 +47,14 @@ def score_item(item: dict, today: str) -> float:
         s += 2
     age = _age_days(item.get("date", ""), today)
     if age is not None:
-        s += 4 if age <= 2 else 2 if age <= 7 else 0 if age <= 30 else -3
+        s += 2 if age <= 2 else 1 if age <= 7 else 0 if age <= 30 else -3
     return s
+
+
+def item_level(item: dict, today: str) -> str:
+    """把分數換成 high / medium / low，網站用來決定先顯示哪些。"""
+    sc = score_item(item, today)
+    return "high" if sc >= 9 else "medium" if sc >= 5 else "low"
 
 
 def page_items(result: dict) -> list[dict]:
@@ -66,55 +75,92 @@ def page_items(result: dict) -> list[dict]:
     return out
 
 
+def upcoming_deadlines(result: dict, within_days: int = 14) -> list[dict]:
+    out = []
+    for e in result.get("events", []):
+        age = _age_days(e["date"], result["date"])
+        if age is not None and -within_days <= age <= 0 and re.search(r"clos|due|deadline", e["label"], re.I):
+            out.append({**e, "days_left": -age})
+    return out
+
+
 def heuristic_analysis(result: dict) -> dict:
     today = result["date"]
     cands = [i for i in result["items"]] + page_items(result)
-    if not cands:
-        return {"method": "heuristic", "top_pick": None,
-                "headline": "今天沒有新的 2027 相關消息。", "highlights": []}
+    groups_dl: dict[str, list[str]] = {}
+    for d in upcoming_deadlines(result):
+        groups_dl.setdefault(d["date"], []).append((event_zh(d["label"]) or d["label"]).removesuffix("截止"))
+    deadlines = [f"{d[5:].replace('-', '/')} 截止：{'、'.join(names[:3])}（剩 {-_age_days(d, today)} 天）"
+                 for d, names in list(groups_dl.items())[:1]]
     scored = sorted(cands, key=lambda i: score_item(i, today) + i.get("_bonus", 0), reverse=True)
+    best = (score_item(scored[0], today) + scored[0].get("_bonus", 0)) if scored else 0
+    if best < 5:  # 沒有夠重要的新消息：平靜日
+        return {"method": "heuristic", "quiet": True, "top_pick": None,
+                "tldr": (deadlines + [f"今天有 {len(cands)} 則新消息，沒有重大變動。"])[:3],
+                "headline": f"今天比較平靜，共 {len(cands)} 則新消息。",
+                "highlights": [{"category": c, "importance": "low", "points": [i["title"] for i in scored if i["categories"][0] == c][:3]}
+                               for c in dict.fromkeys(i["categories"][0] for i in scored)],
+                "action_items": []}
     top = scored[0]
     groups: dict[str, list[dict]] = {}
     for i in scored:
         groups.setdefault(i["categories"][0], []).append(i)
-    highlights = [{"category": c, "text": f"{len(g)} 則，較重要的有：" + "、".join(f"「{x['title']}」" for x in g[:3])}
-                  for c, g in groups.items()]
+    highlights = []
+    for c, g in groups.items():
+        best = score_item(g[0], today) + g[0].get("_bonus", 0)
+        highlights.append({"category": c, "importance": "high" if best >= 9 else "medium" if best >= 5 else "low",
+                           "points": [x["title"] for x in g[:3]] + ([f"另有 {len(g) - 3} 則"] if len(g) > 3 else [])})
     return {
         "method": "heuristic",
         "top_pick": {"url": top["url"], "title": top["title"], "source": top["source"],
-                     "reason": "依來源可信度（官方優先）、關鍵字（規則、手冊、Team Update、價格、截止日）"
-                               "與發布時間自動評分，這則分數最高。設定 ANTHROPIC_API_KEY 可改由 Claude 判讀並寫出理由。"},
+                     "summary": (top.get("summary") or top["title"])[:160],
+                     "points": [], "impact": [],
+                     "reason": "依來源可信度、關鍵字（規則、手冊、Team Update、價格、截止日）與發布時間自動評分，這則分數最高。"
+                               "設定 ANTHROPIC_API_KEY 可改由 Claude 判讀並寫出中文重點。"},
+        "tldr": ([f"{x['categories'][0]}：{x['title']}" for x in scored[:2]] + deadlines
+                 + [f"{x['categories'][0]}：{x['title']}" for x in scored[2:3]])[:3],
         "headline": f"今天共 {len(cands)} 則 2027 相關消息，分布在 {len(groups)} 個分類。",
         "highlights": highlights,
+        "action_items": [],
     }
 
 
 # ---------------- Claude ----------------
+IMPACT = ["機構", "電控", "程式", "行政/報名", "策略"]
 SCHEMA = {
     "type": "object",
     "properties": {
+        "tldr": {"type": "array", "items": {"type": "string"}},
         "top_pick_url": {"type": "string"},
-        "top_pick_reason": {"type": "string"},
+        "top_pick_summary": {"type": "string"},
+        "top_pick_points": {"type": "array", "items": {"type": "string"}},
+        "top_pick_impact": {"type": "array", "items": {"type": "string", "enum": IMPACT}},
         "headline": {"type": "string"},
         "highlights": {"type": "array", "items": {
             "type": "object",
-            "properties": {"category": {"type": "string"}, "text": {"type": "string"}},
-            "required": ["category", "text"], "additionalProperties": False}},
+            "properties": {"category": {"type": "string"},
+                           "importance": {"type": "string", "enum": ["high", "medium", "low"]},
+                           "points": {"type": "array", "items": {"type": "string"}}},
+            "required": ["category", "importance", "points"], "additionalProperties": False}},
         "action_items": {"type": "array", "items": {"type": "string"}},
     },
-    "required": ["top_pick_url", "top_pick_reason", "headline", "highlights", "action_items"],
+    "required": ["tldr", "top_pick_url", "top_pick_summary", "top_pick_points", "top_pick_impact",
+                 "headline", "highlights", "action_items"],
     "additionalProperties": False,
 }
 
-SYSTEM = """你是 FRC（FIRST Robotics Competition）隊伍的情報分析員，讀者是台灣高中隊伍的學生與導師。
-你會收到爬蟲今天抓到、和 2027 賽季有關的項目（標題、來源、日期、摘要，多為英文）。請：
-1. 挑出對隊伍「最有價值」的一則：優先考慮會影響規則、採購、軟體升級、截止日期或比賽策略的官方或第一手資訊；
-   社群猜測、隊伍建造紀錄、舊聞價值較低。top_pick_url 必須是清單中某一則的 url，原樣複製。
-2. top_pick_reason：用 2–4 句繁體中文說明它講了什麼、為什麼重要、隊伍該做什麼。
-3. headline：一句話總結今天。
-4. highlights：依分類（軟體更新、硬體/控制系統、規則/比賽手冊、行政/賽事、其他）寫重點，每類 1–3 句繁體中文，
-   要寫具體內容，不要只列標題；沒有內容的分類省略。
-5. action_items：0–4 條隊伍可以馬上做的事。
+SYSTEM = """你是 FRC（FIRST Robotics Competition）隊伍的情報分析員，讀者是台灣高中隊伍的學生與導師，他們很忙，只想快速看到重點。
+你會收到爬蟲今天抓到、和 2027 賽季有關的項目（多為英文），以及官方行事曆上即將到來的日期。請用繁體中文、短句輸出：
+- tldr：今天最重要的 3 件事，每條 25 字以內，最重要的放第一條。即將到期的截止日（14 天內）也算重要。
+- top_pick_url：對隊伍「最有價值」的一則，必須原樣複製清單中某一則的 url。優先選會影響規則、採購、軟體升級、
+  截止日或比賽策略的官方或第一手資訊；社群猜測、隊伍建造紀錄、舊聞價值較低。
+- top_pick_summary：一句話（40 字以內）說它是什麼、為什麼重要。
+- top_pick_points：3–5 條具體重點，每條 30 字以內，寫內容不要寫空話。
+- top_pick_impact：受影響的組別（機構、電控、程式、行政/報名、策略）。
+- headline：一句話總結今天。
+- highlights：每個有內容的分類（規則/比賽手冊、軟體更新、硬體/控制系統、行政/賽事、隊伍建造紀錄、其他）
+  給 importance（high/medium/low）和 1–3 條 points（每條 35 字以內）。
+- action_items：0–4 條隊伍可以馬上做的事，有期限的寫出日期。
 專有名詞（SystemCore、WPILib、REVLib、Team Update 等）保留英文。只根據提供的資料，不要編造。"""
 
 
@@ -127,6 +173,9 @@ def claude_analysis(result: dict) -> dict:
         old = "（首次監控時已存在的舊內容）" if i.get("baseline") else ""
         lines.append(f"- [{i['categories'][0]}] {i['title']} {old}\n  來源：{i['source']}｜日期：{i.get('date', '')}"
                      f"｜url：{i['url']}\n  摘要：{i.get('summary', '')}")
+    upcoming = [e for e in result.get("events", []) if e["date"] >= result["date"]][:12]
+    if upcoming:
+        lines += ["", "官方行事曆（即將到來）："] + [f"- {e['date']} {e['label']}" for e in upcoming]
     client = anthropic.Anthropic()
     resp = client.beta.messages.create(
         model=MODEL,
@@ -144,9 +193,11 @@ def claude_analysis(result: dict) -> dict:
     pick = next((i for i in cands if i["url"] == data["top_pick_url"]), cands[0])
     return {
         "method": "claude",
-        "model": MODEL,
+        "model": MODEL,  # 網站頁尾會顯示
         "top_pick": {"url": pick["url"], "title": pick["title"], "source": pick["source"],
-                     "reason": data["top_pick_reason"]},
+                     "summary": data["top_pick_summary"], "points": data["top_pick_points"],
+                     "impact": data["top_pick_impact"]},
+        "tldr": data["tldr"],
         "headline": data["headline"],
         "highlights": data["highlights"],
         "action_items": data["action_items"],

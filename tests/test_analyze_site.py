@@ -47,3 +47,28 @@ def test_site_escapes_script_close(tmp_path):
     html = build_site(data, tmp_path / "site").read_text("utf-8")
     assert "</script><img" not in html and "<\\/script><img" in html
     assert html.startswith("<!doctype html>")
+
+
+def test_quiet_day_with_deadline():
+    r = dict(RESULT, date="2026-11-08",
+             items=[_item("FRC 247 and FRC 445 Looking for Mentors", "Chief Delphi 最新討論", "2026-11-07")],
+             events=[{"date": "2026-11-17", "label": "Kit and Kickoff Registration Closes"},
+                     {"date": "2026-11-17", "label": "Drive Base & Black Tote Opt Out Closes"},
+                     {"date": "2027-01-09", "label": "2027 FIRST Robotics Competition Kickoff"}])
+    a = heuristic_analysis(r)
+    assert a["quiet"] and a["top_pick"] is None
+    assert a["tldr"][0] == "11/17 截止：Kit 與 Kickoff 報名、底盤／Black Tote 退訂（剩 9 天）"
+
+
+def test_calendar_events_and_names():
+    from tracker.events import event_zh
+    from tracker.sources import extract_calendar_events
+    html = ('<a href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Official+Q%26amp%3BA+Opens'
+            '&amp;dates=20270113T120000/20270421T120000">Add</a>'
+            '<a href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Digital+Animation+Award+Closes'
+            '&amp;dates=20261020T120000/20270112T235900">Add</a>')
+    evs = extract_calendar_events(html)
+    assert evs == [{"date": "2027-01-12", "label": "Digital Animation Award Closes"},
+                   {"date": "2027-01-13", "label": "Official Q&A Opens"}]
+    assert event_zh("Week 3 Competition Events") == "第 3 週賽事"
+    assert event_zh("Volunteer Registration Opens") == ""

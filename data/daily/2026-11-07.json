@@ -1331,5 +1331,283 @@
   "Chief Delphi #limelight（Limelight，篩選 2027 相關）",
   "Chief Delphi #motors（馬達，篩選 2027 相關）",
   "Chief Delphi #firmware（韌體，篩選 2027 相關）"
+ ],
+ "events": [
+  {
+   "date": "2025-09-06",
+   "label": "FIRST Tech Challenge Kickoff",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2026-05-19",
+   "label": "FIRST Signing Day",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2026-06-17",
+   "label": "Team Registration Opens",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2026-09-01",
+   "label": "FIRST Scholarship Program opens",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2026-09-24",
+   "label": "Drive Base & Black Tote Opt Out Opens",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2026-09-24",
+   "label": "First Event Registration - Round 1 Preference",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2026-09-24",
+   "label": "Kit and Kickoff Registration Opens",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2026-10-02",
+   "label": "First Late Registration Opens",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2026-10-15",
+   "label": "Second Event Registration - Round 2 Preference",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2026-10-20",
+   "label": "Digital Animation Award Opens",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2026-10-23",
+   "label": "Second Late Registration Opens",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2026-10-29",
+   "label": "Additional In-District Event Registration Opens",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2026-10-29",
+   "label": "FIRST Impact Award Application Opens",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2026-10-29",
+   "label": "FIRST Leadership Award Application Opens",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2026-10-29",
+   "label": "Unrestricted Regional Event Registration Opens",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2026-10-29",
+   "label": "Woodie Flowers Award Application Opens",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2026-10-30",
+   "label": "Volunteer Registration Opens",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2026-11-05",
+   "label": "Additional Inter-District Event Registration Opens",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2026-11-12",
+   "label": "Pre-Kickoff Virtual Kit Release",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2026-11-17",
+   "label": "All FIRST Robotics Competition District Events and Regional Events Registration Closes",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2026-11-17",
+   "label": "Drive Base & Black Tote Opt Out Closes",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2026-11-17",
+   "label": "Kit and Kickoff Registration Closes",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2026-11-17",
+   "label": "Payment Due - FIRST Robotics Competition Initial Event Registration",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2027-01-09",
+   "label": "2027 FIRST Robotics Competition Kickoff",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2027-01-09",
+   "label": "FIRST Choice: Priority Lists Opens",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2027-01-09",
+   "label": "Kickoff Kit Replacement Parts System Opens",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2027-01-09",
+   "label": "Virtual Kit Kickoff Release",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2027-01-12",
+   "label": "Digital Animation Award Closes",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2027-01-13",
+   "label": "Official Q&A Opens",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2027-01-16",
+   "label": "Kickoff Kit Replacement Parts System Closes",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2027-01-18",
+   "label": "FIRST Choice: Priority Lists Closes",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2027-01-21",
+   "label": "Payment Due - FIRST Robotics Competition Additional Registered Event(s)",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2027-01-29",
+   "label": "FIRST Choice Regular Ordering Opens",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2027-02-11",
+   "label": "FIRST Impact Award Application Closes",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2027-02-20",
+   "label": "Week Zero",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2027-03-03",
+   "label": "Week 1 Competition Events",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2027-03-10",
+   "label": "Week 2 Competition Events",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2027-03-17",
+   "label": "Week 3 Competition Events",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2027-03-24",
+   "label": "Week 4 Competition Events",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2027-03-31",
+   "label": "Week 5 Competition Events",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2027-04-07",
+   "label": "Week 6 Competition Events",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2027-04-14",
+   "label": "Week 7 Competition Events",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2027-04-16",
+   "label": "Payment Due - FIRST Robotics Competition Championship",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2027-04-21",
+   "label": "FIRST Choice Closes",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2027-04-21",
+   "label": "Official Q&A Closes",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2027-04-28",
+   "label": "FIRST Championship",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  }
  ]
 }

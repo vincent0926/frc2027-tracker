@@ -29,6 +29,7 @@ sources:
     type: page
     url: "https://www.firstinspires.org/resources/library/frc/season-materials"
     ignore_links: ["calendar.google.com"]   # 「加入行事曆」按鈕不算變動
+    calendar: true                          # 從行事曆按鈕擷取官方重要日期
 
   # ---------- 軟體 ----------
   - id: wpilib_new_for_2027

@@ -1,0 +1,31 @@
+{
+ "method": "claude",
+ "model": "人工判讀",
+ "quiet": true,
+ "tldr": [
+  "11/17 賽事報名、Kit 與 Kickoff 報名截止，只剩 9 天",
+  "今天只有 1 則新消息：247、445 隊徵求導師",
+  "近期最重要的仍是 11/7 的官方規則預告"
+ ],
+ "top_pick": null,
+ "headline": "今天很平靜，只有 1 則新討論；最需要注意的是 9 天後的報名截止。",
+ "highlights": [
+  {
+   "category": "行政/賽事",
+   "importance": "high",
+   "points": [
+    "11/17 是賽事報名、Kit 與 Kickoff 報名、底盤退訂、首場報名費的共同截止日"
+   ]
+  },
+  {
+   "category": "其他",
+   "importance": "low",
+   "points": [
+    "FRC 247 與 445 在 Chief Delphi 徵求導師"
+   ]
+  }
+ ],
+ "action_items": [
+  "還沒完成報名或繳費的隊伍，請在 11/17 前處理"
+ ]
+}

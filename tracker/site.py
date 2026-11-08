@@ -4,6 +4,9 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+from .analyze import item_level
+from .events import event_zh
+
 TEMPLATE = Path(__file__).with_name("site_template.html")
 MAX_DAYS = 90  # 網站保留最近幾天
 
@@ -12,9 +15,14 @@ def collect_days(data_dir: Path) -> list[dict]:
     days = []
     for f in sorted((data_dir / "daily").glob("20*.json"), reverse=True)[:MAX_DAYS]:
         a = data_dir / "analysis" / f.name
+        result = json.loads(f.read_text("utf-8"))
+        for it in result.get("items", []):
+            it["level"] = item_level(it, f.stem)
+        for ev in result.get("events", []):
+            ev["zh"] = event_zh(ev["label"])
         days.append({
             "date": f.stem,
-            "result": json.loads(f.read_text("utf-8")),
+            "result": result,
             "analysis": json.loads(a.read_text("utf-8")) if a.exists() else None,
         })
     return days
