@@ -45,9 +45,11 @@ def score_item(item: dict, today: str) -> float:
     s += sum(w for k, w in KEYWORD_WEIGHT.items() if k in text)
     if "2027" in item["title"]:
         s += 2
+    elif re.search(r"\b2026\b", item["title"]) and "2026-27" not in item["title"] and "2026-2027" not in item["title"]:
+        s -= 4  # 只講 2026 賽季的舊聞
     age = _age_days(item.get("date", ""), today)
     if age is not None:
-        s += 2 if age <= 2 else 1 if age <= 7 else 0 if age <= 30 else -3
+        s += 2 if age <= 2 else 1 if age <= 7 else 0 if age <= 30 else -3 if age <= 180 else -6
     return s
 
 
@@ -143,9 +145,13 @@ SCHEMA = {
                            "points": {"type": "array", "items": {"type": "string"}}},
             "required": ["category", "importance", "points"], "additionalProperties": False}},
         "action_items": {"type": "array", "items": {"type": "string"}},
+        "items_zh": {"type": "array", "items": {
+            "type": "object",
+            "properties": {"url": {"type": "string"}, "title_zh": {"type": "string"}, "blurb_zh": {"type": "string"}},
+            "required": ["url", "title_zh", "blurb_zh"], "additionalProperties": False}},
     },
     "required": ["tldr", "top_pick_url", "top_pick_summary", "top_pick_points", "top_pick_impact",
-                 "headline", "highlights", "action_items"],
+                 "headline", "highlights", "action_items", "items_zh"],
     "additionalProperties": False,
 }
 
@@ -161,6 +167,9 @@ SYSTEM = """你是 FRC（FIRST Robotics Competition）隊伍的情報分析員�
 - highlights：每個有內容的分類（規則/比賽手冊、軟體更新、硬體/控制系統、行政/賽事、隊伍建造紀錄、其他）
   給 importance（high/medium/low）和 1–3 條 points（每條 35 字以內）。
 - action_items：0–4 條隊伍可以馬上做的事，有期限的寫出日期。
+- items_zh：替每則標記「重要」或「值得看」的項目寫新聞式中文標題與導讀：url 原樣複製；
+  title_zh 20 字以內，直接講出事情（例如「REVLib 2027 移除 conversion factor 設定」，不要寫「討論：…」）；
+  blurb_zh 一句話（50 字以內）說明內容或對隊伍的影響。
 專有名詞（SystemCore、WPILib、REVLib、Team Update 等）保留英文。只根據提供的資料，不要編造。"""
 
 
@@ -171,7 +180,8 @@ def claude_analysis(result: dict) -> dict:
     lines = [f"今天日期：{result['date']}", ""]
     for i in cands:
         old = "（首次監控時已存在的舊內容）" if i.get("baseline") else ""
-        lines.append(f"- [{i['categories'][0]}] {i['title']} {old}\n  來源：{i['source']}｜日期：{i.get('date', '')}"
+        lv = {"high": "重要", "medium": "值得看", "low": "參考"}[item_level(i, result["date"])]
+        lines.append(f"- [{i['categories'][0]}｜{lv}] {i['title']} {old}\n  來源：{i['source']}｜日期：{i.get('date', '')}"
                      f"｜url：{i['url']}\n  摘要：{i.get('summary', '')}")
     upcoming = [e for e in result.get("events", []) if e["date"] >= result["date"]][:12]
     if upcoming:
@@ -201,6 +211,8 @@ def claude_analysis(result: dict) -> dict:
         "headline": data["headline"],
         "highlights": data["highlights"],
         "action_items": data["action_items"],
+        "items_zh": {x["url"]: {"title": x["title_zh"], "blurb": x["blurb_zh"]}
+                     for x in data["items_zh"] if any(x["url"] == i["url"] for i in cands)},
     }
 
 

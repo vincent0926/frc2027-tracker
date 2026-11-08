@@ -27,5 +27,11 @@
  ],
  "action_items": [
   "還沒完成報名或繳費的隊伍，請在 11/17 前處理"
- ]
+ ],
+ "items_zh": {
+  "https://www.chiefdelphi.com/t/frc-247-and-frc-445-looking-for-mentors/525976": {
+   "title": "FRC 247、445 隊徵求導師",
+   "blurb": "美國密西根州的兩支隊伍為 2026-27 賽季招募導師，屬於一般社群訊息。"
+  }
+ }
 }

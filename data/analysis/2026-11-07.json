@@ -83,5 +83,43 @@
   "機構與電控組讀規則預告 Part 1、2，盤點用到 Relay、直接接 servo、可能超過馬達上限的設計",
   "程式組在 WPILib 2027 alpha/beta 上試移植去年程式，特別檢查 REVLib conversion factor",
   "把 1/9 Kickoff、1/13 Q&A 開放、2/11 Impact Award 截止寫進隊伍行事曆"
- ]
+ ],
+ "items_zh": {
+  "https://www.firstinspires.org/community-blog/2026-event-robot-rule-preview-for-2027-season-part-2": {
+   "title": "2027 規則預告第二彈：Relay 退場、新增多款合法裝置",
+   "blurb": "官方先公布會影響採購的規則草案：Relay 不再合法、servo 需專用供電，並新增 SPARK Lite 等裝置。"
+  },
+  "https://www.firstinspires.org/community-blog/2026-volunteer-registration-and-volunteer-trainings": {
+   "title": "2027 賽事志工報名開放，世界賽也能報",
+   "blurb": "所有 FRC 賽事（含 2027 世界賽）開放志工報名，有短時數的職位可選，家長和學長姐都能參加。"
+  },
+  "https://www.chiefdelphi.com/t/first-blog-2026-2027-season-pricing-and-registration-updates/521369": {
+   "title": "2026-27 賽季報名費與報名流程調整",
+   "blurb": "FIRST 公布新賽季各計畫的報名費，以及 FIRST Dashboard 與購買流程的變動。"
+  },
+  "https://www.chiefdelphi.com/t/frc-blog-key-changes-to-first-robotics-competition-registration-what-s-new/521928": {
+   "title": "FRC 報名制度有哪些新變化",
+   "blurb": "官方說明 2027 BIOCORE 賽季起，新隊伍與個人加入計畫的報名方式改變。"
+  },
+  "https://www.chiefdelphi.com/t/motor-count/523756": {
+   "title": "2027 馬達數量設上限，你的隊伍會受影響嗎？",
+   "blurb": "針對規則預告 Part 1 的馬達上限，社群調查各隊過去機器人實際用了幾顆馬達。"
+  },
+  "https://www.chiefdelphi.com/t/looking-for-systemcore-pricing-details/523884": {
+   "title": "SystemCore 要多少錢？隊伍詢問備品預算",
+   "blurb": "隊伍想多買一台 SystemCore 當備品，在社群詢問價格；官方之後已發布價格與供貨說明。"
+  },
+  "https://www.chiefdelphi.com/t/status-signal-stuck-on-red-systemcore-2027-beta/525072": {
+   "title": "SystemCore beta 狀態燈卡在紅色",
+   "blurb": "beta 隊伍回報狀態燈一直亮紅、機器人卻能正常運作，討論可能原因與排除方式。"
+  },
+  "https://www.chiefdelphi.com/t/what-are-the-advantages-of-systemcore-instead-of-using-roborio/525968": {
+   "title": "SystemCore 和 roboRIO 差在哪？",
+   "blurb": "新加入技術組的成員詢問 2027 換成 SystemCore 後有什麼優點，適合新手了解新控制器。"
+  },
+  "https://www.chiefdelphi.com/t/2027-preseason-activities/525929": {
+   "title": "資深隊伍分享賽季前的培訓課程規劃",
+   "blurb": "一支隊伍分享過去 5、6 年每年約 20 堂的賽季前訓練課程，可以參考來安排新生培訓。"
+  }
+ }
 }

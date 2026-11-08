@@ -18,12 +18,29 @@
   --warn-bg: #fdf0e1; --warn-ink: #8a4b0b;
   --hi: #c4303a; --mid: #b7791f; --lo: #8592a0;
   --c-team: #6b5aa6; --c-soft: #1d7a8c; --c-hard: #a8641a; --c-rule: #c4303a; --c-admin: #3d7a2e; --c-other: #6b7682;
+  --k-off-bg: #dce8f8; --k-off-ink: #164a96; --k-vendor-bg: #fdf0e1; --k-vendor-ink: #8a4b0b; --k-rel-bg: #dcf1f4; --k-rel-ink: #135f6d;
   --f-display: "Barlow Condensed", "Noto Sans TC", "Arial Narrow", sans-serif;
   --f-body: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
   --f-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
 }
-/* 固定亮色系：不跟隨系統深色模式 */
-:root { color-scheme: light; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f151b; --panel: #172029; --ink: #e4eaf0; --muted: #94a2b0; --line: #2a3642;
+    --blue: #6aa4f5; --red: #f0626b; --chip: #22303c; --warn-bg: #3a2a16; --warn-ink: #f2c38a;
+    --hi: #f0626b; --mid: #e0a84a; --lo: #7d8a97;
+    --c-team: #a99ae0; --c-soft: #5ec3d6; --c-hard: #e3a55a; --c-rule: #f0626b; --c-admin: #86c774; --c-other: #9aa6b2;
+    --k-off-bg: #1f3550; --k-off-ink: #cfe0f7; --k-vendor-bg: #3a2a16; --k-vendor-ink: #f2c38a; --k-rel-bg: #163a40; --k-rel-ink: #9fdde8;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f151b; --panel: #172029; --ink: #e4eaf0; --muted: #94a2b0; --line: #2a3642;
+  --blue: #6aa4f5; --red: #f0626b; --chip: #22303c; --warn-bg: #3a2a16; --warn-ink: #f2c38a;
+  --hi: #f0626b; --mid: #e0a84a; --lo: #7d8a97;
+  --c-team: #a99ae0; --c-soft: #5ec3d6; --c-hard: #e3a55a; --c-rule: #f0626b; --c-admin: #86c774; --c-other: #9aa6b2;
+  --k-off-bg: #1f3550; --k-off-ink: #cfe0f7; --k-vendor-bg: #3a2a16; --k-vendor-ink: #f2c38a; --k-rel-bg: #163a40; --k-rel-ink: #9fdde8;
+  color-scheme: dark;
+}
 * { box-sizing: border-box; }
 html { scroll-padding-top: calc(56px + env(safe-area-inset-top, 0px)); }
 body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.65; }
@@ -88,7 +105,8 @@ section { min-width: 0; }
 .impact { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: .82rem; }
 .impact b { font-weight: 500; color: var(--muted); }
 .impact span { background: var(--chip); padding: 1px 10px; border-radius: 999px; }
-.pick .meta { font-size: .8rem; color: var(--muted); }
+.pick .meta { font-size: .8rem; color: var(--muted); display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; }
+.pick .orig { margin: -6px 0 0; font-size: .82rem; color: var(--muted); }
 .actions { padding: 12px 14px; background: var(--chip); border-radius: 8px; display: grid; gap: 4px; }
 .actions strong { font-size: .85rem; }
 .actions ol { margin: 0; padding-left: 1.3em; }
@@ -140,7 +158,14 @@ section { min-width: 0; }
 .lv.high { background: var(--hi); color: var(--panel); }
 .lv.medium { background: var(--warn-bg); color: var(--warn-ink); }
 .lv.pick { background: var(--red); color: var(--panel); }
-.item .m { font-size: .76rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 2px 12px; font-family: var(--f-mono); }
+.item .m { font-size: .76rem; color: var(--muted); display: flex; flex-wrap: wrap; align-items: center; gap: 2px 8px; }
+.item .orig { font-size: .78rem; color: var(--muted); overflow-wrap: anywhere; }
+.kind { font-family: var(--f-body); font-size: .7rem; font-weight: 700; padding: 0 6px; border-radius: 4px; background: var(--chip); color: var(--muted); }
+.kind.k-官方 { background: var(--k-off-bg); color: var(--k-off-ink); }
+.kind.k-官方轉貼 { background: transparent; color: var(--k-off-ink); box-shadow: inset 0 0 0 1px var(--k-off-ink); }
+.kind.k-廠商 { background: var(--k-vendor-bg); color: var(--k-vendor-ink); }
+.kind.k-軟體發布 { background: var(--k-rel-bg); color: var(--k-rel-ink); }
+.item .m .sep::before { content: "·"; margin-right: 12px; }
 .item .s { font-size: .84rem; color: var(--muted); margin: 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; overflow-wrap: anywhere; }
 .item.low .s { display: none; }
 .item.low .t { font-weight: 400; }
@@ -281,6 +306,19 @@ footer .wrap { padding-block: 18px 28px; }
   function daysBetween(a, b) { return Math.round((Date.parse(b + "T00:00:00Z") - Date.parse(a + "T00:00:00Z")) / 86400000); }
   function md(d) { return +d.slice(5, 7) + "/" + +d.slice(8, 10); }
   function evName(e) { return e.zh || e.label; }
+  // 新聞網站常見的相對時間
+  function rel(d, today) {
+    if (!/^\d{4}-\d{2}-\d{2}/.test(d || "")) return d || "";
+    var n = daysBetween(d.slice(0, 10), today);
+    if (n <= 0) return "今天";
+    if (n === 1) return "昨天";
+    if (n < 7) return n + " 天前";
+    if (n < 30) return Math.floor(n / 7) + " 週前";
+    if (n < 365) return Math.floor(n / 30) + " 個月前";
+    return Math.floor(n / 365) + " 年前";
+  }
+  function zhOf(day, url) { var m = day.analysis && day.analysis.items_zh; return (m && m[url]) || null; }
+  function kindTag(kind) { return kind ? el("span", { class: "kind k-" + kind, text: kind }) : null; }
   function upcoming(day) {
     return (day.result.events || []).filter(function (e) { return e.date >= day.date; });
   }
@@ -331,7 +369,9 @@ footer .wrap { padding-block: 18px 28px; }
     }
     var card = el("article", { class: "pick" });
     card.appendChild(el("span", { class: "tag", text: "TOP PICK · " + (a.method === "claude" ? "由 Claude 挑選" : "規則評分") }));
-    card.appendChild(el("h2", {}, [el("a", { href: p.url, text: p.title })]));
+    var pz = zhOf(day, p.url), pItem = (day.result.items || []).filter(function (i) { return i.url === p.url; })[0] || {};
+    card.appendChild(el("h2", {}, [el("a", { href: p.url, text: pz ? pz.title : p.title })]));
+    if (pz) card.appendChild(el("p", { class: "orig", text: "原文：" + p.title }));
     if (p.summary) card.appendChild(el("p", { class: "lede", text: p.summary }));
     if (p.points && p.points.length) {
       var ul = el("ul", { class: "points" }); p.points.forEach(function (t) { ul.appendChild(el("li", { text: t })); });
@@ -344,7 +384,7 @@ footer .wrap { padding-block: 18px 28px; }
       var ol = el("ol"); a.action_items.forEach(function (t) { ol.appendChild(el("li", { text: t })); });
       card.appendChild(el("div", { class: "actions" }, [el("strong", { text: "隊伍可以做的事" }), ol]));
     }
-    card.appendChild(el("span", { class: "meta", text: "來源：" + p.source }));
+    card.appendChild(el("div", { class: "meta" }, [kindTag(pItem.kind), pItem.src || p.source, pItem.date ? "· " + pItem.date + "（" + rel(pItem.date, day.date) + "）" : null]));
     box.appendChild(card);
   }
 
@@ -388,7 +428,7 @@ footer .wrap { padding-block: 18px 28px; }
     var q = state.q.toLowerCase();
     return (day.result.items || []).filter(function (i) {
       return (!state.cat || i.categories[0] === state.cat) &&
-             (!q || (i.title + " " + (i.summary || "")).toLowerCase().indexOf(q) >= 0);
+             (!q || (i.title + " " + (i.summary || "") + " " + JSON.stringify(zhOf(day, i.url) || "")).toLowerCase().indexOf(q) >= 0);
     });
   }
   function renderChips(day) {
@@ -404,16 +444,19 @@ footer .wrap { padding-block: 18px 28px; }
     box.appendChild(make("全部", null, items.length));
     CAT_ORDER.forEach(function (c) { if (counts[c]) box.appendChild(make(c, c, counts[c])); });
   }
-  function itemRow(i, pickUrl) {
+  function itemRow(i, pickUrl, day) {
+    var z = zhOf(day, i.url);
     var lv = i.url === pickUrl ? el("span", { class: "lv pick", text: "精選" })
            : i.level === "high" ? el("span", { class: "lv high", text: "重要" })
            : i.level === "medium" ? el("span", { class: "lv medium", text: "值得看" }) : null;
     return el("div", { class: "item " + (i.level || "low"), style: catStyle(i.categories[0]) }, [
       el("span", { class: "bar" }),
       el("div", { class: "body" }, [
-        el("div", { class: "t" }, [lv, el("a", { href: i.url, text: i.title })]),
-        el("div", { class: "m" }, [el("span", { text: i.categories[0] }), el("span", { text: i.date || "" }), el("span", { text: i.source })]),
-        i.summary ? el("p", { class: "s", text: i.summary }) : null])]);
+        el("div", { class: "t" }, [lv, el("a", { href: i.url, text: z ? z.title : i.title })]),
+        z ? el("div", { class: "orig", text: i.title }) : null,
+        z ? el("p", { class: "s", text: z.blurb }) : (i.summary ? el("p", { class: "s", text: i.summary }) : null),
+        el("div", { class: "m" }, [kindTag(i.kind), el("span", { text: i.src || i.source, title: i.source }),
+          el("span", { class: "sep", text: rel(i.date, day.date) }), el("span", { class: "sep", text: i.categories[0] })])])]);
   }
   function renderList(day) {
     var list = $("list"); clear(list);
@@ -428,9 +471,9 @@ footer .wrap { padding-block: 18px 28px; }
     // 重要的太少時（例如平靜日）直接全列
     if (top.length === 0) { top = rest; rest = []; }
     if (!items.length) { list.appendChild(el("div", { class: "empty", text: (day.result.items || []).length ? "沒有符合條件的訊息。" : "今天沒有新訊息。" })); }
-    top.forEach(function (i) { list.appendChild(itemRow(i, pickUrl)); });
+    top.forEach(function (i) { list.appendChild(itemRow(i, pickUrl, day)); });
     if (rest.length) {
-      if (state.showLow) rest.forEach(function (i) { list.appendChild(itemRow(i, pickUrl)); });
+      if (state.showLow) rest.forEach(function (i) { list.appendChild(itemRow(i, pickUrl, day)); });
       var btn = el("button", { type: "button", text: state.showLow ? "收起其他 " + rest.length + " 則" : "顯示其他 " + rest.length + " 則（建造紀錄、討論、舊聞）" });
       btn.addEventListener("click", function () { state.showLow = !state.showLow; renderList(day); });
       list.appendChild(el("div", { class: "divider" }, [btn]));
