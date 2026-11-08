@@ -1,54 +1,621 @@
 {
  "updated": "2026-11-08",
- "intro": "SystemCore 是 2027 賽季起 FRC 唯一合法的機器人主控制器，取代使用多年的 NI roboRIO。軟體由 WPILib 與 Limelight 團隊開發。",
+ "intro": "SystemCore 是 Limelight 為 FIRST 設計、2027 賽季起 FRC 唯一合法的機器人主控制器，取代使用多年的 NI roboRIO。核心是 Raspberry Pi Compute Module 5，另用一顆 RP2350 處理可重新設定的 I/O；軟體由 WPILib 與 Limelight 團隊開發。",
  "stats": [
-  {"value": "$550", "label": "4 GB 版價格", "note": "Raspberry Pi Compute Module 5", "url": "https://www.firstinspires.org/community-blog/2026-systemcore-pricing-and-availability"},
-  {"value": "$450", "label": "2 GB 版價格", "note": "今年稍晚開賣，日期另行公布", "url": "https://www.firstinspires.org/community-blog/2026-systemcore-pricing-and-availability"},
-  {"value": "11/18", "label": "Storefront 開賣", "note": "首批每隊限購 1 台 4 GB", "url": "https://www.firstinspires.org/community-blog/2026-systemcore-pricing-and-availability"},
-  {"value": "18", "label": "馬達數量上限", "note": "2027 新規則，約 10% 隊伍受影響", "url": "https://www.firstinspires.org/community-blog/2026-event-robot-rule-preview-for-2027-season-part-1"}
+  {
+   "value": "$550",
+   "label": "4 GB 版價格",
+   "note": "2 GB 版 $450，稍晚開賣",
+   "url": "https://www.firstinspires.org/community-blog/2026-systemcore-pricing-and-availability"
+  },
+  {
+   "value": "11/18",
+   "label": "Storefront 開賣",
+   "note": "首批每隊限購 1 台 4 GB",
+   "url": "https://www.firstinspires.org/community-blog/2026-systemcore-pricing-and-availability"
+  },
+  {
+   "value": "4 核",
+   "label": "Cortex-A76 2.4 GHz",
+   "note": "Raspberry Pi CM5",
+   "url": "https://downloads.limelightvision.io/documents/systemcore_specifications_june15_2025_alpha.pdf"
+  },
+  {
+   "value": "5",
+   "label": "條 CAN-FD bus",
+   "note": "最高 8 Mbps，內建終端電阻",
+   "url": "https://downloads.limelightvision.io/documents/systemcore_specifications_june15_2025_alpha.pdf"
+  },
+  {
+   "value": "4",
+   "label": "台 USB 相機內建視覺",
+   "note": "每個 USB 埠一個 Limelight 視覺程序",
+   "url": "https://github.com/wpilibsuite/SystemCoreTesting/blob/main/LimelightVision.md"
+  },
+  {
+   "value": "18",
+   "label": "馬達數量上限",
+   "note": "2027 新規則",
+   "url": "https://www.firstinspires.org/community-blog/2026-event-robot-rule-preview-for-2027-season-part-1"
+  }
  ],
  "facts": [
-  {"kind": "官方", "text": "2027 賽季所有 FRC 隊伍都必須使用 SystemCore。", "source": "Systemcore Pricing and Availability", "url": "https://www.firstinspires.org/community-blog/2026-systemcore-pricing-and-availability"},
-  {"kind": "官方", "text": "每隊都會在 Kickoff Kit 的「2027 賽季專屬箱」收到 1 台 4 GB SystemCore。", "source": "Systemcore Pricing and Availability", "url": "https://www.firstinspires.org/community-blog/2026-systemcore-pricing-and-availability"},
-  {"kind": "官方", "text": "首批只賣給已註冊並完成報名的 FRC 隊伍，每隊限購 1 台 4 GB；之後會改由多家廠商販售，限購也可能取消。", "source": "Systemcore Pricing and Availability", "url": "https://www.firstinspires.org/community-blog/2026-systemcore-pricing-and-availability"},
-  {"kind": "官方", "text": "4 GB 版適合要在機器上跑多個相機、機上程式工具的隊伍；2 GB 版比賽中能做的事相同，只是餘裕較少。", "source": "Systemcore Pricing and Availability", "url": "https://www.firstinspires.org/community-blog/2026-systemcore-pricing-and-availability"},
-  {"kind": "官方", "text": "量產版和 alpha 測試機不同：電源與 CAN 不再使用 wire-to-board 接頭。SystemCore 附電源輸入線，Black Tote 內有 Molex-SL 線材與零件。", "source": "Systemcore Pricing and Availability", "url": "https://www.firstinspires.org/community-blog/2026-systemcore-pricing-and-availability"},
-  {"kind": "官方", "text": "拿到機器後即可用 Systemcore Testing GitHub 上的 2027 軟體做 beta 測試，正式文件會陸續更新在 WPILib Docs。", "source": "Systemcore Pricing and Availability", "url": "https://www.firstinspires.org/community-blog/2026-systemcore-pricing-and-availability"},
-  {"kind": "官方", "text": "2027 搭配新的 WPILib Driver Station；10 月 SoCal Showdown 整場比賽已用 SystemCore 測試 FMS 連線。", "source": "Systemcore Pricing and Availability", "url": "https://www.firstinspires.org/community-blog/2026-systemcore-pricing-and-availability"},
-  {"kind": "官方", "text": "FTC 2026-27 賽季（BIOBUZZ）不能使用 SystemCore；A301 馬達、電池方案與 MotionCore 的價格還沒公布。", "source": "Systemcore Pricing and Availability", "url": "https://www.firstinspires.org/community-blog/2026-systemcore-pricing-and-availability"},
-  {"kind": "社群", "text": "社群整理：SystemCore 有 5 條原生 CAN bus（CAN 0/1、CAN 2、CAN 3/4 分別使用 3 組 SPI）。非官方資訊，以 WPILib 文件為準。", "source": "Chief Delphi 討論", "url": "https://www.chiefdelphi.com/t/how-is-your-team-planning-to-use-all-the-5-systemcore-can-buses/523278"}
+  {
+   "kind": "官方",
+   "text": "2027 賽季所有 FRC 隊伍都必須使用 SystemCore。",
+   "source": "Systemcore Pricing and Availability",
+   "url": "https://www.firstinspires.org/community-blog/2026-systemcore-pricing-and-availability"
+  },
+  {
+   "kind": "官方",
+   "text": "每隊都會在 Kickoff Kit 的「2027 賽季專屬箱」收到 1 台 4 GB SystemCore。",
+   "source": "Systemcore Pricing and Availability",
+   "url": "https://www.firstinspires.org/community-blog/2026-systemcore-pricing-and-availability"
+  },
+  {
+   "kind": "官方",
+   "text": "首批只賣給已註冊並完成報名的 FRC 隊伍，每隊限購 1 台 4 GB；之後會改由多家廠商販售，限購也可能取消。",
+   "source": "Systemcore Pricing and Availability",
+   "url": "https://www.firstinspires.org/community-blog/2026-systemcore-pricing-and-availability"
+  },
+  {
+   "kind": "官方",
+   "text": "4 GB 版適合要在機器上跑多個相機、機上程式工具的隊伍；2 GB 版比賽中能做的事相同，只是餘裕較少。",
+   "source": "Systemcore Pricing and Availability",
+   "url": "https://www.firstinspires.org/community-blog/2026-systemcore-pricing-and-availability"
+  },
+  {
+   "kind": "官方",
+   "text": "量產版和 alpha 測試機不同：電源與 CAN 不再使用 wire-to-board 接頭。SystemCore 附電源輸入線，Black Tote 內有 Molex-SL 線材與零件。",
+   "source": "Systemcore Pricing and Availability",
+   "url": "https://www.firstinspires.org/community-blog/2026-systemcore-pricing-and-availability"
+  },
+  {
+   "kind": "官方",
+   "text": "拿到機器後即可用 Systemcore Testing GitHub 上的 2027 軟體做 beta 測試，正式文件會陸續更新在 WPILib Docs。",
+   "source": "Systemcore Pricing and Availability",
+   "url": "https://www.firstinspires.org/community-blog/2026-systemcore-pricing-and-availability"
+  },
+  {
+   "kind": "官方",
+   "text": "2027 搭配新的 WPILib Driver Station；10 月 SoCal Showdown 整場比賽已用 SystemCore 測試 FMS 連線。",
+   "source": "Systemcore Pricing and Availability",
+   "url": "https://www.firstinspires.org/community-blog/2026-systemcore-pricing-and-availability"
+  },
+  {
+   "kind": "官方",
+   "text": "FTC 2026-27 賽季（BIOBUZZ）不能使用 SystemCore；A301 馬達、電池方案與 MotionCore 的價格還沒公布。",
+   "source": "Systemcore Pricing and Availability",
+   "url": "https://www.firstinspires.org/community-blog/2026-systemcore-pricing-and-availability"
+  },
+  {
+   "kind": "官方",
+   "text": "SystemCore 內建 5 條 CAN-FD bus（介面名稱 can_s0～can_s4）、2 個 I2C、6 個可重新設定的 I/O（數位、PWM、類比輸入）、4 個 USB 3.0、1 個乙太網路埠、內建 IMU 與 OLED 小螢幕。",
+   "source": "WPILib 文件與 Limelight 規格書",
+   "url": "https://docs.wpilib.org/en/latest/docs/software/systemcore-info/systemcore-introduction.html"
+  },
+  {
+   "kind": "官方",
+   "text": "內建 Limelight 視覺功能：插上 USB 相機就能在網頁介面看到畫面並設定 pipeline，最多 4 台相機（limelightsc0～limelightsc3）。",
+   "source": "SystemCoreTesting：LimelightVision",
+   "url": "https://github.com/wpilibsuite/SystemCoreTesting/blob/main/LimelightVision.md"
+  },
+  {
+   "kind": "官方",
+   "text": "可以在 SystemCore 網頁介面安裝套件（IPK），例如機上版 Elastic、AdvantageScope Lite 與 CANivore 驅動；官方表示 Elastic 和 AdvantageScope Lite 之後會直接內建。",
+   "source": "SystemCoreTesting README",
+   "url": "https://github.com/wpilibsuite/SystemCoreTesting"
+  },
+  {
+   "kind": "官方",
+   "text": "已知問題（USB 3 不穩、類比讀值漂移、eMMC 卡住）只影響 alpha、beta 與 SoCal 測試機，官方表示量產機不受影響。",
+   "source": "SystemCoreTesting README",
+   "url": "https://github.com/wpilibsuite/SystemCoreTesting#known-issues"
+  }
  ],
  "rules": [
-  {"item": "Relay", "before": "可用 Relay 控制氣動、燈光等", "after": "Relay 不再是合法的電源控制裝置（SystemCore 不能驅動 Relay）", "todo": "氣動改用專用氣動控制器，其他用途改用馬達控制器", "url": "https://www.firstinspires.org/community-blog/2026-event-robot-rule-preview-for-2027-season-part-2"},
-  {"item": "Servo 供電", "before": "可由控制器直接供電", "after": "SystemCore 不能直接替 servo 供電", "todo": "使用 REV Servo Hub、REV Servo Power Module、GoBilda 6V Servo Power Injector 或 Studica Servo Power Block", "url": "https://www.firstinspires.org/community-blog/2026-event-robot-rule-preview-for-2027-season-part-2"},
-  {"item": "馬達數量", "before": "沒有總數上限", "after": "最多 18 顆馬達", "todo": "設計階段就先數清楚馬達數量", "url": "https://www.firstinspires.org/community-blog/2026-event-robot-rule-preview-for-2027-season-part-1"},
-  {"item": "CAN bus", "before": "可用 CANivore 增加 CAN bus", "after": "2027 仍可用 CANivore 增加 CAN bus（過渡措施），2028 起所有 CAN bus 必須從 SystemCore 原生 bus 出發", "todo": "2027 可沿用 CANivore，但規劃時以 SystemCore 原生 bus 為主", "url": "https://www.firstinspires.org/community-blog/2026-event-robot-rule-preview-for-2027-season-part-1"},
-  {"item": "馬達電路接線", "before": "—", "after": "馬達電路禁止用自製 PCB 連接，必須使用 COTS 接頭（R623 改寫）", "todo": "檢查自製的電源分配板或轉接板", "url": "https://www.firstinspires.org/community-blog/2026-event-robot-rule-preview-for-2027-season-part-2"},
-  {"item": "舊控制器與馬達", "before": "Talon、VictorSP 合法；BAG、Mini-CIM 在清單上", "after": "移除 Talon、VictorSP；BAG、Mini-CIM 只能接 20A 以下斷路器", "todo": "汰換倉庫裡的舊控制器", "url": "https://www.firstinspires.org/community-blog/2026-event-robot-rule-preview-for-2027-season-part-1"}
+  {
+   "item": "Relay",
+   "before": "可用 Relay 控制氣動、燈光等",
+   "after": "Relay 不再是合法的電源控制裝置（SystemCore 不能驅動 Relay）",
+   "todo": "氣動改用專用氣動控制器，其他用途改用馬達控制器",
+   "url": "https://www.firstinspires.org/community-blog/2026-event-robot-rule-preview-for-2027-season-part-2"
+  },
+  {
+   "item": "Servo 供電",
+   "before": "可由控制器直接供電",
+   "after": "SystemCore 不能直接替 servo 供電",
+   "todo": "使用 REV Servo Hub、REV Servo Power Module、GoBilda 6V Servo Power Injector 或 Studica Servo Power Block",
+   "url": "https://www.firstinspires.org/community-blog/2026-event-robot-rule-preview-for-2027-season-part-2"
+  },
+  {
+   "item": "馬達數量",
+   "before": "沒有總數上限",
+   "after": "最多 18 顆馬達",
+   "todo": "設計階段就先數清楚馬達數量",
+   "url": "https://www.firstinspires.org/community-blog/2026-event-robot-rule-preview-for-2027-season-part-1"
+  },
+  {
+   "item": "CAN bus",
+   "before": "可用 CANivore 增加 CAN bus",
+   "after": "2027 仍可用 CANivore 增加 CAN bus（過渡措施），2028 起所有 CAN bus 必須從 SystemCore 原生 bus 出發",
+   "todo": "2027 可沿用 CANivore，但規劃時以 SystemCore 原生 bus 為主",
+   "url": "https://www.firstinspires.org/community-blog/2026-event-robot-rule-preview-for-2027-season-part-1"
+  },
+  {
+   "item": "馬達電路接線",
+   "before": "—",
+   "after": "馬達電路禁止用自製 PCB 連接，必須使用 COTS 接頭（R623 改寫）",
+   "todo": "檢查自製的電源分配板或轉接板",
+   "url": "https://www.firstinspires.org/community-blog/2026-event-robot-rule-preview-for-2027-season-part-2"
+  },
+  {
+   "item": "舊控制器與馬達",
+   "before": "Talon、VictorSP 合法；BAG、Mini-CIM 在清單上",
+   "after": "移除 Talon、VictorSP；BAG、Mini-CIM 只能接 20A 以下斷路器",
+   "todo": "汰換倉庫裡的舊控制器",
+   "url": "https://www.firstinspires.org/community-blog/2026-event-robot-rule-preview-for-2027-season-part-1"
+  }
  ],
  "dates": [
-  {"date": "2026-11-17", "label": "賽事與 Kit／Kickoff 報名截止（完成報名才能加購 SystemCore）"},
-  {"date": "2026-11-18", "label": "FIRST Storefront 開賣 4 GB SystemCore（每隊限 1 台）", "url": "https://www.firstinspires.org/community-blog/2026-systemcore-pricing-and-availability"},
-  {"date": "2027-01-09", "label": "Kickoff：Kit 內附 1 台 4 GB SystemCore"}
+  {
+   "date": "2026-11-17",
+   "label": "賽事與 Kit／Kickoff 報名截止（完成報名才能加購 SystemCore）"
+  },
+  {
+   "date": "2026-11-18",
+   "label": "FIRST Storefront 開賣 4 GB SystemCore（每隊限 1 台）",
+   "url": "https://www.firstinspires.org/community-blog/2026-systemcore-pricing-and-availability"
+  },
+  {
+   "date": "2027-01-09",
+   "label": "Kickoff：Kit 內附 1 台 4 GB SystemCore"
+  }
  ],
  "checklist": [
-  {"id": "buy-spare", "group": "採購", "text": "決定是否在 11/18 加購備用 SystemCore（4 GB $550，每隊限 1 台）"},
-  {"id": "register", "group": "採購", "text": "11/17 前完成賽事與 Kickoff Kit 報名"},
-  {"id": "servo-power", "group": "採購", "text": "準備合法的 servo 供電模組（如 REV Servo Hub）"},
-  {"id": "pneumatics", "group": "採購", "text": "用 Relay 的機構改用氣動控制器或馬達控制器"},
-  {"id": "motor-count", "group": "電控", "text": "確認機器人設計不超過 18 顆馬達"},
-  {"id": "can-plan", "group": "電控", "text": "重新規劃 CAN 佈線（SystemCore 原生 bus；2027 仍可用 CANivore）"},
-  {"id": "molex", "group": "電控", "text": "熟悉 Molex-SL 接頭與 Kit 附的線材"},
-  {"id": "old-controllers", "group": "電控", "text": "汰換 Talon、VictorSP 等已不合法的控制器"},
-  {"id": "wpilib-beta", "group": "程式", "text": "安裝 WPILib 2027 beta，試著移植去年的程式"},
-  {"id": "vendordeps", "group": "程式", "text": "更新 vendor library（REVLib 2027 移除 conversion factor、CTRE 安裝方式改變）"},
-  {"id": "new-ds", "group": "程式", "text": "練習使用新的 WPILib Driver Station"},
-  {"id": "dashboard", "group": "程式", "text": "自動模式選擇器改用 SmartDashboard 以外的方式（社群指出 SmartDashboard 將被移除）"}
+  {
+   "id": "buy-spare",
+   "group": "採購",
+   "text": "決定是否在 11/18 加購備用 SystemCore（4 GB $550，每隊限 1 台）"
+  },
+  {
+   "id": "register",
+   "group": "採購",
+   "text": "11/17 前完成賽事與 Kickoff Kit 報名"
+  },
+  {
+   "id": "servo-power",
+   "group": "採購",
+   "text": "準備合法的 servo 供電模組（如 REV Servo Hub）"
+  },
+  {
+   "id": "pneumatics",
+   "group": "採購",
+   "text": "用 Relay 的機構改用氣動控制器或馬達控制器"
+  },
+  {
+   "id": "motor-count",
+   "group": "電控",
+   "text": "確認機器人設計不超過 18 顆馬達"
+  },
+  {
+   "id": "can-plan",
+   "group": "電控",
+   "text": "重新規劃 CAN 佈線（SystemCore 原生 bus；2027 仍可用 CANivore）"
+  },
+  {
+   "id": "molex",
+   "group": "電控",
+   "text": "熟悉 Molex-SL 接頭與 Kit 附的線材"
+  },
+  {
+   "id": "old-controllers",
+   "group": "電控",
+   "text": "汰換 Talon、VictorSP 等已不合法的控制器"
+  },
+  {
+   "id": "wpilib-beta",
+   "group": "程式",
+   "text": "安裝 WPILib 2027 beta，試著移植去年的程式"
+  },
+  {
+   "id": "vendordeps",
+   "group": "程式",
+   "text": "更新 vendor library（REVLib 2027 移除 conversion factor、CTRE 安裝方式改變）"
+  },
+  {
+   "id": "new-ds",
+   "group": "程式",
+   "text": "練習使用新的 WPILib Driver Station"
+  },
+  {
+   "id": "dashboard",
+   "group": "程式",
+   "text": "自動模式選擇器改用 SmartDashboard 以外的方式（社群指出 SmartDashboard 將被移除）"
+  },
+  {
+   "id": "i2c-cable",
+   "group": "電控",
+   "text": "I2C 線材對調 SCL／SDA（或改買 Qwiic 相容線）"
+  },
+  {
+   "id": "no-vrm",
+   "group": "電控",
+   "text": "SystemCore 直接接電池電壓，不要接 VRM 等穩壓器"
+  },
+  {
+   "id": "import",
+   "group": "程式",
+   "text": "用 VS Code 匯入工具把 2026 專案轉成 2027"
+  },
+  {
+   "id": "nanos",
+   "group": "程式",
+   "text": "檢查用到時間戳記的程式（2027 改用奈秒）"
+  }
  ],
  "links": [
-  {"title": "Systemcore Pricing and Availability（官方，2026/9/23）", "url": "https://www.firstinspires.org/community-blog/2026-systemcore-pricing-and-availability"},
-  {"title": "2027 Event & Robot Rule Preview - Part 1（官方，2026/8/31）", "url": "https://www.firstinspires.org/community-blog/2026-event-robot-rule-preview-for-2027-season-part-1"},
-  {"title": "2027 Event & Robot Rule Preview - Part 2（官方，2026/10/22）", "url": "https://www.firstinspires.org/community-blog/2026-event-robot-rule-preview-for-2027-season-part-2"},
-  {"title": "WPILib 文件：New for 2027", "url": "https://docs.wpilib.org/en/latest/docs/yearly-overview/yearly-changelog.html"}
- ]
+  {
+   "title": "SystemCoreTesting（WPILib 官方測試 repo，含相容表與快速上手）",
+   "url": "https://github.com/wpilibsuite/SystemCoreTesting"
+  },
+  {
+   "title": "WPILib 文件：Systemcore 章節",
+   "url": "https://docs.wpilib.org/en/latest/docs/software/systemcore-info/systemcore-introduction.html"
+  },
+  {
+   "title": "WPILib 文件：New for 2027",
+   "url": "https://docs.wpilib.org/en/latest/docs/yearly-overview/yearly-changelog.html"
+  },
+  {
+   "title": "Limelight SystemCore 規格書（alpha，2025/6）",
+   "url": "https://downloads.limelightvision.io/documents/systemcore_specifications_june15_2025_alpha.pdf"
+  },
+  {
+   "title": "SystemCore／MotionCore 線材規格",
+   "url": "https://downloads.limelightvision.io/documents/systemcore_motioncore_cable_specifications.pdf"
+  },
+  {
+   "title": "Systemcore Pricing and Availability（官方，2026/9/23）",
+   "url": "https://www.firstinspires.org/community-blog/2026-systemcore-pricing-and-availability"
+  },
+  {
+   "title": "2027 Event & Robot Rule Preview - Part 1（官方）",
+   "url": "https://www.firstinspires.org/community-blog/2026-event-robot-rule-preview-for-2027-season-part-1"
+  },
+  {
+   "title": "2027 Event & Robot Rule Preview - Part 2（官方）",
+   "url": "https://www.firstinspires.org/community-blog/2026-event-robot-rule-preview-for-2027-season-part-2"
+  }
+ ],
+ "hw_added": [
+  "多條 CAN bus（5 條，支援 CAN-FD）",
+  "Smart IO：同一個埠可在程式中設定成數位、PWM 或類比輸入",
+  "內建 IMU（400 Hz，含融合後的 yaw）",
+  "支援 REV Expansion Hub",
+  "內建 OLED 螢幕：顯示 IP、隊號與硬體錯誤",
+  "內建 Limelight 視覺（最多 4 台 USB 相機）",
+  "Wi-Fi 熱點與 USB-C 連線（不用另接無線電也能接上電腦）"
+ ],
+ "hw_removed": [
+  "Relay",
+  "類比輸出（Analog Output）",
+  "SPI 與 SPI 介面的 IMU（ADIS16448、ADIS16470、ADXL345、ADXRS450）",
+  "類比陀螺儀（Analog Gyro）",
+  "內建加速度計",
+  "DMA、中斷（Interrupts）、Counter",
+  "超音波感測器（Ultrasonic）、Analog Trigger",
+  "數位訊號濾波器（Digital Glitch Filter）",
+  "Servo 類別、Jaguar、Nidec Brushless"
+ ],
+ "hw_source": {
+  "title": "WPILib：New for 2027（Alpha 2 硬體支援變更）",
+  "url": "https://docs.wpilib.org/en/latest/docs/yearly-overview/yearly-changelog.html"
+ },
+ "gotchas": [
+  {
+   "title": "I2C 腳位和 roboRIO 不同",
+   "text": "roboRIO 用的 I2C 線（例如 REV 4-wire I2C 線）要把 SCL 和 SDA 對調。SystemCore 的腳位和 Qwiic、Control/Expansion Hub 相同。",
+   "url": "https://github.com/wpilibsuite/SystemCoreTesting#i2c"
+  },
+  {
+   "title": "不能用穩壓器供電",
+   "text": "SystemCore 必須直接吃電池電壓（5–26V）。VRM 這類穩壓器在滿載時供電不足。",
+   "url": "https://github.com/wpilibsuite/SystemCoreTesting#powering-on"
+  },
+  {
+   "title": "I/O 的上拉／下拉",
+   "text": "量產前的 beta 機 I/O 和 roboRIO 一樣是上拉；早期 alpha 機是下拉，極限開關要接到 3.3V。拿到機器後先確認。",
+   "url": "https://github.com/wpilibsuite/SystemCoreTesting#io"
+  },
+  {
+   "title": "接頭全部換新",
+   "text": "I/O、I2C、RSL 用 Molex SL，CAN 和電源改用新接頭；Black Tote 會附 Molex-SL 線材與零件。官方說明隊伍不需要自己壓接線材。",
+   "url": "https://www.firstinspires.org/community-blog/2026-systemcore-pricing-and-availability"
+  },
+  {
+   "title": "Relay 和 Servo 不再直接支援",
+   "text": "WPILib 2027 移除 Relay 與 Servo 類別；規則上也不能由 SystemCore 直接替 servo 供電，要用 Servo Hub 等模組。",
+   "url": "https://docs.wpilib.org/en/latest/docs/yearly-overview/yearly-changelog.html"
+  },
+  {
+   "title": "I/O 與 I2C 共用 1A 電流",
+   "text": "所有 I/O 與 I2C 埠的 3.3V 輸出共用 1A 上限，超過會斷電並在螢幕顯示錯誤，需要重新上電才會恢復（alpha 規格）。",
+   "url": "https://downloads.limelightvision.io/documents/systemcore_specifications_june15_2025_alpha.pdf"
+  }
+ ],
+ "software": [
+  {
+   "big": true,
+   "text": "去年的專案要先用 VS Code 的匯入工具（Importer）轉成 2027 專案才能用。",
+   "url": "https://docs.wpilib.org/en/latest/docs/yearly-overview/yearly-changelog.html"
+  },
+  {
+   "big": true,
+   "text": "Java 套件從 edu.wpi.first 改成 org.wpilib，C++ 命名空間從 frc:: 改成 wpi::（匯入工具會嘗試自動轉換）。",
+   "url": "https://docs.wpilib.org/en/latest/docs/yearly-overview/yearly-changelog.html"
+  },
+  {
+   "big": true,
+   "text": "SmartDashboard、SendableChooser、Sendable 改成 Telemetry 與 Tunables API；SendableChooser 的新版叫 Selectable。",
+   "url": "https://docs.wpilib.org/en/latest/docs/yearly-overview/yearly-changelog.html"
+  },
+  {
+   "big": true,
+   "text": "時間戳記改用奈秒（以前是微秒），官方標註為「靜默破壞性變更」：程式不會報錯，但數值會差 1000 倍。",
+   "url": "https://docs.wpilib.org/en/latest/docs/yearly-overview/yearly-changelog.html"
+  },
+  {
+   "big": false,
+   "text": "使用 Java 25、C++ 23。",
+   "url": "https://docs.wpilib.org/en/latest/docs/yearly-overview/yearly-changelog.html"
+  },
+  {
+   "big": false,
+   "text": "新增 Commands v3（Java）與類似 FTC 的 OpMode 框架。",
+   "url": "https://docs.wpilib.org/en/latest/docs/yearly-overview/yearly-changelog.html"
+  },
+  {
+   "big": false,
+   "text": "新的 2027 Driver Station 支援多平台（不再只限 Windows）。",
+   "url": "https://docs.wpilib.org/en/latest/docs/yearly-overview/yearly-changelog.html"
+  },
+  {
+   "big": false,
+   "text": "移除 robotInit()，改寫在 Robot() 建構子裡；Test 模式改名為 Utility。",
+   "url": "https://docs.wpilib.org/en/latest/docs/yearly-overview/yearly-changelog.html"
+  },
+  {
+   "big": false,
+   "text": "常數一律改成全大寫；移除 NetworkTables v3；AprilTag 與 CameraServer 改成 vendordep。",
+   "url": "https://docs.wpilib.org/en/latest/docs/yearly-overview/yearly-changelog.html"
+  },
+  {
+   "big": false,
+   "text": "Python 的函式與變數名稱改成 snake_case；RobotPy 的廠商套件要寫在 pyproject.toml 的 requires。",
+   "url": "https://github.com/wpilibsuite/SystemCoreTesting/blob/main/robotpy.md"
+  }
+ ],
+ "specs": {
+  "note": "以下是 Limelight 2025/6 的 alpha 規格書，量產版的電源與 CAN 接頭已改，其他數值也可能調整。",
+  "url": "https://downloads.limelightvision.io/documents/systemcore_specifications_june15_2025_alpha.pdf",
+  "groups": [
+   {
+    "name": "處理器與儲存",
+    "rows": [
+     [
+      "主處理器",
+      "Raspberry Pi CM5，4 核 ARM Cortex-A76 @ 2.4 GHz"
+     ],
+     [
+      "記憶體",
+      "4 GB LPDDR4X（另有 2 GB 版）"
+     ],
+     [
+      "儲存",
+      "16 GB eMMC"
+     ],
+     [
+      "即時 I/O 處理器",
+      "RP2350，雙核 Cortex-M33 @ 150 MHz"
+     ],
+     [
+      "作業系統",
+      "Limelight OS（Linux 6.6 + PREEMPT_RT）"
+     ],
+     [
+      "無線",
+      "雙頻 Wi-Fi 802.11ac、藍牙 5.0"
+     ]
+    ]
+   },
+   {
+    "name": "介面",
+    "rows": [
+     [
+      "CAN",
+      "5 條，支援 CAN-FD，最高 8 Mbps，內建 120Ω 終端電阻"
+     ],
+     [
+      "I/O",
+      "6 個，可設定為數位輸入/輸出、PWM 輸入/輸出、類比輸入（12-bit，0–3.3V）"
+     ],
+     [
+      "I2C",
+      "2 個，100 kHz／400 kHz"
+     ],
+     [
+      "USB Host",
+      "4 個 USB 3.0 Type-A，共用 5 Gbps、2A"
+     ],
+     [
+      "乙太網路",
+      "1 Gbps"
+     ],
+     [
+      "USB-C（LINK）",
+      "USB 2.0，連接電腦用；開機時接上會進入刷機模式"
+     ],
+     [
+      "其他",
+      "M.2（A+E key，PCIe 2.0）、RSL 號誌燈埠"
+     ]
+    ]
+   },
+   {
+    "name": "電源",
+    "rows": [
+     [
+      "輸入電壓",
+      "5–26V（可承受 4.5–35V）"
+     ],
+     [
+      "耗電",
+      "待機 6W，最大 40W"
+     ],
+     [
+      "低電壓保護",
+      "預設 6.3V 時關閉 PWM 與數位輸出，7.5V 恢復（可設定）"
+     ],
+     [
+      "保護",
+      "反接保護、各電源軌過流保護、±30kV ESD"
+     ]
+    ]
+   },
+   {
+    "name": "感測與顯示",
+    "rows": [
+     [
+      "IMU",
+      "400 Hz，四元數、融合 yaw、三軸加速度與陀螺儀"
+     ],
+     [
+      "螢幕",
+      "0.96 吋 128×64 單色 OLED：IP、隊號、硬體錯誤"
+     ],
+     [
+      "指示燈",
+      "Power 綠燈；Mode 黃燈（恆亮＝disabled，閃爍＝enabled）；Status 紅燈＝硬體錯誤或低電壓保護"
+     ]
+    ]
+   },
+   {
+    "name": "外觀",
+    "rows": [
+     [
+      "尺寸",
+      "135.5 × 71.5 × 28.1 mm"
+     ],
+     [
+      "重量",
+      "215 g"
+     ],
+     [
+      "外殼",
+      "鋁製底殼、ABS/PC 上殼"
+     ]
+    ]
+   }
+  ]
+ },
+ "vendors": {
+  "as_of": "2026-11-05",
+  "note": "WPILib 2027 alpha-7／alpha-8 可用的廠商函式庫版本（測試版，之後會頻繁更新）",
+  "url": "https://github.com/wpilibsuite/SystemCoreTesting#third-party-library-compatibility-by-wpilib-version",
+  "rows": [
+   [
+    "CTRE Phoenix 6",
+    "26.70.0-alpha-2（韌體 26.70.X）"
+   ],
+   [
+    "REVLib",
+    "2027.0.0-alpha-7 以上（最新 alpha-9）"
+   ],
+   [
+    "ReduxLib",
+    "2027.0.0-alpha-7p1"
+   ],
+   [
+    "PathPlannerLib",
+    "2027.0.0-alpha-4.1"
+   ],
+   [
+    "PhotonLib",
+    "最新 dev 版"
+   ],
+   [
+    "ChoreoLib",
+    "2027.0.0-alpha-3"
+   ],
+   [
+    "AdvantageKit",
+    "27.0.0-alpha-5～alpha-7"
+   ],
+   [
+    "ThriftyLib",
+    "2027.0.0-alpha-5"
+   ],
+   [
+    "LimelightLib2",
+    "LimelightLib-alpha7"
+   ],
+   [
+    "YAMS／YAGSL",
+    "2026.11.06"
+   ]
+  ]
+ },
+ "quickstart": {
+  "url": "https://github.com/wpilibsuite/SystemCoreTesting#systemcore-quick-start",
+  "rows": [
+   [
+    "網頁介面",
+    "http://robot.local（在 Configuration 分頁設定隊號）"
+   ],
+   [
+    "預設帳號／密碼",
+    "systemcore／systemcore（改掉 SSH 密碼會導致無法部署程式）"
+   ],
+   [
+    "Wi-Fi 熱點名稱",
+    "SYSTEMCORE-[隨機]，密碼顯示在機器螢幕上（image 17 以後）"
+   ],
+   [
+    "Wi-Fi 熱點 IP",
+    "172.30.0.1"
+   ],
+   [
+    "USB 連線 IP",
+    "Windows 172.26.0.1；macOS／Linux 172.27.0.1"
+   ],
+   [
+    "乙太網路 IP",
+    "看機器螢幕"
+   ],
+   [
+    "CAN 介面名稱",
+    "can_s0～can_s4"
+   ],
+   [
+    "USB 隨身碟掛載位置",
+    "/U、/V…"
+   ],
+   [
+    "更新系統",
+    "下載 .llupdate 檔，到 robot.local/configure 的 OS Update 刷入"
+   ]
+  ]
+ },
+ "roadmap": {
+  "url": "https://github.com/wpilibsuite/SystemCoreTesting/blob/main/product-roadmap.md",
+  "items": [
+   "OTA 無線更新",
+   "MotionCore 支援",
+   "IMU 改版",
+   "視覺功能",
+   "機上程式設計（on-bot programming）",
+   "套件設定欄位"
+  ]
+ }
 }

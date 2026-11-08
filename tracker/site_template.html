@@ -163,6 +163,33 @@ main .wrap { padding-block: 24px 48px; }
 .cgroup label { display: grid; grid-template-columns: 20px 1fr; gap: 8px; font-size: .9rem; line-height: 1.45; cursor: pointer; padding: 3px 0; }
 .cgroup input { width: 16px; height: 16px; margin: 3px 0 0; accent-color: var(--blue); }
 .cgroup input:checked + span { color: var(--muted); text-decoration: line-through; }
+.hwdiff { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 10px; }
+.hwcol { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; min-width: 0; }
+.hwcol h3 { margin: 0 0 8px; font-size: .95rem; display: flex; align-items: center; gap: 8px; }
+.hwcol h3 i { font-style: normal; font-family: var(--f-mono); font-weight: 700; width: 20px; height: 20px; border-radius: 50%; display: grid; place-content: center; font-size: .85rem; color: var(--panel); }
+.hwcol.add h3 i { background: var(--blue); } .hwcol.rm h3 i { background: var(--muted); }
+.hwcol ul { margin: 0; padding-left: 1.1em; display: grid; gap: 4px; font-size: .9rem; }
+.hwcol.rm li { color: var(--muted); }
+.srcline { font-size: .78rem; color: var(--muted); margin: 8px 0 0; }
+.gotchas { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 10px; }
+.gotcha { background: var(--panel); border: 1px solid var(--line); border-top: 3px solid var(--st-serious); border-radius: 10px; padding: 12px 16px; display: grid; gap: 4px; align-content: start; min-width: 0; }
+.gotcha h3 { margin: 0; font-size: .95rem; }
+.gotcha p { margin: 0; font-size: .88rem; }
+.gotcha a { font-size: .78rem; }
+.swlist { margin: 0; padding: 0; list-style: none; display: grid; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+.swlist li { padding: 10px 16px; border-top: 1px solid var(--line); display: grid; grid-template-columns: 52px minmax(0, 1fr) auto; column-gap: 10px; align-items: baseline; font-size: .92rem; }
+.swlist li:first-child { border-top: 0; }
+.swlist .big { justify-self: start; font-size: .68rem; font-weight: 700; padding: 0 6px; border-radius: 4px; background: var(--st-serious); color: var(--st-ink-dark); }
+.swlist .dotm { justify-self: center; width: 6px; height: 6px; border-radius: 50%; background: var(--muted); position: relative; top: -2px; }
+.swlist a { font-size: .76rem; }
+.refs { display: grid; gap: 10px; }
+.refs details.box table { border-collapse: collapse; width: 100%; font-size: .86rem; }
+.refs th, .refs td { text-align: left; vertical-align: top; padding: 6px 10px 6px 0; border-top: 1px solid var(--line); }
+.refs th { width: 34%; color: var(--muted); font-weight: 500; white-space: nowrap; }
+.refs h4 { margin: 12px 0 2px; font-size: .88rem; }
+.refs .tbl-wrap { margin-top: 4px; }
+.refs .refnote { font-size: .8rem; color: var(--muted); margin: 0 0 6px; }
+@media (max-width: 560px) { .refs th { white-space: normal; width: 38%; } .swlist li { grid-template-columns: 52px minmax(0, 1fr); } .swlist a { grid-column: 2; } }
 .links { margin: 0; padding-left: 1.2em; display: grid; gap: 4px; font-size: .9rem; }
 .newb { font-size: .68rem; font-weight: 700; padding: 0 6px; border-radius: 4px; background: var(--blue); color: var(--panel); }
 .tagc { font-size: .7rem; padding: 0 6px; border-radius: 4px; background: var(--chip); color: var(--ink); }
@@ -380,8 +407,11 @@ footer .wrap { padding-block: 18px 28px; }
     </span>
     <span id="jump-sc" hidden style="display:contents">
     <a href="#sc-facts">重點事實</a>
+    <a href="#sc-hw">硬體差異</a>
+    <a href="#sc-sw">軟體變化</a>
     <a href="#sc-rules">規則影響</a>
     <a href="#sc-check">準備清單</a>
+    <a href="#sc-ref">規格與相容表</a>
     <a href="#sc-news">相關討論</a>
     </span>
   </div>
@@ -462,6 +492,19 @@ footer .wrap { padding-block: 18px 28px; }
       <p class="label" id="l-scf">你需要知道的事</p>
       <ul class="facts" id="sc-facts-list"></ul>
     </section>
+    <section id="sc-hw" aria-labelledby="l-sch">
+      <p class="label" id="l-sch">和 roboRIO 比：硬體支援的變化</p>
+      <div class="hwdiff" id="sc-hwdiff"></div>
+      <p class="srcline" id="sc-hwsrc"></p>
+    </section>
+    <section aria-labelledby="l-scg">
+      <p class="label" id="l-scg">轉換時最容易踩的坑</p>
+      <div class="gotchas" id="sc-gotchas"></div>
+    </section>
+    <section id="sc-sw" aria-labelledby="l-scs">
+      <p class="label" id="l-scs">2027 軟體（WPILib）主要變化</p>
+      <ul class="swlist" id="sc-sw-list"></ul>
+    </section>
     <section id="sc-rules" aria-labelledby="l-scr">
       <p class="label" id="l-scr">2027 規則對 SystemCore 的影響</p>
       <div class="rules" id="sc-rules-list"></div>
@@ -472,6 +515,10 @@ footer .wrap { padding-block: 18px 28px; }
         <button type="button" id="sc-reset">全部取消勾選</button></div>
       <div class="checks" id="sc-checks"></div>
       <p class="note">勾選狀態只存在你自己的瀏覽器裡，不會分享給其他人。</p>
+    </section>
+    <section id="sc-ref" aria-labelledby="l-scref">
+      <p class="label" id="l-scref">參考資料（點開查看）</p>
+      <div class="refs" id="sc-refs"></div>
     </section>
     <section id="sc-news" aria-labelledby="l-scn">
       <p class="label" id="l-scn">SystemCore 相關討論與公告</p>
@@ -1046,10 +1093,58 @@ footer .wrap { padding-block: 18px 28px; }
                       el("dt", { text: "要做的事" }), el("dd", { class: "todo", text: r.todo })]),
         el("a", { href: r.url, text: "官方來源" })]));
     });
+    // 硬體差異
+    var hw = $("sc-hwdiff"); clear(hw);
+    [["add", "+", "SystemCore 新增／強化", c.hw_added], ["rm", "−", "2027 不再支援", c.hw_removed]].forEach(function (x) {
+      if (!x[3] || !x[3].length) return;
+      var ul = el("ul"); x[3].forEach(function (t) { ul.appendChild(el("li", { text: t })); });
+      hw.appendChild(el("div", { class: "hwcol " + x[0] }, [el("h3", {}, [el("i", { text: x[1], "aria-hidden": "true" }), x[2]]), ul]));
+    });
+    var hs = $("sc-hwsrc"); clear(hs);
+    if (c.hw_source) hs.appendChild(el("span", {}, ["來源：", el("a", { href: c.hw_source.url, text: c.hw_source.title })]));
+    // 轉換時的坑
+    var gb = $("sc-gotchas"); clear(gb);
+    (c.gotchas || []).forEach(function (g) {
+      gb.appendChild(el("div", { class: "gotcha" }, [el("h3", { text: g.title }), el("p", { text: g.text }), el("a", { href: g.url, text: "來源" })]));
+    });
+    // 軟體變化：影響大的排前面
+    var sw = $("sc-sw-list"); clear(sw);
+    (c.software || []).slice().sort(function (a, b) { return (b.big ? 1 : 0) - (a.big ? 1 : 0); }).forEach(function (x) {
+      sw.appendChild(el("li", {}, [x.big ? el("span", { class: "big", text: "影響大" }) : el("span", { class: "dotm", "aria-hidden": "true" }),
+        el("span", { text: x.text }), el("a", { href: x.url, text: "來源" })]));
+    });
+    renderRefs(c);
     renderChecklist();
     var ll = $("sc-links"); clear(ll);
     (c.links || []).forEach(function (l) { ll.appendChild(el("li", {}, [el("a", { href: l.url, text: l.title })])); });
     renderSCNews();
+  }
+  function kvTable(rows) {
+    var tb = el("tbody");
+    rows.forEach(function (r) { tb.appendChild(el("tr", {}, [el("th", { text: r[0] }), el("td", { text: r[1] })])); });
+    return el("table", {}, [tb]);
+  }
+  function refBox(title, kids) { return el("details", { class: "box" }, [el("summary", { text: title })].concat(kids)); }
+  function renderRefs(c) {
+    var box = $("sc-refs"); clear(box);
+    if (c.specs) {
+      var kids = [el("p", { class: "refnote" }, [c.specs.note + " ", el("a", { href: c.specs.url, text: "規格書 PDF" })])];
+      c.specs.groups.forEach(function (g) { kids.push(el("h4", { text: g.name }), kvTable(g.rows)); });
+      box.appendChild(refBox("硬體規格表", kids));
+    }
+    if (c.vendors) {
+      box.appendChild(refBox("廠商函式庫相容表（截至 " + c.vendors.as_of + "）", [
+        el("p", { class: "refnote" }, [c.vendors.note + "。", el("a", { href: c.vendors.url, text: "最新版本看這裡" })]),
+        kvTable(c.vendors.rows)]));
+    }
+    if (c.quickstart) {
+      box.appendChild(refBox("快速上手：連線與預設值", [kvTable(c.quickstart.rows),
+        el("p", { class: "refnote" }, ["來源：", el("a", { href: c.quickstart.url, text: "SystemCoreTesting 快速上手" })])]));
+    }
+    if (c.roadmap) {
+      var ul = el("ul", { class: "links" }); c.roadmap.items.forEach(function (t) { ul.appendChild(el("li", { text: t })); });
+      box.appendChild(refBox("官方開發路線圖（軟體）", [ul, el("p", { class: "refnote" }, ["來源：", el("a", { href: c.roadmap.url, text: "product-roadmap.md" })])]));
+    }
   }
   function renderChecklist() {
     var c = SC.curated || {}, done = loadChecks(), box = $("sc-checks"); clear(box);

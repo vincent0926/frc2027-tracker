@@ -9,6 +9,7 @@ timeout_seconds: 30
 relevance_keywords:
   - "2027"
   - "systemcore"
+  - "motioncore"
   - "biocore"
 
 sources:
@@ -67,6 +68,31 @@ sources:
     type: feed
     url: "https://github.com/Mechanical-Advantage/AdvantageKit/releases.atom"
     filter: relevant
+
+  # ---------- SystemCore ----------
+  - id: wpilib_systemcore_intro
+    name: "WPILib 文件：Systemcore Introduction"
+    type: page
+    url: "https://docs.wpilib.org/en/latest/docs/software/systemcore-info/systemcore-introduction.html"
+    selector: "article"
+
+  - id: wpilib_systemcore_imaging
+    name: "WPILib 文件：Imaging your Systemcore"
+    type: page
+    url: "https://docs.wpilib.org/en/latest/docs/zero-to-robot/step-3/imaging-your-systemcore.html"
+    selector: "article"
+
+  - id: systemcore_testing_readme
+    name: "SystemCoreTesting README（相容表、已知問題、快速上手）"
+    type: page
+    url: "https://github.com/wpilibsuite/SystemCoreTesting"
+    selector: "article"
+
+  - id: systemcore_testing_commits
+    name: "SystemCoreTesting 更新紀錄"
+    type: feed
+    url: "https://github.com/wpilibsuite/SystemCoreTesting/commits/main.atom"
+    filter: all
 
   # ---------- 社群 ----------
   - id: cd_latest
