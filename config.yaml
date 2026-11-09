@@ -39,35 +39,51 @@ sources:
     url: "https://docs.wpilib.org/en/latest/docs/yearly-overview/yearly-changelog.html"
     selector: "article"        # 只看主要內容區塊
 
-  - id: wpilib_releases
-    name: "WPILib (allwpilib) GitHub Releases"
-    type: feed
-    url: "https://github.com/wpilibsuite/allwpilib/releases.atom"
-    filter: relevant
 
-  - id: ctre_releases
-    name: "CTRE Phoenix Releases"
-    type: feed
-    url: "https://github.com/CrossTheRoadElec/Phoenix-Releases/releases.atom"
-    filter: relevant
 
-  - id: rev_releases
-    name: "REV Software Binaries Releases"
-    type: feed
-    url: "https://github.com/REVrobotics/REV-Software-Binaries/releases.atom"
-    filter: relevant
 
-  - id: photonvision_releases
-    name: "PhotonVision Releases"
-    type: feed
-    url: "https://github.com/PhotonVision/photonvision/releases.atom"
-    filter: relevant
 
-  - id: advantagekit_releases
-    name: "AdvantageKit Releases"
-    type: feed
-    url: "https://github.com/Mechanical-Advantage/AdvantageKit/releases.atom"
-    filter: relevant
+
+  # ---------- 軟體版本（用 git 讀標籤；GitHub 網頁在雲端環境會被擋） ----------
+  - id: wpilib_tags
+    name: "WPILib 新版本"
+    type: git_tags
+    label: "WPILib"
+    url: "https://github.com/wpilibsuite/allwpilib"
+    tag_pattern: "2027"
+    filter: all
+
+  - id: ctre_tags
+    name: "CTRE Phoenix 6 新版本"
+    type: git_tags
+    label: "CTRE Phoenix 6"
+    url: "https://github.com/CrossTheRoadElec/Phoenix-Releases"
+    tag_pattern: '^v?2[7-9]\.'   # 2027 測試版另見 SystemCoreTesting 的 CTR-Phoenix.md
+    filter: all
+
+  - id: rev_tags
+    name: "REVLib 新版本"
+    type: git_tags
+    label: "REVLib"
+    url: "https://github.com/REVrobotics/REV-Software-Binaries"
+    tag_pattern: "2027"
+    filter: all
+
+  - id: photonvision_tags
+    name: "PhotonVision 新版本"
+    type: git_tags
+    label: "PhotonVision"
+    url: "https://github.com/PhotonVision/photonvision"
+    tag_pattern: "2027"
+    filter: all
+
+  - id: advantagekit_tags
+    name: "AdvantageKit 新版本"
+    type: git_tags
+    label: "AdvantageKit"
+    url: "https://github.com/Mechanical-Advantage/AdvantageKit"
+    tag_pattern: "^v?27\\."
+    filter: all
 
   # ---------- SystemCore ----------
   - id: wpilib_systemcore_intro
@@ -82,16 +98,14 @@ sources:
     url: "https://docs.wpilib.org/en/latest/docs/zero-to-robot/step-3/imaging-your-systemcore.html"
     selector: "article"
 
-  - id: systemcore_testing_readme
-    name: "SystemCoreTesting README（相容表、已知問題、快速上手）"
-    type: page
-    url: "https://github.com/wpilibsuite/SystemCoreTesting"
-    selector: "article"
 
-  - id: systemcore_testing_commits
-    name: "SystemCoreTesting 更新紀錄"
-    type: feed
-    url: "https://github.com/wpilibsuite/SystemCoreTesting/commits/main.atom"
+
+  - id: systemcore_testing
+    name: "SystemCoreTesting（官方測試 repo：相容表、已知問題、路線圖）"
+    type: git_repo
+    label: "SystemCoreTesting"
+    url: "https://github.com/wpilibsuite/SystemCoreTesting"
+    files: ["README.md", "product-roadmap.md", "CTR-Phoenix.md", "REV.md", "LimelightVision.md", "robotpy.md"]
     filter: all
 
   # ---------- 社群 ----------

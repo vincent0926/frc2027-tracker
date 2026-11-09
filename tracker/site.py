@@ -68,6 +68,9 @@ def collect_systemcore(data_dir: Path) -> dict:
             text = f"{it['title']} {it.get('summary', '')}"
             if not SC_RE.search(text):
                 continue
+            # 測試 repo 的 commit 只收新出現的，首次監控時的舊紀錄不列（避免洗版）
+            if it.get("source", "").startswith("SystemCoreTesting") and it.get("baseline"):
+                continue
             entry = items.setdefault(it["url"], {
                 "url": it["url"], "title": it["title"], "summary": it.get("summary", "")[:220],
                 "date": it.get("date", ""), "first_seen": day, "baseline": it.get("baseline", False),

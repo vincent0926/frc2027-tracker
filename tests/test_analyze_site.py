@@ -103,3 +103,11 @@ def test_validate_analysis():
     errs = validate_analysis(bad, r)
     assert len(errs) == 3
     assert validate_analysis(dict(ok, top_pick=None), r) == ["top_pick 為空時必須設定 quiet: true"]
+
+
+def test_merge_same_day_keeps_earlier_items():
+    from tracker.main import merge_same_day
+    old = dict(RESULT, pages=[{"source": "A", "baseline": False, "url": "u"}], baselines=["X"])
+    new = dict(RESULT, items=[RESULT["items"][0]], pages=[], baselines=["Y"])
+    m = merge_same_day(old, new)
+    assert len(m["items"]) == 3 and m["pages"][0]["source"] == "A" and m["baselines"] == ["X", "Y"]

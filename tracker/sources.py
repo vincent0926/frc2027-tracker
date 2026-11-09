@@ -5,10 +5,13 @@ item 格式：{"id", "title", "url", "date", "summary"}
 from __future__ import annotations
 
 import difflib
+import subprocess
+import tempfile
 import email.utils
 import html
 import re
 import xml.etree.ElementTree as ET
+from pathlib import Path
 from urllib.parse import parse_qs, urljoin, urlparse
 
 from bs4 import BeautifulSoup
@@ -146,7 +149,62 @@ def collect_page(f: PoliteFetcher, src: dict) -> tuple[None, dict]:
     return None, snap
 
 
+# ---------------- Git（GitHub 網頁被擋時仍可用 git 讀取公開 repo） ----------------
+def _git(args: list[str], timeout: int = 180) -> str:
+    out = subprocess.run(["git", *args], capture_output=True, text=True, timeout=timeout)
+    if out.returncode != 0:
+        raise RuntimeError(f"git {' '.join(args[:2])} 失敗：{out.stderr.strip()[:200]}")
+    return out.stdout
+
+
+def _repo_web(url: str) -> str:
+    return url.removesuffix(".git").rstrip("/")
+
+
+def collect_git_tags(f: PoliteFetcher, src: dict) -> tuple[list[dict], None]:
+    """用 git ls-remote 列出版本標籤，只保留符合 tag_pattern 的（例如 2027 版）。"""
+    web = _repo_web(src["url"])
+    pat = re.compile(src.get("tag_pattern", "2027"))
+    items = []
+    for line in _git(["ls-remote", "--tags", "--refs", web]).splitlines():
+        tag = line.split("refs/tags/", 1)[-1].strip()
+        if tag and pat.search(tag):
+            items.append({"id": tag, "title": f"{src.get('label', web.split('/')[-1])} 發布 {tag}",
+                          "url": f"{web}/releases/tag/{tag}", "date": "",
+                          "summary": f"{src.get('label', '')} 新版本標籤 {tag}。"})
+    return items, None
+
+
+def collect_git_repo(f: PoliteFetcher, src: dict) -> tuple[list[dict], dict]:
+    """淺層 clone 公開 repo：最近的 commit 當作消息，指定檔案的內容當作快照比對。"""
+    web = _repo_web(src["url"])
+    with tempfile.TemporaryDirectory() as tmp:
+        _git(["clone", "-q", "--depth", "30", web, tmp], timeout=600)
+        log = _git(["-C", tmp, "log", "-30", "--format=%H%x09%cI%x09%s"])
+        items = []
+        for line in log.splitlines():
+            sha, when, subject = line.split("\t", 2)
+            items.append({"id": sha, "title": f"{src.get('label', web.split('/')[-1])} 更新：{subject}",
+                          "url": f"{web}/commit/{sha}", "date": when[:10], "summary": subject})
+        lines: list[str] = []
+        links: dict[str, str] = {}
+        for name in src.get("files", ["README.md"]):
+            path = Path(tmp) / name
+            if not path.exists():
+                continue
+            lines.append(f"[{name}]")
+            for raw in path.read_text("utf-8", errors="replace").splitlines():
+                line = " ".join(raw.split())
+                if len(line) >= 3 and not line.startswith("![") and "<img" not in line:
+                    lines.append(line)
+            for text, href in re.findall(r"\[([^\]]+)\]\((https?://[^)\s]+)\)", path.read_text("utf-8", errors="replace")):
+                links[href] = text
+    return items, {"lines": lines, "links": links}
+
+
 COLLECTORS = {
+    "git_tags": collect_git_tags,
+    "git_repo": collect_git_repo,
     "feed": collect_feed,
     "page": collect_page,
 }

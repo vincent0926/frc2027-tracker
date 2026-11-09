@@ -1,0 +1,996 @@
+{
+ "date": "2026-11-10",
+ "items": [
+  {
+   "id": "www.chiefdelphi.com-topic-526004",
+   "title": "Ri3D at LSSU 2027 Build Thread",
+   "url": "https://www.chiefdelphi.com/t/ri3d-at-lssu-2027-build-thread/526004",
+   "date": "2026-11-09",
+   "summary": "Hey Chief Delphi! We’re LSSU Robot in 3 Days , a new Ri3D team at Lake Superior State University up in Sault Ste. Marie, Michigan. BIOCORE will be our first season. Who we are We’re Lakers in LSSU’s engineering and technology programs plus a few local FRC mentors, we had our first meeting today, elected our officers and a Build Captain, and we’ll be meeting every Sunday until kickoff. Why the Soo …",
+   "source": "Chief Delphi 最新討論（篩選 2027 相關）",
+   "categories": [
+    "隊伍建造紀錄"
+   ],
+   "baseline": false
+  },
+  {
+   "id": "v2027.0.0-alpha-1",
+   "title": "WPILib 發布 v2027.0.0-alpha-1",
+   "url": "https://github.com/wpilibsuite/allwpilib/releases/tag/v2027.0.0-alpha-1",
+   "date": "",
+   "summary": "WPILib 新版本標籤 v2027.0.0-alpha-1。",
+   "source": "WPILib 新版本",
+   "categories": [
+    "軟體更新"
+   ],
+   "baseline": true
+  },
+  {
+   "id": "v2027.0.0-alpha-2",
+   "title": "WPILib 發布 v2027.0.0-alpha-2",
+   "url": "https://github.com/wpilibsuite/allwpilib/releases/tag/v2027.0.0-alpha-2",
+   "date": "",
+   "summary": "WPILib 新版本標籤 v2027.0.0-alpha-2。",
+   "source": "WPILib 新版本",
+   "categories": [
+    "軟體更新"
+   ],
+   "baseline": true
+  },
+  {
+   "id": "v2027.0.0-alpha-3",
+   "title": "WPILib 發布 v2027.0.0-alpha-3",
+   "url": "https://github.com/wpilibsuite/allwpilib/releases/tag/v2027.0.0-alpha-3",
+   "date": "",
+   "summary": "WPILib 新版本標籤 v2027.0.0-alpha-3。",
+   "source": "WPILib 新版本",
+   "categories": [
+    "軟體更新"
+   ],
+   "baseline": true
+  },
+  {
+   "id": "v2027.0.0-alpha-4",
+   "title": "WPILib 發布 v2027.0.0-alpha-4",
+   "url": "https://github.com/wpilibsuite/allwpilib/releases/tag/v2027.0.0-alpha-4",
+   "date": "",
+   "summary": "WPILib 新版本標籤 v2027.0.0-alpha-4。",
+   "source": "WPILib 新版本",
+   "categories": [
+    "軟體更新"
+   ],
+   "baseline": true
+  },
+  {
+   "id": "v2027.0.0-alpha-5",
+   "title": "WPILib 發布 v2027.0.0-alpha-5",
+   "url": "https://github.com/wpilibsuite/allwpilib/releases/tag/v2027.0.0-alpha-5",
+   "date": "",
+   "summary": "WPILib 新版本標籤 v2027.0.0-alpha-5。",
+   "source": "WPILib 新版本",
+   "categories": [
+    "軟體更新"
+   ],
+   "baseline": true
+  },
+  {
+   "id": "v2027.0.0-alpha-6",
+   "title": "WPILib 發布 v2027.0.0-alpha-6",
+   "url": "https://github.com/wpilibsuite/allwpilib/releases/tag/v2027.0.0-alpha-6",
+   "date": "",
+   "summary": "WPILib 新版本標籤 v2027.0.0-alpha-6。",
+   "source": "WPILib 新版本",
+   "categories": [
+    "軟體更新"
+   ],
+   "baseline": true
+  },
+  {
+   "id": "v2027.0.0-alpha-7",
+   "title": "WPILib 發布 v2027.0.0-alpha-7",
+   "url": "https://github.com/wpilibsuite/allwpilib/releases/tag/v2027.0.0-alpha-7",
+   "date": "",
+   "summary": "WPILib 新版本標籤 v2027.0.0-alpha-7。",
+   "source": "WPILib 新版本",
+   "categories": [
+    "軟體更新"
+   ],
+   "baseline": true
+  },
+  {
+   "id": "v2027.0.0-alpha-8",
+   "title": "WPILib 發布 v2027.0.0-alpha-8",
+   "url": "https://github.com/wpilibsuite/allwpilib/releases/tag/v2027.0.0-alpha-8",
+   "date": "",
+   "summary": "WPILib 新版本標籤 v2027.0.0-alpha-8。",
+   "source": "WPILib 新版本",
+   "categories": [
+    "軟體更新"
+   ],
+   "baseline": true
+  },
+  {
+   "id": "revlib-2027.0.0-alpha-1",
+   "title": "REVLib 發布 revlib-2027.0.0-alpha-1",
+   "url": "https://github.com/REVrobotics/REV-Software-Binaries/releases/tag/revlib-2027.0.0-alpha-1",
+   "date": "",
+   "summary": "REVLib 新版本標籤 revlib-2027.0.0-alpha-1。",
+   "source": "REVLib 新版本",
+   "categories": [
+    "軟體更新"
+   ],
+   "baseline": true
+  },
+  {
+   "id": "revlib-2027.0.0-alpha-2",
+   "title": "REVLib 發布 revlib-2027.0.0-alpha-2",
+   "url": "https://github.com/REVrobotics/REV-Software-Binaries/releases/tag/revlib-2027.0.0-alpha-2",
+   "date": "",
+   "summary": "REVLib 新版本標籤 revlib-2027.0.0-alpha-2。",
+   "source": "REVLib 新版本",
+   "categories": [
+    "軟體更新"
+   ],
+   "baseline": true
+  },
+  {
+   "id": "revlib-2027.0.0-alpha-3",
+   "title": "REVLib 發布 revlib-2027.0.0-alpha-3",
+   "url": "https://github.com/REVrobotics/REV-Software-Binaries/releases/tag/revlib-2027.0.0-alpha-3",
+   "date": "",
+   "summary": "REVLib 新版本標籤 revlib-2027.0.0-alpha-3。",
+   "source": "REVLib 新版本",
+   "categories": [
+    "軟體更新"
+   ],
+   "baseline": true
+  },
+  {
+   "id": "revlib-2027.0.0-alpha-4",
+   "title": "REVLib 發布 revlib-2027.0.0-alpha-4",
+   "url": "https://github.com/REVrobotics/REV-Software-Binaries/releases/tag/revlib-2027.0.0-alpha-4",
+   "date": "",
+   "summary": "REVLib 新版本標籤 revlib-2027.0.0-alpha-4。",
+   "source": "REVLib 新版本",
+   "categories": [
+    "軟體更新"
+   ],
+   "baseline": true
+  },
+  {
+   "id": "revlib-2027.0.0-alpha-5",
+   "title": "REVLib 發布 revlib-2027.0.0-alpha-5",
+   "url": "https://github.com/REVrobotics/REV-Software-Binaries/releases/tag/revlib-2027.0.0-alpha-5",
+   "date": "",
+   "summary": "REVLib 新版本標籤 revlib-2027.0.0-alpha-5。",
+   "source": "REVLib 新版本",
+   "categories": [
+    "軟體更新"
+   ],
+   "baseline": true
+  },
+  {
+   "id": "revlib-2027.0.0-alpha-6",
+   "title": "REVLib 發布 revlib-2027.0.0-alpha-6",
+   "url": "https://github.com/REVrobotics/REV-Software-Binaries/releases/tag/revlib-2027.0.0-alpha-6",
+   "date": "",
+   "summary": "REVLib 新版本標籤 revlib-2027.0.0-alpha-6。",
+   "source": "REVLib 新版本",
+   "categories": [
+    "軟體更新"
+   ],
+   "baseline": true
+  },
+  {
+   "id": "revlib-2027.0.0-alpha-7",
+   "title": "REVLib 發布 revlib-2027.0.0-alpha-7",
+   "url": "https://github.com/REVrobotics/REV-Software-Binaries/releases/tag/revlib-2027.0.0-alpha-7",
+   "date": "",
+   "summary": "REVLib 新版本標籤 revlib-2027.0.0-alpha-7。",
+   "source": "REVLib 新版本",
+   "categories": [
+    "軟體更新"
+   ],
+   "baseline": true
+  },
+  {
+   "id": "revlib-2027.0.0-alpha-8",
+   "title": "REVLib 發布 revlib-2027.0.0-alpha-8",
+   "url": "https://github.com/REVrobotics/REV-Software-Binaries/releases/tag/revlib-2027.0.0-alpha-8",
+   "date": "",
+   "summary": "REVLib 新版本標籤 revlib-2027.0.0-alpha-8。",
+   "source": "REVLib 新版本",
+   "categories": [
+    "軟體更新"
+   ],
+   "baseline": true
+  },
+  {
+   "id": "revlib-2027.0.0-alpha-9",
+   "title": "REVLib 發布 revlib-2027.0.0-alpha-9",
+   "url": "https://github.com/REVrobotics/REV-Software-Binaries/releases/tag/revlib-2027.0.0-alpha-9",
+   "date": "",
+   "summary": "REVLib 新版本標籤 revlib-2027.0.0-alpha-9。",
+   "source": "REVLib 新版本",
+   "categories": [
+    "軟體更新"
+   ],
+   "baseline": true
+  },
+  {
+   "id": "v2027.0.0-alpha-2",
+   "title": "PhotonVision 發布 v2027.0.0-alpha-2",
+   "url": "https://github.com/PhotonVision/photonvision/releases/tag/v2027.0.0-alpha-2",
+   "date": "",
+   "summary": "PhotonVision 新版本標籤 v2027.0.0-alpha-2。",
+   "source": "PhotonVision 新版本",
+   "categories": [
+    "軟體更新"
+   ],
+   "baseline": true
+  },
+  {
+   "id": "v27.0.0-alpha-1",
+   "title": "AdvantageKit 發布 v27.0.0-alpha-1",
+   "url": "https://github.com/Mechanical-Advantage/AdvantageKit/releases/tag/v27.0.0-alpha-1",
+   "date": "",
+   "summary": "AdvantageKit 新版本標籤 v27.0.0-alpha-1。",
+   "source": "AdvantageKit 新版本",
+   "categories": [
+    "軟體更新"
+   ],
+   "baseline": true
+  },
+  {
+   "id": "v27.0.0-alpha-2",
+   "title": "AdvantageKit 發布 v27.0.0-alpha-2",
+   "url": "https://github.com/Mechanical-Advantage/AdvantageKit/releases/tag/v27.0.0-alpha-2",
+   "date": "",
+   "summary": "AdvantageKit 新版本標籤 v27.0.0-alpha-2。",
+   "source": "AdvantageKit 新版本",
+   "categories": [
+    "軟體更新"
+   ],
+   "baseline": true
+  },
+  {
+   "id": "v27.0.0-alpha-3",
+   "title": "AdvantageKit 發布 v27.0.0-alpha-3",
+   "url": "https://github.com/Mechanical-Advantage/AdvantageKit/releases/tag/v27.0.0-alpha-3",
+   "date": "",
+   "summary": "AdvantageKit 新版本標籤 v27.0.0-alpha-3。",
+   "source": "AdvantageKit 新版本",
+   "categories": [
+    "軟體更新"
+   ],
+   "baseline": true
+  },
+  {
+   "id": "v27.0.0-alpha-4",
+   "title": "AdvantageKit 發布 v27.0.0-alpha-4",
+   "url": "https://github.com/Mechanical-Advantage/AdvantageKit/releases/tag/v27.0.0-alpha-4",
+   "date": "",
+   "summary": "AdvantageKit 新版本標籤 v27.0.0-alpha-4。",
+   "source": "AdvantageKit 新版本",
+   "categories": [
+    "軟體更新"
+   ],
+   "baseline": true
+  },
+  {
+   "id": "v27.0.0-alpha-5",
+   "title": "AdvantageKit 發布 v27.0.0-alpha-5",
+   "url": "https://github.com/Mechanical-Advantage/AdvantageKit/releases/tag/v27.0.0-alpha-5",
+   "date": "",
+   "summary": "AdvantageKit 新版本標籤 v27.0.0-alpha-5。",
+   "source": "AdvantageKit 新版本",
+   "categories": [
+    "軟體更新"
+   ],
+   "baseline": true
+  },
+  {
+   "id": "v27.0.0-alpha-6",
+   "title": "AdvantageKit 發布 v27.0.0-alpha-6",
+   "url": "https://github.com/Mechanical-Advantage/AdvantageKit/releases/tag/v27.0.0-alpha-6",
+   "date": "",
+   "summary": "AdvantageKit 新版本標籤 v27.0.0-alpha-6。",
+   "source": "AdvantageKit 新版本",
+   "categories": [
+    "軟體更新"
+   ],
+   "baseline": true
+  },
+  {
+   "id": "v27.0.0-alpha-7",
+   "title": "AdvantageKit 發布 v27.0.0-alpha-7",
+   "url": "https://github.com/Mechanical-Advantage/AdvantageKit/releases/tag/v27.0.0-alpha-7",
+   "date": "",
+   "summary": "AdvantageKit 新版本標籤 v27.0.0-alpha-7。",
+   "source": "AdvantageKit 新版本",
+   "categories": [
+    "軟體更新"
+   ],
+   "baseline": true
+  },
+  {
+   "id": "d679cfe483f08de2ea035fd995223c9a8fcb2437",
+   "title": "SystemCoreTesting 更新：Merge pull request #447 from Yet-Another-Software-Suite/yass-2026.11.06",
+   "url": "https://github.com/wpilibsuite/SystemCoreTesting/commit/d679cfe483f08de2ea035fd995223c9a8fcb2437",
+   "date": "2026-11-05",
+   "summary": "Merge pull request #447 from Yet-Another-Software-Suite/yass-2026.11.06",
+   "source": "SystemCoreTesting（官方測試 repo：相容表、已知問題、路線圖）",
+   "categories": [
+    "軟體更新",
+    "硬體/控制系統"
+   ],
+   "baseline": true
+  },
+  {
+   "id": "e0dda3455fddf51c9a7600d63ef4ab482a68c436",
+   "title": "SystemCoreTesting 更新：Merge pull request #444 from virtuald/robotpy-alpha-8",
+   "url": "https://github.com/wpilibsuite/SystemCoreTesting/commit/e0dda3455fddf51c9a7600d63ef4ab482a68c436",
+   "date": "2026-11-05",
+   "summary": "Merge pull request #444 from virtuald/robotpy-alpha-8",
+   "source": "SystemCoreTesting（官方測試 repo：相容表、已知問題、路線圖）",
+   "categories": [
+    "軟體更新",
+    "硬體/控制系統"
+   ],
+   "baseline": true
+  },
+  {
+   "id": "305161d61965cf303082b39b53b070bbf954b2e2",
+   "title": "SystemCoreTesting 更新：Note that YAGSL 2026.11.06 supports the NavX3 with StudicaLib",
+   "url": "https://github.com/wpilibsuite/SystemCoreTesting/commit/305161d61965cf303082b39b53b070bbf954b2e2",
+   "date": "2026-11-06",
+   "summary": "Note that YAGSL 2026.11.06 supports the NavX3 with StudicaLib",
+   "source": "SystemCoreTesting（官方測試 repo：相容表、已知問題、路線圖）",
+   "categories": [
+    "硬體/控制系統"
+   ],
+   "baseline": true
+  },
+  {
+   "id": "8702cec46f0259de9804168532b617e60c6e82f8",
+   "title": "SystemCoreTesting 更新：Update YAMS and YAGSL to 2026.11.06, and add the A301 and Nova closed loop notes",
+   "url": "https://github.com/wpilibsuite/SystemCoreTesting/commit/8702cec46f0259de9804168532b617e60c6e82f8",
+   "date": "2026-11-06",
+   "summary": "Update YAMS and YAGSL to 2026.11.06, and add the A301 and Nova closed loop notes",
+   "source": "SystemCoreTesting（官方測試 repo：相容表、已知問題、路線圖）",
+   "categories": [
+    "硬體/控制系統"
+   ],
+   "baseline": true
+  },
+  {
+   "id": "dbef5036bdb30bbdc19d4c7ab8cb7cb5a8117444",
+   "title": "SystemCoreTesting 更新：Updates for RobotPy 2027.0.0a8",
+   "url": "https://github.com/wpilibsuite/SystemCoreTesting/commit/dbef5036bdb30bbdc19d4c7ab8cb7cb5a8117444",
+   "date": "2026-11-02",
+   "summary": "Updates for RobotPy 2027.0.0a8",
+   "source": "SystemCoreTesting（官方測試 repo：相容表、已知問題、路線圖）",
+   "categories": [
+    "軟體更新",
+    "硬體/控制系統"
+   ],
+   "baseline": true
+  },
+  {
+   "id": "6421606304e261698ae7f406c063ecbee1118225",
+   "title": "SystemCoreTesting 更新：Merge pull request #440 from jwbonner/akit-alpha-7-log-renaming-issue",
+   "url": "https://github.com/wpilibsuite/SystemCoreTesting/commit/6421606304e261698ae7f406c063ecbee1118225",
+   "date": "2026-10-31",
+   "summary": "Merge pull request #440 from jwbonner/akit-alpha-7-log-renaming-issue",
+   "source": "SystemCoreTesting（官方測試 repo：相容表、已知問題、路線圖）",
+   "categories": [
+    "軟體更新",
+    "硬體/控制系統"
+   ],
+   "baseline": true
+  },
+  {
+   "id": "e7c93c4cee470637ed4e3a6bb36f97a4ed8312ee",
+   "title": "SystemCoreTesting 更新：Add known issue for log renaming on AdvantageKit v27.0.0-alpha-7",
+   "url": "https://github.com/wpilibsuite/SystemCoreTesting/commit/e7c93c4cee470637ed4e3a6bb36f97a4ed8312ee",
+   "date": "2026-10-31",
+   "summary": "Add known issue for log renaming on AdvantageKit v27.0.0-alpha-7",
+   "source": "SystemCoreTesting（官方測試 repo：相容表、已知問題、路線圖）",
+   "categories": [
+    "軟體更新",
+    "硬體/控制系統"
+   ],
+   "baseline": true
+  },
+  {
+   "id": "3557a58695835692572d007360262c6fe4ec1b43",
+   "title": "SystemCoreTesting 更新：Add lockup doc",
+   "url": "https://github.com/wpilibsuite/SystemCoreTesting/commit/3557a58695835692572d007360262c6fe4ec1b43",
+   "date": "2026-10-30",
+   "summary": "Add lockup doc",
+   "source": "SystemCoreTesting（官方測試 repo：相容表、已知問題、路線圖）",
+   "categories": [
+    "硬體/控制系統"
+   ],
+   "baseline": true
+  },
+  {
+   "id": "d2885d60650daeb4975c268618838163ca94e9a9",
+   "title": "SystemCoreTesting 更新：Update REVLib, RHC2, and SPARK firmware details (#438)",
+   "url": "https://github.com/wpilibsuite/SystemCoreTesting/commit/d2885d60650daeb4975c268618838163ca94e9a9",
+   "date": "2026-10-30",
+   "summary": "Update REVLib, RHC2, and SPARK firmware details (#438)",
+   "source": "SystemCoreTesting（官方測試 repo：相容表、已知問題、路線圖）",
+   "categories": [
+    "軟體更新",
+    "硬體/控制系統"
+   ],
+   "baseline": true
+  },
+  {
+   "id": "1be560a25c701bc3ba866c04f6294849e9529a33",
+   "title": "SystemCoreTesting 更新：Update wifi username / password for image 17 (#437)",
+   "url": "https://github.com/wpilibsuite/SystemCoreTesting/commit/1be560a25c701bc3ba866c04f6294849e9529a33",
+   "date": "2026-10-30",
+   "summary": "Update wifi username / password for image 17 (#437)",
+   "source": "SystemCoreTesting（官方測試 repo：相容表、已知問題、路線圖）",
+   "categories": [
+    "硬體/控制系統"
+   ],
+   "baseline": true
+  },
+  {
+   "id": "52becb68ece07d2a79770618212d334f40e56367",
+   "title": "SystemCoreTesting 更新：Add link to eMMC failure report",
+   "url": "https://github.com/wpilibsuite/SystemCoreTesting/commit/52becb68ece07d2a79770618212d334f40e56367",
+   "date": "2026-10-27",
+   "summary": "Add link to eMMC failure report",
+   "source": "SystemCoreTesting（官方測試 repo：相容表、已知問題、路線圖）",
+   "categories": [
+    "硬體/控制系統"
+   ],
+   "baseline": true
+  },
+  {
+   "id": "6ce482ce2b4fa44fc65308d1686705b329e558b4",
+   "title": "SystemCoreTesting 更新：Update readme for WPILib ALpha 8 (#434)",
+   "url": "https://github.com/wpilibsuite/SystemCoreTesting/commit/6ce482ce2b4fa44fc65308d1686705b329e558b4",
+   "date": "2026-10-26",
+   "summary": "Update readme for WPILib ALpha 8 (#434)",
+   "source": "SystemCoreTesting（官方測試 repo：相容表、已知問題、路線圖）",
+   "categories": [
+    "軟體更新",
+    "硬體/控制系統"
+   ],
+   "baseline": true
+  },
+  {
+   "id": "e98c41bb9235d239f94c0833c39bd98dd221cd91",
+   "title": "SystemCoreTesting 更新：Merge pull request #433 from jwbonner/akit-alpha-7",
+   "url": "https://github.com/wpilibsuite/SystemCoreTesting/commit/e98c41bb9235d239f94c0833c39bd98dd221cd91",
+   "date": "2026-10-23",
+   "summary": "Merge pull request #433 from jwbonner/akit-alpha-7",
+   "source": "SystemCoreTesting（官方測試 repo：相容表、已知問題、路線圖）",
+   "categories": [
+    "軟體更新",
+    "硬體/控制系統"
+   ],
+   "baseline": true
+  },
+  {
+   "id": "a8becdccfae91cd0283a6d195fe3a6d97732893a",
+   "title": "SystemCoreTesting 更新：Update JSON URL",
+   "url": "https://github.com/wpilibsuite/SystemCoreTesting/commit/a8becdccfae91cd0283a6d195fe3a6d97732893a",
+   "date": "2026-10-23",
+   "summary": "Update JSON URL",
+   "source": "SystemCoreTesting（官方測試 repo：相容表、已知問題、路線圖）",
+   "categories": [
+    "硬體/控制系統"
+   ],
+   "baseline": true
+  },
+  {
+   "id": "97424697311fec492218f7b8f63a6c4e45778745",
+   "title": "SystemCoreTesting 更新：Add AdvantageKit alpha 7",
+   "url": "https://github.com/wpilibsuite/SystemCoreTesting/commit/97424697311fec492218f7b8f63a6c4e45778745",
+   "date": "2026-10-23",
+   "summary": "Add AdvantageKit alpha 7",
+   "source": "SystemCoreTesting（官方測試 repo：相容表、已知問題、路線圖）",
+   "categories": [
+    "軟體更新",
+    "硬體/控制系統"
+   ],
+   "baseline": true
+  },
+  {
+   "id": "f1a04ca39cd9bb87ceda7a8f5a8389fea31f35cd",
+   "title": "SystemCoreTesting 更新：Update HWManager Links",
+   "url": "https://github.com/wpilibsuite/SystemCoreTesting/commit/f1a04ca39cd9bb87ceda7a8f5a8389fea31f35cd",
+   "date": "2026-10-22",
+   "summary": "Update HWManager Links",
+   "source": "SystemCoreTesting（官方測試 repo：相容表、已知問題、路線圖）",
+   "categories": [
+    "硬體/控制系統"
+   ],
+   "baseline": true
+  },
+  {
+   "id": "0473f8014bceb8962f5c75e1d5287c65fc0e7095",
+   "title": "SystemCoreTesting 更新：Merge pull request #429 from daltzctr/canivore-update",
+   "url": "https://github.com/wpilibsuite/SystemCoreTesting/commit/0473f8014bceb8962f5c75e1d5287c65fc0e7095",
+   "date": "2026-10-19",
+   "summary": "Merge pull request #429 from daltzctr/canivore-update",
+   "source": "SystemCoreTesting（官方測試 repo：相容表、已知問題、路線圖）",
+   "categories": [
+    "硬體/控制系統"
+   ],
+   "baseline": true
+  },
+  {
+   "id": "ff8d4712f07970b8f39498891e6a1dacbd2822a1",
+   "title": "SystemCoreTesting 更新：Add OS 17 compatible CANivore IPK link",
+   "url": "https://github.com/wpilibsuite/SystemCoreTesting/commit/ff8d4712f07970b8f39498891e6a1dacbd2822a1",
+   "date": "2026-10-19",
+   "summary": "Add OS 17 compatible CANivore IPK link",
+   "source": "SystemCoreTesting（官方測試 repo：相容表、已知問題、路線圖）",
+   "categories": [
+    "硬體/控制系統"
+   ],
+   "baseline": true
+  },
+  {
+   "id": "349269f1fad225c97596eb50bdc7721701f2408f",
+   "title": "SystemCoreTesting 更新：Merge pull request #426 from Yet-Another-Software-Suite/yams-2026.10.15",
+   "url": "https://github.com/wpilibsuite/SystemCoreTesting/commit/349269f1fad225c97596eb50bdc7721701f2408f",
+   "date": "2026-10-16",
+   "summary": "Merge pull request #426 from Yet-Another-Software-Suite/yams-2026.10.15",
+   "source": "SystemCoreTesting（官方測試 repo：相容表、已知問題、路線圖）",
+   "categories": [
+    "軟體更新",
+    "硬體/控制系統"
+   ],
+   "baseline": true
+  },
+  {
+   "id": "f7e968f67510cb7cea2beeca0a6942771d2f2fad",
+   "title": "SystemCoreTesting 更新：Update YASS.md",
+   "url": "https://github.com/wpilibsuite/SystemCoreTesting/commit/f7e968f67510cb7cea2beeca0a6942771d2f2fad",
+   "date": "2026-10-15",
+   "summary": "Update YASS.md",
+   "source": "SystemCoreTesting（官方測試 repo：相容表、已知問題、路線圖）",
+   "categories": [
+    "硬體/控制系統"
+   ],
+   "baseline": true
+  },
+  {
+   "id": "3abed393fcc75bac1b77a6c59280302d6fb3941f",
+   "title": "SystemCoreTesting 更新：Update YAMS to 2026.10.15, and describe what changed since 2026.10.09",
+   "url": "https://github.com/wpilibsuite/SystemCoreTesting/commit/3abed393fcc75bac1b77a6c59280302d6fb3941f",
+   "date": "2026-10-15",
+   "summary": "Update YAMS to 2026.10.15, and describe what changed since 2026.10.09",
+   "source": "SystemCoreTesting（官方測試 repo：相容表、已知問題、路線圖）",
+   "categories": [
+    "硬體/控制系統"
+   ],
+   "baseline": true
+  },
+  {
+   "id": "f1fbeb08126cff0900946f5e162bd844fe08f641",
+   "title": "SystemCoreTesting 更新：Add known issues",
+   "url": "https://github.com/wpilibsuite/SystemCoreTesting/commit/f1fbeb08126cff0900946f5e162bd844fe08f641",
+   "date": "2026-10-12",
+   "summary": "Add known issues",
+   "source": "SystemCoreTesting（官方測試 repo：相容表、已知問題、路線圖）",
+   "categories": [
+    "硬體/控制系統"
+   ],
+   "baseline": true
+  },
+  {
+   "id": "14ffe5063cb3eb607087d0e78f4d46b060877348",
+   "title": "SystemCoreTesting 更新：Merge pull request #408 from Yet-Another-Software-Suite/main",
+   "url": "https://github.com/wpilibsuite/SystemCoreTesting/commit/14ffe5063cb3eb607087d0e78f4d46b060877348",
+   "date": "2026-10-12",
+   "summary": "Merge pull request #408 from Yet-Another-Software-Suite/main",
+   "source": "SystemCoreTesting（官方測試 repo：相容表、已知問題、路線圖）",
+   "categories": [
+    "軟體更新",
+    "硬體/控制系統"
+   ],
+   "baseline": true
+  },
+  {
+   "id": "94c9cbaabe84f3b406cb3ce21675706cecf7da36",
+   "title": "SystemCoreTesting 更新：Merge pull request #421 from sciencewhiz/ThriftyLibAlpha5",
+   "url": "https://github.com/wpilibsuite/SystemCoreTesting/commit/94c9cbaabe84f3b406cb3ce21675706cecf7da36",
+   "date": "2026-10-11",
+   "summary": "Merge pull request #421 from sciencewhiz/ThriftyLibAlpha5",
+   "source": "SystemCoreTesting（官方測試 repo：相容表、已知問題、路線圖）",
+   "categories": [
+    "軟體更新",
+    "硬體/控制系統"
+   ],
+   "baseline": true
+  },
+  {
+   "id": "33f915197762938f440ef746b70cb2306e26ec3c",
+   "title": "SystemCoreTesting 更新：Merge pull request #422 from sciencewhiz/WPILibAlpha7",
+   "url": "https://github.com/wpilibsuite/SystemCoreTesting/commit/33f915197762938f440ef746b70cb2306e26ec3c",
+   "date": "2026-10-11",
+   "summary": "Merge pull request #422 from sciencewhiz/WPILibAlpha7",
+   "source": "SystemCoreTesting（官方測試 repo：相容表、已知問題、路線圖）",
+   "categories": [
+    "軟體更新",
+    "硬體/控制系統"
+   ],
+   "baseline": true
+  },
+  {
+   "id": "2506deebb3217f80218d9ce5632df736a7a08940",
+   "title": "SystemCoreTesting 更新：Update some readme items for WPILib Alpha 7",
+   "url": "https://github.com/wpilibsuite/SystemCoreTesting/commit/2506deebb3217f80218d9ce5632df736a7a08940",
+   "date": "2026-10-11",
+   "summary": "Update some readme items for WPILib Alpha 7",
+   "source": "SystemCoreTesting（官方測試 repo：相容表、已知問題、路線圖）",
+   "categories": [
+    "軟體更新",
+    "硬體/控制系統"
+   ],
+   "baseline": true
+  },
+  {
+   "id": "8c4c474061d21c8dbe53323487e38bdb0ce601ea",
+   "title": "SystemCoreTesting 更新：Update for ThriftyLib 2027.0.0-alpha-5",
+   "url": "https://github.com/wpilibsuite/SystemCoreTesting/commit/8c4c474061d21c8dbe53323487e38bdb0ce601ea",
+   "date": "2026-10-11",
+   "summary": "Update for ThriftyLib 2027.0.0-alpha-5",
+   "source": "SystemCoreTesting（官方測試 repo：相容表、已知問題、路線圖）",
+   "categories": [
+    "軟體更新",
+    "硬體/控制系統"
+   ],
+   "baseline": true
+  },
+  {
+   "id": "f3aa59defa0d9a13033749366c2a0508c5b060aa",
+   "title": "SystemCoreTesting 更新：Update YAMS and YAGSL to 2026.10.09 in the README",
+   "url": "https://github.com/wpilibsuite/SystemCoreTesting/commit/f3aa59defa0d9a13033749366c2a0508c5b060aa",
+   "date": "2026-10-09",
+   "summary": "Update YAMS and YAGSL to 2026.10.09 in the README",
+   "source": "SystemCoreTesting（官方測試 repo：相容表、已知問題、路線圖）",
+   "categories": [
+    "硬體/控制系統"
+   ],
+   "baseline": true
+  },
+  {
+   "id": "59e85a60213fc8d73dcdfcd05dd19d38e9a51d69",
+   "title": "SystemCoreTesting 更新：Describe the unified YAGSL canbus values in YASS.md",
+   "url": "https://github.com/wpilibsuite/SystemCoreTesting/commit/59e85a60213fc8d73dcdfcd05dd19d38e9a51d69",
+   "date": "2026-10-09",
+   "summary": "Describe the unified YAGSL canbus values in YASS.md",
+   "source": "SystemCoreTesting（官方測試 repo：相容表、已知問題、路線圖）",
+   "categories": [
+    "硬體/控制系統"
+   ],
+   "baseline": true
+  },
+  {
+   "id": "aa4d355c28ffcaa82a8640e7fea3766feee1ff73",
+   "title": "SystemCoreTesting 更新：Note in YASS.md that YAGSL CAN bus values will be unified",
+   "url": "https://github.com/wpilibsuite/SystemCoreTesting/commit/aa4d355c28ffcaa82a8640e7fea3766feee1ff73",
+   "date": "2026-10-09",
+   "summary": "Note in YASS.md that YAGSL CAN bus values will be unified",
+   "source": "SystemCoreTesting（官方測試 repo：相容表、已知問題、路線圖）",
+   "categories": [
+    "硬體/控制系統"
+   ],
+   "baseline": true
+  }
+ ],
+ "pages": [
+  {
+   "source": "SystemCoreTesting（官方測試 repo：相容表、已知問題、路線圖）",
+   "url": "https://github.com/wpilibsuite/SystemCoreTesting",
+   "baseline": true,
+   "added": [],
+   "removed": [],
+   "new_links": {
+    "https://downloads.limelightvision.io/documents/systemcore_specifications_june15_2025_alpha.pdf": "Systemcore Specification PDF",
+    "https://downloads.limelightvision.io/documents/systemcore_motioncore_cable_specifications.pdf": "Systemcore Cables PDF",
+    "https://github.com/REVrobotics/REV-Software-Binaries/releases/download/revlib-2027.0.0-alpha-9/REVLib-offline-v2027.0.0-alpha-9.zip": "Offline Install"
+   },
+   "gone_links": {}
+  }
+ ],
+ "errors": [],
+ "baselines": [
+  "WPILib 文件：Systemcore Introduction",
+  "WPILib 文件：Imaging your Systemcore",
+  "WPILib 新版本",
+  "CTRE Phoenix 6 新版本",
+  "REVLib 新版本",
+  "PhotonVision 新版本",
+  "AdvantageKit 新版本",
+  "SystemCoreTesting（官方測試 repo：相容表、已知問題、路線圖）"
+ ],
+ "events": [
+  {
+   "date": "2025-09-06",
+   "label": "FIRST Tech Challenge Kickoff",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2026-05-19",
+   "label": "FIRST Signing Day",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2026-06-17",
+   "label": "Team Registration Opens",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2026-09-01",
+   "label": "FIRST Scholarship Program opens",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2026-09-24",
+   "label": "Drive Base & Black Tote Opt Out Opens",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2026-09-24",
+   "label": "First Event Registration - Round 1 Preference",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2026-09-24",
+   "label": "Kit and Kickoff Registration Opens",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2026-10-02",
+   "label": "First Late Registration Opens",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2026-10-15",
+   "label": "Second Event Registration - Round 2 Preference",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2026-10-20",
+   "label": "Digital Animation Award Opens",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2026-10-23",
+   "label": "Second Late Registration Opens",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2026-10-29",
+   "label": "Additional In-District Event Registration Opens",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2026-10-29",
+   "label": "FIRST Impact Award Application Opens",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2026-10-29",
+   "label": "FIRST Leadership Award Application Opens",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2026-10-29",
+   "label": "Unrestricted Regional Event Registration Opens",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2026-10-29",
+   "label": "Woodie Flowers Award Application Opens",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2026-10-30",
+   "label": "Volunteer Registration Opens",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2026-11-05",
+   "label": "Additional Inter-District Event Registration Opens",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2026-11-12",
+   "label": "Pre-Kickoff Virtual Kit Release",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2026-11-17",
+   "label": "All FIRST Robotics Competition District Events and Regional Events Registration Closes",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2026-11-17",
+   "label": "Drive Base & Black Tote Opt Out Closes",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2026-11-17",
+   "label": "Kit and Kickoff Registration Closes",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2026-11-17",
+   "label": "Payment Due - FIRST Robotics Competition Initial Event Registration",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2027-01-09",
+   "label": "2027 FIRST Robotics Competition Kickoff",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2027-01-09",
+   "label": "FIRST Choice: Priority Lists Opens",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2027-01-09",
+   "label": "Kickoff Kit Replacement Parts System Opens",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2027-01-09",
+   "label": "Virtual Kit Kickoff Release",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2027-01-12",
+   "label": "Digital Animation Award Closes",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2027-01-13",
+   "label": "Official Q&A Opens",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2027-01-16",
+   "label": "Kickoff Kit Replacement Parts System Closes",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2027-01-18",
+   "label": "FIRST Choice: Priority Lists Closes",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2027-01-21",
+   "label": "Payment Due - FIRST Robotics Competition Additional Registered Event(s)",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2027-01-29",
+   "label": "FIRST Choice Regular Ordering Opens",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2027-02-11",
+   "label": "FIRST Impact Award Application Closes",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2027-02-20",
+   "label": "Week Zero",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2027-03-03",
+   "label": "Week 1 Competition Events",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2027-03-10",
+   "label": "Week 2 Competition Events",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2027-03-17",
+   "label": "Week 3 Competition Events",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2027-03-24",
+   "label": "Week 4 Competition Events",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2027-03-31",
+   "label": "Week 5 Competition Events",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2027-04-07",
+   "label": "Week 6 Competition Events",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2027-04-14",
+   "label": "Week 7 Competition Events",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2027-04-16",
+   "label": "Payment Due - FIRST Robotics Competition Championship",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2027-04-21",
+   "label": "FIRST Choice Closes",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2027-04-21",
+   "label": "Official Q&A Closes",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2027-04-28",
+   "label": "FIRST Championship",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  }
+ ]
+}

@@ -56,6 +56,8 @@ def run(config_path: Path, data_dir: Path, report_dir: Path, today: str) -> dict
                 fresh = [i for i in fresh if is_relevant(f"{i['title']} {i['summary']}", kws)]
             fresh = [i for i in fresh if i["url"] not in reported_urls]
             for i in fresh:
+                # 版本標籤沒有發布日期：新偵測到的用今天，首次監控時已存在的留空
+                i["date"] = i["date"] or ("" if first_time else today)
                 reported_urls.add(i["url"])
                 i["source"] = src["name"]
                 i["categories"] = classify(i["title"], cats, i["summary"])
@@ -83,6 +85,7 @@ def run(config_path: Path, data_dir: Path, report_dir: Path, today: str) -> dict
             print(f"[完成] {src['name']}: +{len(d['added'])} / -{len(d['removed'])} 行")
 
     save_json(data_dir / "state.json", state)
+    result = merge_same_day(load_json(data_dir / "daily" / f"{today}.json", None), result)
     save_json(data_dir / "daily" / f"{today}.json", result)
     md = render_markdown(result, kws, cats)
     report_dir.mkdir(parents=True, exist_ok=True)
@@ -90,6 +93,18 @@ def run(config_path: Path, data_dir: Path, report_dir: Path, today: str) -> dict
     (report_dir / "latest.md").write_text(md, "utf-8")
     update_index(report_dir)
     return result
+
+
+def merge_same_day(old: dict | None, new: dict) -> dict:
+    """同一天重跑時，保留先前已抓到的新消息與頁面變動，不被覆蓋。"""
+    if not old:
+        return new
+    urls = {i["url"] for i in new["items"]}
+    new["items"] = [i for i in old.get("items", []) if i["url"] not in urls] + new["items"]
+    srcs = {p["source"] for p in new["pages"]}
+    new["pages"] = [p for p in old.get("pages", []) if p["source"] not in srcs and not p["baseline"]] + new["pages"]
+    new["baselines"] = list(dict.fromkeys(old.get("baselines", []) + new["baselines"]))
+    return new
 
 
 # ---------------- 報告 ----------------

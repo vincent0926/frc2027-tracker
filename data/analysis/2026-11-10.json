@@ -1,0 +1,53 @@
+{
+ "method": "claude",
+ "model": "人工判讀",
+ "quiet": true,
+ "tldr": [
+  "11/17 賽事報名、Kit 與 Kickoff 報名截止，只剩 7 天",
+  "11/18 SystemCore 開賣，每隊限購 1 台 4 GB",
+  "目前最新：WPILib 2027 alpha-8、REVLib alpha-9"
+ ],
+ "top_pick": null,
+ "headline": "今天沒有重大新消息；本週要注意 11/17 報名截止與 11/18 SystemCore 開賣。",
+ "highlights": [
+  {
+   "category": "行政/賽事",
+   "importance": "high",
+   "points": [
+    "11/17 賽事報名、Kit 與 Kickoff 報名、底盤退訂、首場報名費全部截止（剩 7 天）",
+    "11/12 公布 Kickoff 前的虛擬 Kit"
+   ]
+  },
+  {
+   "category": "硬體/控制系統",
+   "importance": "medium",
+   "points": [
+    "11/18 起可在 FIRST Storefront 加購 4 GB SystemCore（$550，每隊限 1 台）"
+   ]
+  },
+  {
+   "category": "軟體更新",
+   "importance": "low",
+   "points": [
+    "開始追蹤各函式庫版本：WPILib 2027 alpha-8、REVLib alpha-9、AdvantageKit 27.0.0-alpha-7、PhotonVision 2027.0.0-alpha-2"
+   ]
+  },
+  {
+   "category": "隊伍建造紀錄",
+   "importance": "low",
+   "points": [
+    "LSSU 大學的 Ri3D 隊伍開了 2027 建造紀錄，BIOCORE 是他們的第一季"
+   ]
+  }
+ ],
+ "action_items": [
+  "還沒完成報名或繳費的隊伍，請在 11/17 前處理",
+  "決定是否在 11/18 加購備用 SystemCore"
+ ],
+ "items_zh": {
+  "https://www.chiefdelphi.com/t/ri3d-at-lssu-2027-build-thread/526004": {
+   "title": "LSSU Ri3D 隊開 2027 建造紀錄",
+   "blurb": "美國 Lake Superior State University 的 Robot in 3 Days 隊伍，將在 Kickoff 後三天內做出 BIOCORE 機器人。"
+  }
+ }
+}
