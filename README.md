@@ -50,17 +50,29 @@ python -m tracker.main --site-only   # 只用現有資料重建網站
 
 產生的網站在 `site/index.html`，直接用瀏覽器打開就能看。
 
-## 每天自動執行（GitHub Actions）
+## 每天自動執行
 
-1. 把這個資料夾推到你自己的 GitHub repo。
-2. 到 repo 的 **Settings → Pages**，把 Source 設成 **GitHub Actions**。
-3. `.github/workflows/daily.yml` 會在每天台灣時間 07:17 自動執行：爬取 → 分析 → 建網站 → commit 回 repo → 部署到 Pages。
-   網址會是 `https://<你的帳號>.github.io/<repo 名稱>/`。
-4. 想立即測試：到 repo 的 **Actions → FRC 2027 每日追蹤 → Run workflow**。
-5. （建議）讓 Claude 挑精選、寫整理：在 **Settings → Secrets and variables → Actions** 新增
-   `ANTHROPIC_API_KEY`。每天呼叫一次 Claude Opus 5.5，並開啟了 server-side fallback
-   （Claude 若拒絕回答，API 會自動改用其他模型重跑）；沒設定就用規則評分。
-6. （選用）想在 Discord 收到通知：新增 `DISCORD_WEBHOOK_URL`，有新消息時會推播摘要。
+### 方式一：Claude 排程（目前使用）
+
+每天台灣時間早上約 7 點，Claude 的排程會開一個新的工作階段，照 [`docs/DAILY_ROUTINE.md`](docs/DAILY_ROUTINE.md)：
+爬取 → 由 Claude 判讀精選、寫中文標題與重點整理 → 重建網站 → push 回這個 repo → 更新分享出去的網頁連結。
+不需要 API key。
+
+相關指令：
+
+```bash
+python -m tracker.main --skip-analysis            # 爬取，但不自動寫分析
+python -m tracker.main --check-analysis --date 2026-11-09   # 檢查分析檔格式
+python -m tracker.main --fallback-analysis --date 2026-11-09  # 沒有分析檔時用規則評分補上
+```
+
+### 方式二：GitHub Actions（備用）
+
+`.github/workflows/daily.yml` 也可以每天執行並部署到 GitHub Pages：
+到 repo 的 **Settings → Pages** 把 Source 設成 **GitHub Actions**；
+想要 Claude 判讀可在 **Settings → Secrets → Actions** 新增 `ANTHROPIC_API_KEY`，否則使用規則評分。
+這個方式產生的是 GitHub Pages 網址，不會更新 Claude 的分享連結。
+目前排程已經用方式一，workflow 的 `schedule` 預設關閉，只能手動執行，避免兩邊同時改資料。
 
 ## 注意
 

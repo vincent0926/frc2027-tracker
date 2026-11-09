@@ -231,3 +231,38 @@ def analyze(result: dict, out_dir: Path) -> dict:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(analysis, ensure_ascii=False, indent=1), "utf-8")
     return analysis
+
+
+# ---------------- 驗證（排程中由 Claude 手寫分析時使用） ----------------
+IMPACT_OK = set(IMPACT)
+
+
+def validate_analysis(analysis: dict, result: dict) -> list[str]:
+    """檢查分析檔格式與引用的網址，回傳錯誤清單（空清單代表通過）。"""
+    errs = []
+    urls = {i["url"] for i in result.get("items", [])} | {p["url"] for p in result.get("pages", [])}
+    for k in ("tldr", "headline", "highlights", "action_items"):
+        if k not in analysis:
+            errs.append(f"缺少欄位 {k}")
+    if not isinstance(analysis.get("tldr", []), list) or not 1 <= len(analysis.get("tldr", [])) <= 3:
+        errs.append("tldr 必須是 1～3 條")
+    pick = analysis.get("top_pick")
+    if pick is None:
+        if not analysis.get("quiet"):
+            errs.append("top_pick 為空時必須設定 quiet: true")
+    else:
+        for k in ("url", "title", "source", "summary", "points", "impact"):
+            if k not in pick:
+                errs.append(f"top_pick 缺少 {k}")
+        if pick.get("url") not in urls:
+            errs.append(f"top_pick.url 不在當天資料中：{pick.get('url')}")
+        bad = set(pick.get("impact", [])) - IMPACT_OK
+        if bad:
+            errs.append(f"top_pick.impact 有不允許的值：{sorted(bad)}")
+    for h in analysis.get("highlights", []):
+        if h.get("importance") not in ("high", "medium", "low") or not h.get("points"):
+            errs.append(f"highlights 格式錯誤：{h.get('category')}")
+    for u in (analysis.get("items_zh") or {}):
+        if u not in urls:
+            errs.append(f"items_zh 的網址不在當天資料中：{u}")
+    return errs

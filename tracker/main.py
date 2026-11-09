@@ -11,7 +11,7 @@ from pathlib import Path
 import requests
 import yaml
 
-from .analyze import analyze
+from .analyze import analyze, validate_analysis
 from .fetch import PoliteFetcher
 from .site import build_site
 from .sources import COLLECTORS, classify, diff_snapshots, is_document_link, is_relevant
@@ -177,13 +177,34 @@ def main() -> None:
     ap.add_argument("--site", default=ROOT / "site", type=Path)
     ap.add_argument("--date", default=dt.date.today().isoformat())
     ap.add_argument("--site-only", action="store_true", help="不抓資料，只用現有資料重建網站")
+    ap.add_argument("--skip-analysis", action="store_true", help="爬取後不產生分析檔（由排程中的 Claude 撰寫）")
+    ap.add_argument("--check-analysis", action="store_true", help="檢查 --date 當天的分析檔格式")
+    ap.add_argument("--fallback-analysis", action="store_true", help="當天沒有分析檔時，用規則評分補上")
     a = ap.parse_args()
+    if a.check_analysis:
+        r = load_json(a.data / "daily" / f"{a.date}.json", None)
+        an = load_json(a.data / "analysis" / f"{a.date}.json", None)
+        if r is None or an is None:
+            sys.exit(f"找不到 {a.date} 的資料或分析檔")
+        errs = validate_analysis(an, r)
+        if errs:
+            sys.exit("分析檔有問題：\n- " + "\n- ".join(errs))
+        print(f"{a.date} 分析檔檢查通過")
+        return
+    if a.fallback_analysis:
+        r = load_json(a.data / "daily" / f"{a.date}.json", None)
+        if r is None:
+            sys.exit(f"找不到 {a.date} 的資料")
+        analyze(r, a.data / "analysis")  # 已存在就不覆蓋
+        print(f"{a.date} 分析檔已就緒")
+        return
     if a.site_only:
         build_site(a.data, a.site)
         print(f"網站已建立：{a.site / 'index.html'}")
         return
     r = run(a.config, a.data, a.reports, a.date)
-    analyze(r, a.data / "analysis")
+    if not a.skip_analysis:
+        analyze(r, a.data / "analysis")
     build_site(a.data, a.site)
     print(f"網站已建立：{a.site / 'index.html'}")
     hook = os.environ.get("DISCORD_WEBHOOK_URL")

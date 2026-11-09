@@ -88,3 +88,18 @@ def test_collect_systemcore_aggregates_and_tags(tmp_path):
     assert [i["title"] for i in sc["items"]] == ["Getting LEDs working on SystemCore", "Looking for Systemcore pricing details"]
     assert sc["items"][1]["tags"] == ["價格與供貨"] and "硬體與接線" in sc["items"][0]["tags"]
     assert sc["curated"] is None
+
+
+def test_validate_analysis():
+    from tracker.analyze import validate_analysis
+    ok = {"tldr": ["a"], "headline": "h", "action_items": [],
+          "highlights": [{"category": "其他", "importance": "low", "points": ["x"]}],
+          "top_pick": {"url": "https://x/Motor count", "title": "t", "source": "s", "summary": "s",
+                       "points": [], "impact": ["電控"]},
+          "items_zh": {"https://x/Motor count": {"title": "t", "blurb": "b"}}}
+    r = dict(RESULT, items=[_item("Motor count", "Chief Delphi", "2026-11-07")])
+    assert validate_analysis(ok, r) == []
+    bad = dict(ok, top_pick=dict(ok["top_pick"], url="https://made-up", impact=["廚房"]), tldr=[])
+    errs = validate_analysis(bad, r)
+    assert len(errs) == 3
+    assert validate_analysis(dict(ok, top_pick=None), r) == ["top_pick 為空時必須設定 quiet: true"]

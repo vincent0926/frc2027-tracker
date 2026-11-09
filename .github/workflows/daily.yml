@@ -1,9 +1,11 @@
 name: FRC 2027 每日追蹤
 
 on:
-  schedule:
-    - cron: "17 23 * * *"   # 每天 UTC 23:17 = 台灣時間早上 07:17
-  workflow_dispatch:         # 也可以在 Actions 頁面手動按「Run workflow」
+  # 目前由 Claude 排程每天更新（見 docs/DAILY_ROUTINE.md）。
+  # 想改用 GitHub Actions 自動跑，把下面兩行的 # 拿掉：
+  # schedule:
+  #   - cron: "17 23 * * *"   # 每天 UTC 23:17 = 台灣時間早上 07:17
+  workflow_dispatch:         # 可在 Actions 頁面手動按「Run workflow」
 
 permissions:
   contents: write            # 把新的報告與資料 commit 回 repo
