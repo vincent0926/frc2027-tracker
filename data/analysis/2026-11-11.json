@@ -1,0 +1,26 @@
+{
+ "method": "claude",
+ "model": "每日排程",
+ "quiet": true,
+ "tldr": [
+  "11/17 賽事報名、Kit 與 Kickoff 報名截止，只剩 6 天",
+  "11/12 公布 Kickoff 前的虛擬 Kit",
+  "11/18 SystemCore 開放加購，每隊限 1 台 4 GB"
+ ],
+ "top_pick": null,
+ "headline": "今天沒有新消息；11/12 公布虛擬 Kit，11/17 報名截止。",
+ "highlights": [
+  {
+   "category": "行政/賽事",
+   "importance": "high",
+   "points": [
+    "11/17 賽事報名、Kit 與 Kickoff 報名、底盤退訂、首場報名費全部截止",
+    "11/12 公布 Kickoff 前的虛擬 Kit"
+   ]
+  }
+ ],
+ "action_items": [
+  "還沒完成報名或繳費的隊伍，請在 11/17 前處理"
+ ],
+ "items_zh": {}
+}

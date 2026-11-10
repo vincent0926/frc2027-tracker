@@ -91,7 +91,7 @@ a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible
 .season .mk.multi.u-serious, .season .mk.multi.u-warning { color: var(--st-ink-dark); }
 .season .tl { position: absolute; top: calc(var(--rail) + 15px); font-size: .72rem; line-height: 1.3; font-weight: 500; white-space: nowrap; }
 .season .tl.up { top: 0; font-weight: 700; }
-.season .tl.dl { color: var(--red); font-weight: 700; }
+.season .tl.tl-deadline { color: var(--red); font-weight: 700; }
 .season-legend { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: .72rem; color: var(--muted); margin: 2px 4px 0; }
 .season-legend i { display: inline-block; width: 9px; height: 9px; margin-right: 5px; vertical-align: -1px; background: var(--muted); border-radius: 50%; }
 .season-legend i.d { border-radius: 2px; transform: rotate(45deg); background: var(--st-critical); }
@@ -396,10 +396,6 @@ footer .wrap { padding-block: 18px 28px; }
     </nav>
     <div class="season" id="season" aria-label="2027 賽季時間軸">
       <div class="track-wrap" id="season-track"></div>
-      <div class="season-legend">
-        <span class="lg"><i class="d"></i>截止日（顏色＝緊急度）</span><span class="lg"><i></i>其他官方日期</span><span class="lg"><i class="s"></i>比賽週／世界賽</span>
-        <span>點一下時間軸上的標記可看日期</span>
-      </div>
     </div>
   </div>
 </header>
@@ -462,14 +458,14 @@ footer .wrap { padding-block: 18px 28px; }
       <p class="label" id="l-trend">趨勢</p>
       <p class="trend-note" id="trend-note"></p>
       <div class="chart-card">
-        <div class="chart-head"><h3>每日新消息</h3><span id="trend-sub">近 30 天，依分類堆疊</span>
+        <div class="chart-head"><h3>每日新消息</h3><span id="trend-sub">近 30 天</span>
           <button type="button" id="trend-tbl-btn" aria-expanded="false">顯示數據表</button></div>
         <div class="legend" id="trend-legend"></div>
         <div class="chart" id="trend-bars"></div>
         <div class="tbl-wrap" id="trend-tbl" hidden></div>
       </div>
       <div class="chart-card">
-        <div class="chart-head"><h3>話題熱度</h3><span>每天新消息中提到該話題的則數，近 30 天</span></div>
+        <div class="chart-head"><h3>話題熱度</h3><span>近 30 天</span></div>
         <div class="multiples" id="topics"></div>
       </div>
     </section>
@@ -527,10 +523,9 @@ footer .wrap { padding-block: 18px 28px; }
       <div class="check-head"><b id="sc-prog-t"></b><div class="progress" role="progressbar" aria-label="準備清單完成度" id="sc-prog"><i></i></div>
         <button type="button" id="sc-reset">全部取消勾選</button></div>
       <div class="checks" id="sc-checks"></div>
-      <p class="note">勾選狀態只存在你自己的瀏覽器裡，不會分享給其他人。</p>
     </section>
     <section id="sc-ref" aria-labelledby="l-scref">
-      <p class="label" id="l-scref">參考資料（點開查看）</p>
+      <p class="label" id="l-scref">規格與相容表</p>
       <div class="refs" id="sc-refs"></div>
     </section>
     <section id="sc-news" aria-labelledby="l-scn">
@@ -681,7 +676,7 @@ footer .wrap { padding-block: 18px 28px; }
                           "stroke-dasharray": (C * frac).toFixed(1) + " " + C.toFixed(1) })]),
         el("div", { class: "n" }, [n === 0 ? "今天" : String(n), el("small", { text: n === 0 ? "" : "天" })])]);
       box.appendChild(el("div", { class: "dl" }, [ring,
-        el("div", { class: "w" }, [u ? el("div", {}, [urgPill(u)]) : null, g.names.join("、"), el("span", { class: "when", text: md(g.date) + (n > 30 ? "（圓環以 30 天為一圈）" : "") })])]));
+        el("div", { class: "w" }, [u ? el("div", {}, [urgPill(u)]) : null, g.names.join("、"), el("span", { class: "when", text: md(g.date) })])]));
     });
   }
 
@@ -699,7 +694,7 @@ footer .wrap { padding-block: 18px 28px; }
     if (!p) {
       var prev = previousPick(idx);
       var q = el("div", { class: "quiet" }, [
-        el("p", { text: a.quiet || (day.result.items || []).length ? "今天沒有重大消息，新訊息都屬於一般討論。" : "今天沒有新的 2027 相關消息。" })]);
+        el("p", { text: listItems(day).length ? "今天沒有重大消息。" : "今天沒有新消息。" })]);
       if (prev) q.appendChild(el("p", { class: "prev" }, ["最近一次精選（" + md(prev.date) + "）：", el("a", { href: prev.pick.url, text: prev.pick.title })]));
       box.appendChild(q);
       return;
@@ -736,7 +731,7 @@ footer .wrap { padding-block: 18px 28px; }
       box.appendChild(el("div", { class: "ev" + (u ? " u-" + u.key : "") }, [
         el("div", { class: "dt" }, [el("b", { text: md(e.date) }), n === 0 ? "今天" : n + " 天後"]),
         el("div", { class: "nm" }, [u ? urgPill(u) : (dl ? el("span", { class: "flag", text: "截止" }) : null), dl ? evName(e).replace(/截止$/, "") : evName(e),
-          e.zh ? el("small", { text: e.label }) : null])]));
+          null])]));
     });
     var more = $("ev-more");
     more.hidden = evs.length <= 8;
@@ -823,8 +818,7 @@ footer .wrap { padding-block: 18px 28px; }
     }
     var all = day.result.items || [], hidden = all.length - listItems(day).length;
     var old = all.filter(function (i) { return i.baseline; }).length;
-    $("list-note").textContent = hidden ? "另有 " + hidden + " 則是新增監控來源時已存在的內容，未列入清單。"
-      : (old ? "這天是首次監控，清單包含 " + old + " 則開始追蹤前就已存在的文章。" : "");
+    $("list-note").textContent = "";
     $("jump-n").textContent = String(listItems(day).length);
   }
 
@@ -959,41 +953,62 @@ footer .wrap { padding-block: 18px 28px; }
       var k = groups[dd].filter(function (e) { return evType(e) === "deadline"; }).length;
       if (dn >= 0 && k) nextDeadline = { d: dd, p: pos(dd), k: k };
     }
-    if (nextDeadline) box.appendChild(label(md(nextDeadline.d) + " 截止" + (nextDeadline.k > 1 ? " ×" + nextDeadline.k : ""), nextDeadline.p, 4, "dl"));
+    if (nextDeadline) box.appendChild(label(md(nextDeadline.d) + " 截止" + (nextDeadline.k > 1 ? " ×" + nextDeadline.k : ""), nextDeadline.p, 4, "tl-deadline"));
     // 今天
     box.appendChild(el("div", { class: "today", style: "left:" + pos(day.date) + "%" }));
     box.appendChild(el("span", { class: "tl up", "data-p": pos(day.date), text: "今天 " + md(day.date) }));
     fitSeason();
+    watchSeason();
   }
-  // 量每個標籤的實際寬高再排：不超出邊界、互相重疊時只留優先度高的。
-  // 手機系統字體放大時文字會變寬變高，寫死的位置就會疊在一起，所以一定要量。
+  // 量每個標籤的實際寬高再排：不超出邊界；撞到時先試著往旁邊挪，挪不開才隱藏。
+  // 字型晚載入、手機系統字級放大都會讓文字變寬，所以用 ResizeObserver 在尺寸改變時重新排。
+  // 隱藏用 visibility（不用 display:none），標籤尺寸才不會因為隱藏而變動、造成反覆重排。
+  var seasonRO = window.ResizeObserver ? new ResizeObserver(function () { requestAnimationFrame(fitSeason); }) : null;
+  function watchSeason() {
+    if (!seasonRO) return;
+    var box = $("season-track");
+    seasonRO.disconnect();
+    seasonRO.observe(box);
+    Array.prototype.forEach.call(box.querySelectorAll(".tl, .mtick"), function (n) { seasonRO.observe(n); });
+  }
   function fitSeason() {
     var box = $("season-track"), W = box.clientWidth;
     if (!W || !box.firstChild) return;
+    function show(n, on) { n.style.visibility = on ? "" : "hidden"; }
+    function anchorOf(n) { return +n.getAttribute("data-p") / 100 * W; }
+    function put(n, x) { n.style.left = x + "px"; return { l: x, r: x + n.offsetWidth }; }
     function place(n) {
-      n.hidden = false;
-      var w = n.offsetWidth, x = Math.max(0, Math.min(W - w, +n.getAttribute("data-p") / 100 * W - w / 2));
-      n.style.left = x + "px";
-      return { l: x, r: x + w };
+      var w = n.offsetWidth;
+      return put(n, Math.max(0, Math.min(W - w, anchorOf(n) - w / 2)));
     }
-    function hits(r, list, gap) { return list.some(function (k) { return r.l < k.r + gap && r.r > k.l - gap; }); }
+    function hits(r, list, gap) { return list.filter(function (k) { return r.l < k.r + gap && r.r > k.l - gap; }); }
     var up = box.querySelector(".tl.up"), h1 = 0, todayX = -99;
-    if (up) { place(up); h1 = up.offsetHeight; todayX = +up.getAttribute("data-p") / 100 * W; }
+    if (up) { show(up, true); place(up); h1 = up.offsetHeight; todayX = anchorOf(up); }
     var h2 = 0, keptT = [];
     Array.prototype.forEach.call(box.querySelectorAll(".mtick"), function (t) {
       var r = place(t);
-      if (hits(r, keptT, 6) || (todayX > r.l - 4 && todayX < r.r + 4)) t.hidden = true;
-      else { keptT.push(r); h2 = Math.max(h2, t.offsetHeight); }
+      var ok = !hits(r, keptT, 6).length && !(todayX > r.l - 4 && todayX < r.r + 4);
+      show(t, ok);
+      if (ok) { keptT.push(r); h2 = Math.max(h2, t.offsetHeight); }
     });
     var tick = h1 + 2, rail = tick + h2 + 7;
     box.style.setProperty("--tick", tick + "px");
     box.style.setProperty("--rail", rail + "px");
-    var keptL = [], hmax = 0;
+    var keptL = [], hmax = 0, GAP = 10;
     Array.prototype.slice.call(box.querySelectorAll(".tl:not(.up)"))
       .sort(function (a, b) { return b.getAttribute("data-prio") - a.getAttribute("data-prio"); })
       .forEach(function (n) {
-        var r = place(n);
-        if (hits(r, keptL, 8)) n.hidden = true; else { keptL.push(r); hmax = Math.max(hmax, n.offsetHeight); }
+        var w = n.offsetWidth, ideal = anchorOf(n) - w / 2, r = place(n), clash = hits(r, keptL, GAP);
+        if (clash.length) {
+          // 試著挪到擋住它的標籤右邊或左邊，但離原本位置不能超過自身寬度的 0.75 倍
+          var right = Math.max.apply(null, clash.map(function (k) { return k.r + GAP; }));
+          var left = Math.min.apply(null, clash.map(function (k) { return k.l - GAP; })) - w;
+          var cands = [right, left].filter(function (x) { return x >= 0 && x + w <= W && Math.abs(x - ideal) <= w * 0.75; })
+                                   .sort(function (x, y) { return Math.abs(x - ideal) - Math.abs(y - ideal); });
+          for (var i = 0; i < cands.length && clash.length; i++) { r = put(n, cands[i]); clash = hits(r, keptL, GAP); }
+        }
+        show(n, !clash.length);
+        if (!clash.length) { keptL.push(r); hmax = Math.max(hmax, n.offsetHeight); }
       });
     box.style.height = (rail + 15 + hmax + 2) + "px";
   }
@@ -1036,9 +1051,9 @@ footer .wrap { padding-block: 18px 28px; }
     var tracked = win.filter(function (w) { return w.tracked && !w.baseline; }).length;
     var note = $("trend-note"); clear(note);
     if (tracked < 14) {
-      note.appendChild(el("b", { text: "資料累積中：已有 " + tracked + " 天的新消息紀錄（首日建立基準不計）。" }));
-      note.appendChild(document.createTextNode("至少累積 14 天後，趨勢才看得出變化。"));
-    } else note.appendChild(document.createTextNode("只計算每天「新出現」的訊息，不含首次監控時已存在的文章。"));
+      note.appendChild(document.createTextNode("資料累積中（" + tracked + "／14 天）"));
+    }
+    note.hidden = !note.firstChild;
 
     // 圖例
     var leg = $("trend-legend"); clear(leg);
@@ -1118,7 +1133,7 @@ footer .wrap { padding-block: 18px 28px; }
       var today = vals[vals.length - 1], week = vals.slice(-7).reduce(function (a, v) { return a + (v || 0); }, 0);
       var card = el("div", { class: "mult" }, [
         el("h4", {}, [t.name, el("b", { text: today == null ? "—" : String(today) })]),
-        el("p", { text: "今天 · 近 7 天共 " + week + " 則" })]);
+        el("p", { text: "7 天內 " + week + " 則" })]);
       var w2 = 220, h2 = 36, pad = 5, mx = Math.max(2, Math.max.apply(null, vals.map(function (v) { return v || 0; })));
       var sx = function (i) { return pad + i * (w2 - pad * 2) / (vals.length - 1); }, sy = function (v) { return h2 - pad - v / mx * (h2 - pad * 2); };
       var sv = svg("svg", { viewBox: "0 0 " + w2 + " " + h2, height: h2, preserveAspectRatio: "none", role: "img", "aria-label": t.name + " 近 30 天每日則數" });
@@ -1157,7 +1172,7 @@ footer .wrap { padding-block: 18px 28px; }
   function renderSC() {
     var c = SC.curated || {}, today = DATA.days.length ? DATA.days[0].date : "";
     $("sc-intro").textContent = c.intro || "";
-    $("sc-updated").textContent = c.updated ? "重點整理更新於 " + c.updated + "；下方討論每天自動更新。" : "";
+    $("sc-updated").textContent = c.updated ? "更新於 " + c.updated : "";
     var st = $("sc-stats"); clear(st);
     (c.stats || []).forEach(function (x) {
       st.appendChild(el("a", { class: "stat", href: x.url }, [el("b", { text: x.value }), el("span", { text: x.label }), el("small", { text: x.note })]));
@@ -1311,9 +1326,7 @@ footer .wrap { padding-block: 18px 28px; }
     renderSeason(day); renderBrief(day); renderPick(day, idx); renderDates(day); renderSummary(day); renderTrends(day);
     renderChips(day); renderList(day); renderPages(day); renderErrors(day);
     var a = day.analysis || {};
-    $("foot").textContent = "資料日期 " + day.date + " · 精選與整理：" +
-      (a.method === "claude" ? "Claude" + (a.model ? "（" + a.model + "）" : "") : "規則評分") +
-      " · 內容摘錄自原始來源，請以官方文件為準。";
+    $("foot").textContent = "資料日期 " + day.date + " · 請以官方文件為準";
     if (location.hash !== "#systemcore") { try { history.replaceState(null, "", "#d" + day.date); } catch (e) {} }
   }
   function indexFromHash() {
@@ -1348,6 +1361,10 @@ footer .wrap { padding-block: 18px 28px; }
   var rz; window.addEventListener("resize", function () { clearTimeout(rz); rz = setTimeout(function () { var d = DATA.days[+$("day").value || 0]; renderTrends(d); renderSeason(d); }, 150); });
   show(indexFromHash());
   route();
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitSeason);
+  if (document.fonts) {
+    if (document.fonts.ready) document.fonts.ready.then(fitSeason);
+    if (document.fonts.addEventListener) document.fonts.addEventListener("loadingdone", fitSeason);
+  }
+  window.addEventListener("load", fitSeason);
 })();
 </script>
