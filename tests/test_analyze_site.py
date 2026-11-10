@@ -111,3 +111,11 @@ def test_merge_same_day_keeps_earlier_items():
     new = dict(RESULT, items=[RESULT["items"][0]], pages=[], baselines=["Y"])
     m = merge_same_day(old, new)
     assert len(m["items"]) == 3 and m["pages"][0]["source"] == "A" and m["baselines"] == ["X", "Y"]
+
+
+def test_source_kind_for_git_sources():
+    from tracker.site import source_kind
+    assert source_kind({"source": "SystemCoreTesting（官方測試 repo：相容表）", "title": "x"}) == ("官方", "SystemCoreTesting")
+    assert source_kind({"source": "WPILib 新版本", "title": "x"}) == ("軟體發布", "WPILib")
+    assert source_kind({"source": "Chief Delphi #2027", "title": "Motor count"}) == ("社群", "Chief Delphi")
+    assert source_kind({"source": "某個新來源", "title": "x"}) == ("社群", "某個新來源")

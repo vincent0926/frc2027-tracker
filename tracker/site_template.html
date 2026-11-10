@@ -50,7 +50,7 @@
 * { box-sizing: border-box; }
 [hidden] { display: none !important; }
 html { scroll-padding-top: calc(56px + env(safe-area-inset-top, 0px)); }
-body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.65; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.65; }
 body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--panel); }
 a { color: var(--blue); }
 a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible, summary:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
@@ -87,6 +87,9 @@ a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible
 .season .mk.kickoff { width: 18px; height: 18px; margin-left: -9px; top: 25px; background: var(--blue); }
 .season .mk.other { width: 8px; height: 8px; margin-left: -4px; top: 30px; border-width: 1px; opacity: .7; }
 .season .mk.past { opacity: .35; }
+.season .mk::after { content: ""; position: absolute; inset: -9px; }
+.season .mk.multi { width: auto; min-width: 20px; height: 16px; margin-left: 0; top: 26px; padding: 0 5px; border-radius: 8px; transform: translateX(-50%); font: 700 .62rem/12px var(--f-mono); color: #fff; text-align: center; }
+.season .mk.multi.u-serious, .season .mk.multi.u-warning { color: var(--st-ink-dark); }
 .season .tl { position: absolute; top: 48px; font-size: .72rem; font-weight: 500; white-space: nowrap; transform: translateX(-50%); }
 .season .tl.left { transform: none; } .season .tl.right { transform: translateX(-100%); }
 .season .tl.up { top: 4px; }
@@ -115,6 +118,10 @@ a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible
 .jump a { flex: none; font-size: .85rem; color: var(--muted); text-decoration: none; padding: 6px 12px; border-radius: 999px; white-space: nowrap; }
 .jump a:hover { background: var(--chip); color: var(--ink); }
 .jump a .c { font-family: var(--f-mono); font-size: .72rem; margin-left: 4px; }
+.jump .wrap::after { content: ""; flex: 0 0 28px; }
+@media (max-width: 760px) {
+  .jump .wrap { -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 32px), transparent); mask-image: linear-gradient(to right, #000 calc(100% - 32px), transparent); }
+}
 
 main .wrap { padding-block: 24px 48px; }
 .view { display: grid; gap: 32px; min-width: 0; }
@@ -132,7 +139,7 @@ main .wrap { padding-block: 24px 48px; }
 .sc-hero h2 span { display: block; font-family: var(--f-body); font-size: .9rem; font-weight: 500; color: var(--muted); letter-spacing: 0; margin-top: 6px; }
 .sc-hero p { margin: 0; max-width: 70ch; }
 .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; }
-.stat { border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; display: grid; gap: 2px; text-decoration: none; color: var(--ink); min-width: 0; }
+.stat { border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; display: grid; gap: 2px; align-content: start; text-decoration: none; color: var(--ink); min-width: 0; }
 .stat:hover { border-color: var(--blue); }
 .stat b { font-family: var(--f-display); font-size: 2rem; line-height: 1.05; font-variant-numeric: tabular-nums; }
 .stat span { font-size: .85rem; font-weight: 500; }
@@ -278,7 +285,7 @@ section { min-width: 0; }
 .tbl-wrap table { border-collapse: collapse; font-size: .8rem; width: 100%; font-variant-numeric: tabular-nums; }
 .tbl-wrap th, .tbl-wrap td { padding: 4px 8px; border-bottom: 1px solid var(--line); text-align: right; white-space: nowrap; }
 .tbl-wrap th:first-child, .tbl-wrap td:first-child { text-align: left; }
-.multiples { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
+.multiples { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
 .mult { border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px 6px; min-width: 0; }
 .mult h4 { margin: 0; font-size: .85rem; display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
 .mult h4 b { font-family: var(--f-display); font-size: 1.4rem; line-height: 1; font-variant-numeric: tabular-nums; }
@@ -748,16 +755,22 @@ footer .wrap { padding-block: 18px 28px; }
   }
 
   /* ---------- 訊息清單 ---------- */
+  // 只列真正的新消息；最早那天（首次監控）所有內容都是「既有」，才全部列出
+  function listItems(day) {
+    var all = day.result.items || [];
+    var first = DATA.days.length && day.date === DATA.days[DATA.days.length - 1].date;
+    return first ? all : all.filter(function (i) { return !i.baseline; });
+  }
   function filtered(day) {
     var q = state.q.toLowerCase();
-    return (day.result.items || []).filter(function (i) {
+    return listItems(day).filter(function (i) {
       return (!state.cat || i.categories[0] === state.cat) &&
              (!q || (i.title + " " + (i.summary || "") + " " + JSON.stringify(zhOf(day, i.url) || "")).toLowerCase().indexOf(q) >= 0);
     });
   }
   function renderChips(day) {
     var box = $("chips"); clear(box);
-    var items = day.result.items || [], counts = {};
+    var items = listItems(day), counts = {};
     items.forEach(function (i) { var c = i.categories[0]; counts[c] = (counts[c] || 0) + 1; });
     function make(label, cat, n) {
       var b = el("button", { class: "chipbtn", type: "button", "aria-pressed": String(state.cat === cat), style: cat ? catStyle(cat) : null },
@@ -794,7 +807,7 @@ footer .wrap { padding-block: 18px 28px; }
     var rest = items.filter(function (i) { return top.indexOf(i) < 0; });
     // 重要的太少時（例如平靜日）直接全列
     if (top.length === 0) { top = rest; rest = []; }
-    if (!items.length) { list.appendChild(el("div", { class: "empty", text: (day.result.items || []).length ? "沒有符合條件的訊息。" : "今天沒有新訊息。" })); }
+    if (!items.length) { list.appendChild(el("div", { class: "empty", text: listItems(day).length ? "沒有符合條件的訊息。" : "今天沒有新訊息。" })); }
     top.forEach(function (i) { list.appendChild(itemRow(i, pickUrl, day)); });
     if (rest.length) {
       if (state.showLow) rest.forEach(function (i) { list.appendChild(itemRow(i, pickUrl, day)); });
@@ -802,9 +815,11 @@ footer .wrap { padding-block: 18px 28px; }
       btn.addEventListener("click", function () { state.showLow = !state.showLow; renderList(day); });
       list.appendChild(el("div", { class: "divider" }, [btn]));
     }
-    var old = (day.result.items || []).filter(function (i) { return i.baseline; }).length;
-    $("list-note").textContent = old ? "這天是首次監控，清單包含 " + old + " 則開始追蹤前就已存在的文章。" : "";
-    $("jump-n").textContent = String((day.result.items || []).length);
+    var all = day.result.items || [], hidden = all.length - listItems(day).length;
+    var old = all.filter(function (i) { return i.baseline; }).length;
+    $("list-note").textContent = hidden ? "另有 " + hidden + " 則是新增監控來源時已存在的內容，未列入清單。"
+      : (old ? "這天是首次監控，清單包含 " + old + " 則開始追蹤前就已存在的文章。" : "");
+    $("jump-n").textContent = String(listItems(day).length);
   }
 
   /* ---------- 監控細節 ---------- */
@@ -865,7 +880,7 @@ footer .wrap { padding-block: 18px 28px; }
     // 月份刻度
     var m = start.slice(0, 7) + "-01";
     while (m <= end) {
-      if (m > start) box.appendChild(el("span", { class: "mtick", style: "left:" + pos(m) + "%", text: +m.slice(5, 7) + "月" }));
+      if (m > start && Math.abs(pos(m) - pos(day.date)) / 100 * (box.clientWidth || 320) > 24) box.appendChild(el("span", { class: "mtick", style: "left:" + pos(m) + "%", text: +m.slice(5, 7) + "月" }));
       var y = +m.slice(0, 4), mo = +m.slice(5, 7) + 1; if (mo > 12) { mo = 1; y++; }
       m = y + "-" + (mo < 10 ? "0" : "") + mo + "-01";
     }
@@ -887,24 +902,57 @@ footer .wrap { padding-block: 18px 28px; }
       box.appendChild(cs);
       box.appendChild(label("世界賽", pos(champs.date)));
     }
-    // 依日期合併的事件標記
+    // 先依日期合併，再把太靠近的日期併成一個標記（手機寬度只有 300 多 px，不併會疊成一團）
+    var W = box.clientWidth || 320, GAP = 20;
     var groups = {};
     evs.forEach(function (e) { var t = evType(e); if (t === "week" || t === "champs") return; (groups[e.date] = groups[e.date] || []).push(e); });
-    var nextDeadline = null;
-    Object.keys(groups).sort().forEach(function (d) {
-      if (d < start) return;
-      var g = groups[d], n = daysBetween(day.date, d);
-      var type = g.some(function (e) { return evType(e) === "kickoff"; }) ? "kickoff" : g.some(function (e) { return evType(e) === "deadline"; }) ? "deadline" : "other";
-      var u = type === "deadline" ? urgency(n) : null;
-      var mk = el("button", { type: "button", class: "mk " + type + (n < 0 ? " past" : ""), style: "left:" + pos(d) + "%" + (u ? ";background:var(--st-" + u.key + ")" : type === "deadline" && n >= 0 ? ";background:var(--muted)" : ""),
-                              "aria-label": md(d) + "：" + g.map(evName).join("、") });
+    var dates = Object.keys(groups).filter(function (d) { return d >= start; }).sort();
+    var clusters = [];
+    function urgentDl(d) {
+      var n = daysBetween(day.date, d);
+      return n >= 0 && n <= 30 && groups[d].some(function (e) { return evType(e) === "deadline"; });
+    }
+    dates.forEach(function (d) {
+      var x = pos(d) / 100 * W, c = clusters[clusters.length - 1];
+      var crossesToday = c && c.dates[c.dates.length - 1] < day.date && d >= day.date;
+      if (c && !crossesToday && !c.urgent && !urgentDl(d) && x - c.last <= GAP && x - c.first <= GAP * 2) { c.dates.push(d); c.last = x; }
+      else clusters.push({ dates: [d], first: x, last: x, urgent: urgentDl(d) });
+    });
+    var kickDate = null;
+    clusters.forEach(function (c) {
+      var inside = [];
+      c.dates.forEach(function (d) { groups[d].forEach(function (e) { inside.push({ d: d, e: e }); }); });
+      var kick = inside.filter(function (x) { return evType(x.e) === "kickoff"; })[0];
+      var dls = inside.filter(function (x) { return evType(x.e) === "deadline" && daysBetween(day.date, x.d) >= 0; });
+      var u = dls.length ? urgency(daysBetween(day.date, dls[0].d)) : null;
+      var type = kick ? "kickoff" : inside.some(function (x) { return evType(x.e) === "deadline"; }) ? "deadline" : "other";
+      var multi = c.dates.length > 1 && !kick;
+      var left = kick ? pos(kick.d) : (c.first + c.last) / 2 / W * 100;
+      if (kick) kickDate = kick.d;
+      var color = u ? ";background:var(--st-" + u.key + ")" : (type === "deadline" && dls.length ? ";background:var(--muted)" : "");
+      var past = c.dates[c.dates.length - 1] < day.date;
+      var names = inside.map(function (x) { return evName(x.e); });
+      var mk = el("button", { type: "button", class: "mk " + type + (multi ? " multi" : "") + (u ? " u-" + u.key : "") + (past ? " past" : ""),
+                              style: "left:" + left + "%" + color, text: multi ? String(c.dates.length) : null,
+                              "aria-label": (c.dates.length > 1 ? md(c.dates[0]) + "–" + md(c.dates[c.dates.length - 1]) : md(c.dates[0])) + "：" + names.join("、") });
       bindTip(mk, function (node) {
-        showTip(node, md(d) + "（" + (n === 0 ? "今天" : n > 0 ? n + " 天後" : -n + " 天前") + "）" + (u ? "・" + u.text : ""), g.map(evName));
+        if (c.dates.length === 1) {
+          var n1 = daysBetween(day.date, c.dates[0]);
+          showTip(node, md(c.dates[0]) + "（" + (n1 === 0 ? "今天" : n1 > 0 ? n1 + " 天後" : -n1 + " 天前") + "）" + (u ? "・" + u.text : ""), names);
+        } else {
+          showTip(node, md(c.dates[0]) + " – " + md(c.dates[c.dates.length - 1]) + "（" + c.dates.length + " 個日期）",
+                  inside.map(function (x) { return md(x.d) + "　" + evName(x.e); }));
+        }
       });
       box.appendChild(mk);
-      if (type === "deadline" && n >= 0 && !nextDeadline) nextDeadline = { d: d, p: pos(d), k: g.length };
-      if (type === "kickoff") box.appendChild(label("Kickoff " + md(d), pos(d)));
     });
+    if (kickDate) box.appendChild(label("Kickoff " + md(kickDate), pos(kickDate)));
+    var nextDeadline = null;
+    for (var di = 0; di < dates.length && !nextDeadline; di++) {
+      var dd = dates[di], dn = daysBetween(day.date, dd);
+      var k = groups[dd].filter(function (e) { return evType(e) === "deadline"; }).length;
+      if (dn >= 0 && k) nextDeadline = { d: dd, p: pos(dd), k: k };
+    }
     if (nextDeadline) box.appendChild(label(md(nextDeadline.d) + " 截止" + (nextDeadline.k > 1 ? " ×" + nextDeadline.k : ""), nextDeadline.p));
     // 今天
     box.appendChild(el("div", { class: "today", style: "left:" + pos(day.date) + "%" }, [el("span", { text: "今天 " + md(day.date) })]));
@@ -956,7 +1004,7 @@ footer .wrap { padding-block: 18px 28px; }
     var leg = $("trend-legend"); clear(leg);
     var sums = {}; CAT_ORDER.forEach(function (c) { sums[c] = 0; });
     win.forEach(function (w) { if (w.tracked) CAT_ORDER.forEach(function (c) { sums[c] += w.counts[c] || 0; }); });
-    CAT_ORDER.forEach(function (c) { leg.appendChild(el("span", { style: catStyle(c) }, [el("i"), c + " " + sums[c]])); });
+    CAT_ORDER.forEach(function (c) { if (sums[c]) leg.appendChild(el("span", { style: catStyle(c) }, [el("i"), c + " " + sums[c]])); });
 
     // 堆疊長條圖
     var host = $("trend-bars"); clear(host);
@@ -970,7 +1018,7 @@ footer .wrap { padding-block: 18px 28px; }
     if (firstTracked > 0) {
       root.appendChild(svg("rect", { class: "untracked", x: L, y: T, width: slot * firstTracked, height: ph }));
       if (slot * firstTracked > 90) {
-        var ut = svg("text", { x: L + slot * firstTracked / 2, y: T + ph / 2, "text-anchor": "middle" }); ut.textContent = "尚未開始追蹤"; root.appendChild(ut);
+        var ut = svg("text", { x: L + slot * firstTracked / 2, y: T + ph / 4 + 3, "text-anchor": "middle" }); ut.textContent = "尚未開始追蹤"; root.appendChild(ut);
       }
     }
     [0, max / 2, max].forEach(function (v) {
@@ -979,6 +1027,7 @@ footer .wrap { padding-block: 18px 28px; }
     });
     win.forEach(function (w, i) {
       var cx = L + slot * i + slot / 2;
+      if (!w.tracked && i >= firstTracked) root.appendChild(svg("rect", { class: "untracked", x: L + slot * i, y: T, width: slot, height: ph }));
       if (w.date === day.date) root.appendChild(svg("rect", { class: "sel", x: L + slot * i, y: T, width: slot, height: ph }));
       if (w.tracked && !w.baseline) {
         var y0 = T + ph, segs = CAT_ORDER.filter(function (c) { return w.counts[c]; });
@@ -992,9 +1041,7 @@ footer .wrap { padding-block: 18px 28px; }
           y0 -= h;
         });
       }
-      if (w.baseline) {
-        var bt = svg("text", { x: cx, y: T + ph - 6, "text-anchor": "middle" }); bt.textContent = "基準"; root.appendChild(bt);
-      }
+      if (w.baseline) root.appendChild(svg("rect", { class: "untracked", x: L + slot * i, y: T, width: slot, height: ph }));
       var lab = i === 0 || i === win.length - 1 || (i % 7 === 0 && win.length - 1 - i >= 4);
       if (lab) { var xt = svg("text", { x: cx, y: H - 6, "text-anchor": i === 0 ? "start" : i === win.length - 1 ? "end" : "middle" }); xt.textContent = md(w.date); root.appendChild(xt); }
       var hit = svg("rect", { class: "hit", x: L + slot * i, y: T, width: slot, height: ph + B, tabindex: w.tracked ? 0 : -1 });
@@ -1024,13 +1071,15 @@ footer .wrap { padding-block: 18px 28px; }
 
     // 話題熱度：小倍數折線（同一種量，所以同一個顏色）
     var tp = $("topics"); clear(tp);
+    var anyTopic = win.some(function (w) { return w.tracked && (w.topics || []).some(function (v) { return v; }); });
+    if (!anyTopic) { tp.appendChild(el("p", { class: "muted", style: "margin:0;font-size:.9rem", text: "累積幾天資料後，這裡會顯示各話題每天被提到的次數。" })); return; }
     TOPICS.forEach(function (t, ti) {
       var vals = win.map(function (w) { return w.tracked ? w.topics[ti] : null; });
       var today = vals[vals.length - 1], week = vals.slice(-7).reduce(function (a, v) { return a + (v || 0); }, 0);
       var card = el("div", { class: "mult" }, [
         el("h4", {}, [t.name, el("b", { text: today == null ? "—" : String(today) })]),
         el("p", { text: "今天 · 近 7 天共 " + week + " 則" })]);
-      var w2 = 220, h2 = 46, pad = 5, mx = Math.max(2, Math.max.apply(null, vals.map(function (v) { return v || 0; })));
+      var w2 = 220, h2 = 36, pad = 5, mx = Math.max(2, Math.max.apply(null, vals.map(function (v) { return v || 0; })));
       var sx = function (i) { return pad + i * (w2 - pad * 2) / (vals.length - 1); }, sy = function (v) { return h2 - pad - v / mx * (h2 - pad * 2); };
       var sv = svg("svg", { viewBox: "0 0 " + w2 + " " + h2, height: h2, preserveAspectRatio: "none", role: "img", "aria-label": t.name + " 近 30 天每日則數" });
       sv.appendChild(svg("line", { class: "base", x1: pad, x2: w2 - pad, y1: h2 - pad, y2: h2 - pad, "vector-effect": "non-scaling-stroke" }));
@@ -1256,7 +1305,7 @@ footer .wrap { padding-block: 18px 28px; }
     var t = $("trend-tbl"), open = t.hidden; t.hidden = !open;
     this.textContent = open ? "隱藏數據表" : "顯示數據表"; this.setAttribute("aria-expanded", String(open));
   });
-  var rz; window.addEventListener("resize", function () { clearTimeout(rz); rz = setTimeout(function () { renderTrends(DATA.days[+$("day").value]); }, 150); });
+  var rz; window.addEventListener("resize", function () { clearTimeout(rz); rz = setTimeout(function () { var d = DATA.days[+$("day").value || 0]; renderTrends(d); renderSeason(d); }, 150); });
   show(indexFromHash());
   route();
 })();

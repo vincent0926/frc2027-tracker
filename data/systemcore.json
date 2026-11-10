@@ -21,14 +21,14 @@
    "url": "https://downloads.limelightvision.io/documents/systemcore_specifications_june15_2025_alpha.pdf"
   },
   {
-   "value": "5",
-   "label": "條 CAN-FD bus",
+   "value": "5 條",
+   "label": "CAN-FD bus",
    "note": "最高 8 Mbps，內建終端電阻",
    "url": "https://downloads.limelightvision.io/documents/systemcore_specifications_june15_2025_alpha.pdf"
   },
   {
-   "value": "4",
-   "label": "台 USB 相機內建視覺",
+   "value": "4 台",
+   "label": "USB 相機內建視覺",
    "note": "每個 USB 埠一個 Limelight 視覺程序",
    "url": "https://github.com/wpilibsuite/SystemCoreTesting/blob/main/LimelightVision.md"
   },

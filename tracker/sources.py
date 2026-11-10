@@ -185,7 +185,7 @@ def collect_git_repo(f: PoliteFetcher, src: dict) -> tuple[list[dict], dict]:
         for line in log.splitlines():
             sha, when, subject = line.split("\t", 2)
             items.append({"id": sha, "title": f"{src.get('label', web.split('/')[-1])} 更新：{subject}",
-                          "url": f"{web}/commit/{sha}", "date": when[:10], "summary": subject})
+                          "url": f"{web}/commit/{sha}", "date": when[:10], "summary": ""})
         lines: list[str] = []
         links: dict[str, str] = {}
         for name in src.get("files", ["README.md"]):

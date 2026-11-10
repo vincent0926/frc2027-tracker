@@ -19,13 +19,17 @@ def source_kind(item: dict) -> tuple[str, str]:
         return "官方", "FIRST 官方部落格"
     if src.startswith("WPILib 文件"):
         return "官方", "WPILib 文件"
+    if src.startswith("SystemCoreTesting"):
+        return "官方", "SystemCoreTesting"
+    if "新版本" in src:
+        return "軟體發布", src.replace(" 新版本", "")
     if "Releases" in src:
         return "軟體發布", src.replace(" GitHub Releases", "").replace(" Releases", "")
     if re.match(r"\[(FRC|FIRST|FTC|WPILib|FRC/FTC|FTC/FRC)[^\]]*Blog\]", title, re.I):
         return "官方轉貼", "Chief Delphi"
     if re.match(r"\[(CTRE|REV)\]", title) or (re.search(r"product|announcements", title, re.I) and not title.startswith("FIRST")):
         return "廠商", "Chief Delphi"
-    return "社群", "Chief Delphi"
+    return "社群", ("Chief Delphi" if src.startswith("Chief Delphi") else src)
 
 
 def collect_days(data_dir: Path) -> list[dict]:

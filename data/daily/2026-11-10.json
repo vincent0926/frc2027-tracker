@@ -318,7 +318,7 @@
    "title": "SystemCoreTesting 更新：Merge pull request #447 from Yet-Another-Software-Suite/yass-2026.11.06",
    "url": "https://github.com/wpilibsuite/SystemCoreTesting/commit/d679cfe483f08de2ea035fd995223c9a8fcb2437",
    "date": "2026-11-05",
-   "summary": "Merge pull request #447 from Yet-Another-Software-Suite/yass-2026.11.06",
+   "summary": "",
    "source": "SystemCoreTesting（官方測試 repo：相容表、已知問題、路線圖）",
    "categories": [
     "軟體更新",
@@ -331,7 +331,7 @@
    "title": "SystemCoreTesting 更新：Merge pull request #444 from virtuald/robotpy-alpha-8",
    "url": "https://github.com/wpilibsuite/SystemCoreTesting/commit/e0dda3455fddf51c9a7600d63ef4ab482a68c436",
    "date": "2026-11-05",
-   "summary": "Merge pull request #444 from virtuald/robotpy-alpha-8",
+   "summary": "",
    "source": "SystemCoreTesting（官方測試 repo：相容表、已知問題、路線圖）",
    "categories": [
     "軟體更新",
@@ -344,7 +344,7 @@
    "title": "SystemCoreTesting 更新：Note that YAGSL 2026.11.06 supports the NavX3 with StudicaLib",
    "url": "https://github.com/wpilibsuite/SystemCoreTesting/commit/305161d61965cf303082b39b53b070bbf954b2e2",
    "date": "2026-11-06",
-   "summary": "Note that YAGSL 2026.11.06 supports the NavX3 with StudicaLib",
+   "summary": "",
    "source": "SystemCoreTesting（官方測試 repo：相容表、已知問題、路線圖）",
    "categories": [
     "硬體/控制系統"
@@ -356,7 +356,7 @@
    "title": "SystemCoreTesting 更新：Update YAMS and YAGSL to 2026.11.06, and add the A301 and Nova closed loop notes",
    "url": "https://github.com/wpilibsuite/SystemCoreTesting/commit/8702cec46f0259de9804168532b617e60c6e82f8",
    "date": "2026-11-06",
-   "summary": "Update YAMS and YAGSL to 2026.11.06, and add the A301 and Nova closed loop notes",
+   "summary": "",
    "source": "SystemCoreTesting（官方測試 repo：相容表、已知問題、路線圖）",
    "categories": [
     "硬體/控制系統"
@@ -368,7 +368,7 @@
    "title": "SystemCoreTesting 更新：Updates for RobotPy 2027.0.0a8",
    "url": "https://github.com/wpilibsuite/SystemCoreTesting/commit/dbef5036bdb30bbdc19d4c7ab8cb7cb5a8117444",
    "date": "2026-11-02",
-   "summary": "Updates for RobotPy 2027.0.0a8",
+   "summary": "",
    "source": "SystemCoreTesting（官方測試 repo：相容表、已知問題、路線圖）",
    "categories": [
     "軟體更新",
@@ -381,7 +381,7 @@
    "title": "SystemCoreTesting 更新：Merge pull request #440 from jwbonner/akit-alpha-7-log-renaming-issue",
    "url": "https://github.com/wpilibsuite/SystemCoreTesting/commit/6421606304e261698ae7f406c063ecbee1118225",
    "date": "2026-10-31",
-   "summary": "Merge pull request #440 from jwbonner/akit-alpha-7-log-renaming-issue",
+   "summary": "",
    "source": "SystemCoreTesting（官方測試 repo：相容表、已知問題、路線圖）",
    "categories": [
     "軟體更新",
@@ -394,7 +394,7 @@
    "title": "SystemCoreTesting 更新：Add known issue for log renaming on AdvantageKit v27.0.0-alpha-7",
    "url": "https://github.com/wpilibsuite/SystemCoreTesting/commit/e7c93c4cee470637ed4e3a6bb36f97a4ed8312ee",
    "date": "2026-10-31",
-   "summary": "Add known issue for log renaming on AdvantageKit v27.0.0-alpha-7",
+   "summary": "",
    "source": "SystemCoreTesting（官方測試 repo：相容表、已知問題、路線圖）",
    "categories": [
     "軟體更新",
@@ -407,7 +407,7 @@
    "title": "SystemCoreTesting 更新：Add lockup doc",
    "url": "https://github.com/wpilibsuite/SystemCoreTesting/commit/3557a58695835692572d007360262c6fe4ec1b43",
    "date": "2026-10-30",
-   "summary": "Add lockup doc",
+   "summary": "",
    "source": "SystemCoreTesting（官方測試 repo：相容表、已知問題、路線圖）",
    "categories": [
     "硬體/控制系統"
@@ -419,7 +419,7 @@
    "title": "SystemCoreTesting 更新：Update REVLib, RHC2, and SPARK firmware details (#438)",
    "url": "https://github.com/wpilibsuite/SystemCoreTesting/commit/d2885d60650daeb4975c268618838163ca94e9a9",
    "date": "2026-10-30",
-   "summary": "Update REVLib, RHC2, and SPARK firmware details (#438)",
+   "summary": "",
    "source": "SystemCoreTesting（官方測試 repo：相容表、已知問題、路線圖）",
    "categories": [
     "軟體更新",
@@ -432,7 +432,7 @@
    "title": "SystemCoreTesting 更新：Update wifi username / password for image 17 (#437)",
    "url": "https://github.com/wpilibsuite/SystemCoreTesting/commit/1be560a25c701bc3ba866c04f6294849e9529a33",
    "date": "2026-10-30",
-   "summary": "Update wifi username / password for image 17 (#437)",
+   "summary": "",
    "source": "SystemCoreTesting（官方測試 repo：相容表、已知問題、路線圖）",
    "categories": [
     "硬體/控制系統"
@@ -444,7 +444,7 @@
    "title": "SystemCoreTesting 更新：Add link to eMMC failure report",
    "url": "https://github.com/wpilibsuite/SystemCoreTesting/commit/52becb68ece07d2a79770618212d334f40e56367",
    "date": "2026-10-27",
-   "summary": "Add link to eMMC failure report",
+   "summary": "",
    "source": "SystemCoreTesting（官方測試 repo：相容表、已知問題、路線圖）",
    "categories": [
     "硬體/控制系統"
@@ -456,7 +456,7 @@
    "title": "SystemCoreTesting 更新：Update readme for WPILib ALpha 8 (#434)",
    "url": "https://github.com/wpilibsuite/SystemCoreTesting/commit/6ce482ce2b4fa44fc65308d1686705b329e558b4",
    "date": "2026-10-26",
-   "summary": "Update readme for WPILib ALpha 8 (#434)",
+   "summary": "",
    "source": "SystemCoreTesting（官方測試 repo：相容表、已知問題、路線圖）",
    "categories": [
     "軟體更新",
@@ -469,7 +469,7 @@
    "title": "SystemCoreTesting 更新：Merge pull request #433 from jwbonner/akit-alpha-7",
    "url": "https://github.com/wpilibsuite/SystemCoreTesting/commit/e98c41bb9235d239f94c0833c39bd98dd221cd91",
    "date": "2026-10-23",
-   "summary": "Merge pull request #433 from jwbonner/akit-alpha-7",
+   "summary": "",
    "source": "SystemCoreTesting（官方測試 repo：相容表、已知問題、路線圖）",
    "categories": [
     "軟體更新",
@@ -482,7 +482,7 @@
    "title": "SystemCoreTesting 更新：Update JSON URL",
    "url": "https://github.com/wpilibsuite/SystemCoreTesting/commit/a8becdccfae91cd0283a6d195fe3a6d97732893a",
    "date": "2026-10-23",
-   "summary": "Update JSON URL",
+   "summary": "",
    "source": "SystemCoreTesting（官方測試 repo：相容表、已知問題、路線圖）",
    "categories": [
     "硬體/控制系統"
@@ -494,7 +494,7 @@
    "title": "SystemCoreTesting 更新：Add AdvantageKit alpha 7",
    "url": "https://github.com/wpilibsuite/SystemCoreTesting/commit/97424697311fec492218f7b8f63a6c4e45778745",
    "date": "2026-10-23",
-   "summary": "Add AdvantageKit alpha 7",
+   "summary": "",
    "source": "SystemCoreTesting（官方測試 repo：相容表、已知問題、路線圖）",
    "categories": [
     "軟體更新",
@@ -507,7 +507,7 @@
    "title": "SystemCoreTesting 更新：Update HWManager Links",
    "url": "https://github.com/wpilibsuite/SystemCoreTesting/commit/f1a04ca39cd9bb87ceda7a8f5a8389fea31f35cd",
    "date": "2026-10-22",
-   "summary": "Update HWManager Links",
+   "summary": "",
    "source": "SystemCoreTesting（官方測試 repo：相容表、已知問題、路線圖）",
    "categories": [
     "硬體/控制系統"
@@ -519,7 +519,7 @@
    "title": "SystemCoreTesting 更新：Merge pull request #429 from daltzctr/canivore-update",
    "url": "https://github.com/wpilibsuite/SystemCoreTesting/commit/0473f8014bceb8962f5c75e1d5287c65fc0e7095",
    "date": "2026-10-19",
-   "summary": "Merge pull request #429 from daltzctr/canivore-update",
+   "summary": "",
    "source": "SystemCoreTesting（官方測試 repo：相容表、已知問題、路線圖）",
    "categories": [
     "硬體/控制系統"
@@ -531,7 +531,7 @@
    "title": "SystemCoreTesting 更新：Add OS 17 compatible CANivore IPK link",
    "url": "https://github.com/wpilibsuite/SystemCoreTesting/commit/ff8d4712f07970b8f39498891e6a1dacbd2822a1",
    "date": "2026-10-19",
-   "summary": "Add OS 17 compatible CANivore IPK link",
+   "summary": "",
    "source": "SystemCoreTesting（官方測試 repo：相容表、已知問題、路線圖）",
    "categories": [
     "硬體/控制系統"
@@ -543,7 +543,7 @@
    "title": "SystemCoreTesting 更新：Merge pull request #426 from Yet-Another-Software-Suite/yams-2026.10.15",
    "url": "https://github.com/wpilibsuite/SystemCoreTesting/commit/349269f1fad225c97596eb50bdc7721701f2408f",
    "date": "2026-10-16",
-   "summary": "Merge pull request #426 from Yet-Another-Software-Suite/yams-2026.10.15",
+   "summary": "",
    "source": "SystemCoreTesting（官方測試 repo：相容表、已知問題、路線圖）",
    "categories": [
     "軟體更新",
@@ -556,7 +556,7 @@
    "title": "SystemCoreTesting 更新：Update YASS.md",
    "url": "https://github.com/wpilibsuite/SystemCoreTesting/commit/f7e968f67510cb7cea2beeca0a6942771d2f2fad",
    "date": "2026-10-15",
-   "summary": "Update YASS.md",
+   "summary": "",
    "source": "SystemCoreTesting（官方測試 repo：相容表、已知問題、路線圖）",
    "categories": [
     "硬體/控制系統"
@@ -568,7 +568,7 @@
    "title": "SystemCoreTesting 更新：Update YAMS to 2026.10.15, and describe what changed since 2026.10.09",
    "url": "https://github.com/wpilibsuite/SystemCoreTesting/commit/3abed393fcc75bac1b77a6c59280302d6fb3941f",
    "date": "2026-10-15",
-   "summary": "Update YAMS to 2026.10.15, and describe what changed since 2026.10.09",
+   "summary": "",
    "source": "SystemCoreTesting（官方測試 repo：相容表、已知問題、路線圖）",
    "categories": [
     "硬體/控制系統"
@@ -580,7 +580,7 @@
    "title": "SystemCoreTesting 更新：Add known issues",
    "url": "https://github.com/wpilibsuite/SystemCoreTesting/commit/f1fbeb08126cff0900946f5e162bd844fe08f641",
    "date": "2026-10-12",
-   "summary": "Add known issues",
+   "summary": "",
    "source": "SystemCoreTesting（官方測試 repo：相容表、已知問題、路線圖）",
    "categories": [
     "硬體/控制系統"
@@ -592,7 +592,7 @@
    "title": "SystemCoreTesting 更新：Merge pull request #408 from Yet-Another-Software-Suite/main",
    "url": "https://github.com/wpilibsuite/SystemCoreTesting/commit/14ffe5063cb3eb607087d0e78f4d46b060877348",
    "date": "2026-10-12",
-   "summary": "Merge pull request #408 from Yet-Another-Software-Suite/main",
+   "summary": "",
    "source": "SystemCoreTesting（官方測試 repo：相容表、已知問題、路線圖）",
    "categories": [
     "軟體更新",
@@ -605,7 +605,7 @@
    "title": "SystemCoreTesting 更新：Merge pull request #421 from sciencewhiz/ThriftyLibAlpha5",
    "url": "https://github.com/wpilibsuite/SystemCoreTesting/commit/94c9cbaabe84f3b406cb3ce21675706cecf7da36",
    "date": "2026-10-11",
-   "summary": "Merge pull request #421 from sciencewhiz/ThriftyLibAlpha5",
+   "summary": "",
    "source": "SystemCoreTesting（官方測試 repo：相容表、已知問題、路線圖）",
    "categories": [
     "軟體更新",
@@ -618,7 +618,7 @@
    "title": "SystemCoreTesting 更新：Merge pull request #422 from sciencewhiz/WPILibAlpha7",
    "url": "https://github.com/wpilibsuite/SystemCoreTesting/commit/33f915197762938f440ef746b70cb2306e26ec3c",
    "date": "2026-10-11",
-   "summary": "Merge pull request #422 from sciencewhiz/WPILibAlpha7",
+   "summary": "",
    "source": "SystemCoreTesting（官方測試 repo：相容表、已知問題、路線圖）",
    "categories": [
     "軟體更新",
@@ -631,7 +631,7 @@
    "title": "SystemCoreTesting 更新：Update some readme items for WPILib Alpha 7",
    "url": "https://github.com/wpilibsuite/SystemCoreTesting/commit/2506deebb3217f80218d9ce5632df736a7a08940",
    "date": "2026-10-11",
-   "summary": "Update some readme items for WPILib Alpha 7",
+   "summary": "",
    "source": "SystemCoreTesting（官方測試 repo：相容表、已知問題、路線圖）",
    "categories": [
     "軟體更新",
@@ -644,7 +644,7 @@
    "title": "SystemCoreTesting 更新：Update for ThriftyLib 2027.0.0-alpha-5",
    "url": "https://github.com/wpilibsuite/SystemCoreTesting/commit/8c4c474061d21c8dbe53323487e38bdb0ce601ea",
    "date": "2026-10-11",
-   "summary": "Update for ThriftyLib 2027.0.0-alpha-5",
+   "summary": "",
    "source": "SystemCoreTesting（官方測試 repo：相容表、已知問題、路線圖）",
    "categories": [
     "軟體更新",
@@ -657,7 +657,7 @@
    "title": "SystemCoreTesting 更新：Update YAMS and YAGSL to 2026.10.09 in the README",
    "url": "https://github.com/wpilibsuite/SystemCoreTesting/commit/f3aa59defa0d9a13033749366c2a0508c5b060aa",
    "date": "2026-10-09",
-   "summary": "Update YAMS and YAGSL to 2026.10.09 in the README",
+   "summary": "",
    "source": "SystemCoreTesting（官方測試 repo：相容表、已知問題、路線圖）",
    "categories": [
     "硬體/控制系統"
@@ -669,7 +669,7 @@
    "title": "SystemCoreTesting 更新：Describe the unified YAGSL canbus values in YASS.md",
    "url": "https://github.com/wpilibsuite/SystemCoreTesting/commit/59e85a60213fc8d73dcdfcd05dd19d38e9a51d69",
    "date": "2026-10-09",
-   "summary": "Describe the unified YAGSL canbus values in YASS.md",
+   "summary": "",
    "source": "SystemCoreTesting（官方測試 repo：相容表、已知問題、路線圖）",
    "categories": [
     "硬體/控制系統"
@@ -681,7 +681,7 @@
    "title": "SystemCoreTesting 更新：Note in YASS.md that YAGSL CAN bus values will be unified",
    "url": "https://github.com/wpilibsuite/SystemCoreTesting/commit/aa4d355c28ffcaa82a8640e7fea3766feee1ff73",
    "date": "2026-10-09",
-   "summary": "Note in YASS.md that YAGSL CAN bus values will be unified",
+   "summary": "",
    "source": "SystemCoreTesting（官方測試 repo：相容表、已知問題、路線圖）",
    "categories": [
     "硬體/控制系統"
