@@ -119,3 +119,22 @@ def test_source_kind_for_git_sources():
     assert source_kind({"source": "WPILib 新版本", "title": "x"}) == ("軟體發布", "WPILib")
     assert source_kind({"source": "Chief Delphi #2027", "title": "Motor count"}) == ("社群", "Chief Delphi")
     assert source_kind({"source": "某個新來源", "title": "x"}) == ("社群", "某個新來源")
+
+
+def test_backup_roundtrip_and_path_safety(tmp_path):
+    import pytest
+    from tracker.backup import pack, unpack
+    src = tmp_path / "src"
+    (src / "data" / "daily").mkdir(parents=True)
+    (src / "data" / "daily" / "2026-11-10.json").write_text('{"中文": 1}', "utf-8")
+    (src / "config.yaml").write_text("a: 1\n", "utf-8")
+    (src / "tracker").mkdir()
+    (src / "tracker" / "__pycache__").mkdir()
+    (src / "tracker" / "__pycache__" / "x.pyc").write_bytes(b"\xff\xfe")
+    b = pack(src)
+    assert sorted(b["files"]) == ["config.yaml", "data/daily/2026-11-10.json"]
+    dst = tmp_path / "dst"
+    assert unpack(b, dst) == 2
+    assert (dst / "data" / "daily" / "2026-11-10.json").read_text("utf-8") == '{"中文": 1}'
+    with pytest.raises(ValueError):
+        unpack({"files": {"../evil.txt": "x"}}, dst)

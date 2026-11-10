@@ -73,27 +73,25 @@ a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible
 
 /* 賽季時間軸（頁首倒數下方） */
 .season { flex: 1 1 100%; min-width: 0; padding-top: 4px; }
-.season .track-wrap { position: relative; height: 66px; margin: 0 4px; }
-.season .rail { position: absolute; left: 0; right: 0; top: 32px; height: 4px; border-radius: 2px; background: var(--line); }
-.season .past { position: absolute; left: 0; top: 32px; height: 4px; border-radius: 2px; background: var(--muted); opacity: .45; }
-.season .seg { position: absolute; top: 29px; height: 10px; border-radius: 3px; background: var(--blue); opacity: .85; }
+.season .track-wrap { position: relative; height: 70px; margin: 0 4px; --tick: 16px; --rail: 36px; }
+.season .rail { position: absolute; left: 0; right: 0; top: var(--rail); height: 4px; border-radius: 2px; background: var(--line); }
+.season .past { position: absolute; left: 0; top: var(--rail); height: 4px; border-radius: 2px; background: var(--muted); opacity: .45; }
+.season .seg { position: absolute; top: calc(var(--rail) - 3px); height: 10px; border-radius: 3px; background: var(--blue); opacity: .85; }
 .season .seg.champs { background: var(--red); }
-.season .mtick { position: absolute; top: 12px; font-family: var(--f-mono); font-size: .66rem; color: var(--muted); transform: translateX(-50%); white-space: nowrap; }
-.season .mtick::before { content: ""; position: absolute; left: 50%; top: 15px; width: 1px; height: 4px; background: var(--axis); }
-.season .today { position: absolute; top: 10px; width: 2px; height: 34px; background: var(--ink); transform: translateX(-1px); border-radius: 1px; }
-.season .today span { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); font-size: .7rem; font-weight: 700; white-space: nowrap; background: var(--panel); padding: 0 4px; border-radius: 3px; z-index: 1; }
-.season .mk { position: absolute; top: 27px; width: 14px; height: 14px; margin-left: -7px; padding: 0; border: 2px solid var(--panel); border-radius: 50%; background: var(--muted); cursor: pointer; }
-.season .mk.deadline { border-radius: 3px; transform: rotate(45deg); width: 13px; height: 13px; margin-left: -6.5px; top: 27.5px; }
-.season .mk.kickoff { width: 18px; height: 18px; margin-left: -9px; top: 25px; background: var(--blue); }
-.season .mk.other { width: 8px; height: 8px; margin-left: -4px; top: 30px; border-width: 1px; opacity: .7; }
+.season .mtick { position: absolute; top: var(--tick); font-family: var(--f-mono); font-size: .66rem; line-height: 1.3; color: var(--muted); white-space: nowrap; }
+.season .mtick::before { content: ""; position: absolute; left: 50%; top: 100%; width: 1px; height: 4px; background: var(--axis); }
+.season .today { position: absolute; top: var(--tick); width: 2px; height: calc(var(--rail) - var(--tick) + 12px); background: var(--ink); transform: translateX(-1px); border-radius: 1px; }
+.season .mk { position: absolute; top: calc(var(--rail) - 5px); width: 14px; height: 14px; margin-left: -7px; padding: 0; border: 2px solid var(--panel); border-radius: 50%; background: var(--muted); cursor: pointer; }
+.season .mk.deadline { border-radius: 3px; transform: rotate(45deg); width: 13px; height: 13px; margin-left: -6.5px; top: calc(var(--rail) - 4.5px); }
+.season .mk.kickoff { width: 18px; height: 18px; margin-left: -9px; top: calc(var(--rail) - 7px); background: var(--blue); }
+.season .mk.other { width: 8px; height: 8px; margin-left: -4px; top: calc(var(--rail) - 2px); border-width: 1px; opacity: .7; }
 .season .mk.past { opacity: .35; }
 .season .mk::after { content: ""; position: absolute; inset: -9px; }
-.season .mk.multi { width: auto; min-width: 20px; height: 16px; margin-left: 0; top: 26px; padding: 0 5px; border-radius: 8px; transform: translateX(-50%); font: 700 .62rem/12px var(--f-mono); color: #fff; text-align: center; }
+.season .mk.multi { width: auto; min-width: 20px; height: 16px; margin-left: 0; top: calc(var(--rail) - 6px); padding: 0 5px; border-radius: 8px; transform: translateX(-50%); font: 700 .62rem/12px var(--f-mono); color: #fff; text-align: center; }
 .season .mk.multi.u-serious, .season .mk.multi.u-warning { color: var(--st-ink-dark); }
-.season .tl { position: absolute; top: 48px; font-size: .72rem; font-weight: 500; white-space: nowrap; transform: translateX(-50%); }
-.season .tl.left { transform: none; } .season .tl.right { transform: translateX(-100%); }
-.season .tl.up { top: 4px; }
-.season .tl.in { top: 26px; font-size: .62rem; color: #fff; font-weight: 700; pointer-events: none; }
+.season .tl { position: absolute; top: calc(var(--rail) + 15px); font-size: .72rem; line-height: 1.3; font-weight: 500; white-space: nowrap; }
+.season .tl.up { top: 0; font-weight: 700; }
+.season .tl.dl { color: var(--red); font-weight: 700; }
 .season-legend { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: .72rem; color: var(--muted); margin: 2px 4px 0; }
 .season-legend i { display: inline-block; width: 9px; height: 9px; margin-right: 5px; vertical-align: -1px; background: var(--muted); border-radius: 50%; }
 .season-legend i.d { border-radius: 2px; transform: rotate(45deg); background: var(--st-critical); }
@@ -138,19 +136,19 @@ main .wrap { padding-block: 24px 48px; }
 .sc-hero h2 { margin: 0; font-family: var(--f-display); font-size: 2.2rem; line-height: 1; letter-spacing: .01em; }
 .sc-hero h2 span { display: block; font-family: var(--f-body); font-size: .9rem; font-weight: 500; color: var(--muted); letter-spacing: 0; margin-top: 6px; }
 .sc-hero p { margin: 0; max-width: 70ch; }
-.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(130px, 100%), 1fr)); gap: 10px; }
 .stat { border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; display: grid; gap: 2px; align-content: start; text-decoration: none; color: var(--ink); min-width: 0; }
 .stat:hover { border-color: var(--blue); }
 .stat b { font-family: var(--f-display); font-size: 2rem; line-height: 1.05; font-variant-numeric: tabular-nums; }
 .stat span { font-size: .85rem; font-weight: 500; }
 .stat small { font-size: .74rem; color: var(--muted); }
 .sc-updated { font-size: .78rem; color: var(--muted); }
-.sc-dates { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 8px; }
+.sc-dates { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); gap: 8px; }
 .facts { margin: 0; padding: 0; list-style: none; display: grid; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
 .facts li { padding: 11px 16px; border-top: 1px solid var(--line); display: grid; gap: 4px; }
 .facts li:first-child { border-top: 0; }
 .facts .src { font-size: .76rem; color: var(--muted); display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
-.rules { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 10px; }
+.rules { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 10px; }
 .rule { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; display: grid; gap: 6px; align-content: start; min-width: 0; }
 .rule h3 { margin: 0; font-size: 1rem; }
 .rule dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 4px 10px; font-size: .88rem; }
@@ -163,14 +161,14 @@ main .wrap { padding-block: 24px 48px; }
 .progress i { display: block; height: 100%; background: var(--blue); border-radius: 4px; transition: width .2s; }
 .check-head b { font-variant-numeric: tabular-nums; font-size: .9rem; }
 .check-head button { font: inherit; font-size: .8rem; color: var(--muted); background: none; border: 0; cursor: pointer; text-decoration: underline; }
-.checks { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 10px; }
+.checks { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 10px; }
 .cgroup { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; display: grid; gap: 6px; align-content: start; }
 .cgroup h3 { margin: 0 0 2px; font-size: .9rem; display: flex; justify-content: space-between; }
 .cgroup h3 span { font-family: var(--f-mono); font-size: .75rem; color: var(--muted); font-weight: 400; }
 .cgroup label { display: grid; grid-template-columns: 20px 1fr; gap: 8px; font-size: .9rem; line-height: 1.45; cursor: pointer; padding: 3px 0; }
 .cgroup input { width: 16px; height: 16px; margin: 3px 0 0; accent-color: var(--blue); }
 .cgroup input:checked + span { color: var(--muted); text-decoration: line-through; }
-.hwdiff { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 10px; }
+.hwdiff { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 10px; }
 .hwcol { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; min-width: 0; }
 .hwcol h3 { margin: 0 0 8px; font-size: .95rem; display: flex; align-items: center; gap: 8px; }
 .hwcol h3 i { font-style: normal; font-family: var(--f-mono); font-weight: 700; width: 20px; height: 20px; border-radius: 50%; display: grid; place-content: center; font-size: .85rem; color: var(--panel); }
@@ -178,7 +176,7 @@ main .wrap { padding-block: 24px 48px; }
 .hwcol ul { margin: 0; padding-left: 1.1em; display: grid; gap: 4px; font-size: .9rem; }
 .hwcol.rm li { color: var(--muted); }
 .srcline { font-size: .78rem; color: var(--muted); margin: 8px 0 0; }
-.gotchas { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 10px; }
+.gotchas { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(290px, 100%), 1fr)); gap: 10px; }
 .gotcha { background: var(--panel); border: 1px solid var(--line); border-top: 3px solid var(--st-serious); border-radius: 10px; padding: 12px 16px; display: grid; gap: 4px; align-content: start; min-width: 0; }
 .gotcha h3 { margin: 0; font-size: .95rem; }
 .gotcha p { margin: 0; font-size: .88rem; }
@@ -246,7 +244,7 @@ section { min-width: 0; }
 .quiet .prev a { font-weight: 500; }
 
 /* ---------- 重要日期 ---------- */
-.timeline { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 8px; }
+.timeline { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(220px, 100%), 1fr)); gap: 8px; }
 .ev { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; align-items: center; min-width: 0; }
 .ev .dt { font-family: var(--f-mono); font-size: .8rem; font-variant-numeric: tabular-nums; text-align: center; line-height: 1.25; }
 .ev .dt b { display: block; font-family: var(--f-display); font-size: 1.25rem; }
@@ -285,7 +283,7 @@ section { min-width: 0; }
 .tbl-wrap table { border-collapse: collapse; font-size: .8rem; width: 100%; font-variant-numeric: tabular-nums; }
 .tbl-wrap th, .tbl-wrap td { padding: 4px 8px; border-bottom: 1px solid var(--line); text-align: right; white-space: nowrap; }
 .tbl-wrap th:first-child, .tbl-wrap td:first-child { text-align: left; }
-.multiples { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+.multiples { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(150px, 100%), 1fr)); gap: 10px; }
 .mult { border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px 6px; min-width: 0; }
 .mult h4 { margin: 0; font-size: .85rem; display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
 .mult h4 b { font-family: var(--f-display); font-size: 1.4rem; line-height: 1; font-variant-numeric: tabular-nums; }
@@ -296,7 +294,7 @@ section { min-width: 0; }
 
 /* ---------- 分類整理 ---------- */
 .headline { font-size: 1.05rem; font-weight: 500; margin: 0 0 14px; max-width: 70ch; }
-.hl-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 12px; }
+.hl-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(290px, 100%), 1fr)); gap: 12px; }
 .hl { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; min-width: 0; display: grid; gap: 8px; align-content: start; }
 .hl h3 { margin: 0; font-size: .95rem; display: flex; align-items: center; gap: 8px; }
 .hl ul { margin: 0; padding-left: 1.1em; font-size: .9rem; display: grid; gap: 4px; }
@@ -355,7 +353,15 @@ footer { color: var(--muted); font-size: .8rem; border-top: 1px solid var(--line
 footer .wrap { padding-block: 18px 28px; }
 
 @media (max-width: 560px) {
-  .season .tl.hide-sm { display: none; }
+  .brand p { display: none; }
+  .brand { flex: 1 1 auto; }
+  .top .wrap { gap: 8px 14px; }
+  .countdown .l { font-size: .62rem; }
+  .daynav { flex: 1 1 100%; }
+  .daynav select { flex: 1; min-width: 0; }
+  .season-legend .lg { display: none; }
+  main .wrap { padding-block: 16px 40px; }
+  .view { gap: 24px; }
 }
 @media (max-width: 760px) {
   .brief { grid-template-columns: 1fr; }
@@ -363,10 +369,10 @@ footer .wrap { padding-block: 18px 28px; }
   .tldr li::before { font-size: 1.35rem; }
 }
 @media (max-width: 560px) {
-  .brand h1 { font-size: 1.75rem; }
-  .countdown .n { font-size: 2rem; }
+  .brand h1 { font-size: 1.5rem; }
+  .countdown .n { font-size: 1.7rem; }
   .pick { padding: 16px; }
-  .top .wrap { padding-block: 14px 10px; }
+  .top .wrap { padding-block: 12px 6px; }
 }
 @media (prefers-reduced-motion: no-preference) {
   .pick { animation: rise .35s ease-out both; }
@@ -391,8 +397,8 @@ footer .wrap { padding-block: 18px 28px; }
     <div class="season" id="season" aria-label="2027 賽季時間軸">
       <div class="track-wrap" id="season-track"></div>
       <div class="season-legend">
-        <span><i class="d"></i>截止日（顏色＝緊急度）</span><span><i></i>其他官方日期</span><span><i class="s"></i>比賽週／世界賽</span>
-        <span>滑過或點一下標記可看細節</span>
+        <span class="lg"><i class="d"></i>截止日（顏色＝緊急度）</span><span class="lg"><i></i>其他官方日期</span><span class="lg"><i class="s"></i>比賽週／世界賽</span>
+        <span>點一下時間軸上的標記可看日期</span>
       </div>
     </div>
   </div>
@@ -871,16 +877,16 @@ footer .wrap { padding-block: 18px 28px; }
     var last = evs.reduce(function (m, e) { return e.date > m ? e.date : m; }, day.date);
     var end = addDays(last, 5), span = daysBetween(start, end);
     function pos(d) { return Math.max(0, Math.min(100, daysBetween(start, d) / span * 100)); }
-    function label(text, p, cls) {
-      var align = p < 6 ? " left" : p > 94 ? " right" : "";
-      return el("span", { class: "tl" + align + (cls ? " " + cls : ""), style: "left:" + p + "%", text: text });
+    // prio 越大越優先保留；實際位置由 fitSeason 量過寬度後決定
+    function label(text, p, prio, cls) {
+      return el("span", { class: "tl" + (cls ? " " + cls : ""), "data-p": p, "data-prio": prio, text: text });
     }
     box.appendChild(el("div", { class: "rail" }));
     box.appendChild(el("div", { class: "past", style: "width:" + pos(day.date) + "%" }));
     // 月份刻度
     var m = start.slice(0, 7) + "-01";
     while (m <= end) {
-      if (m > start && Math.abs(pos(m) - pos(day.date)) / 100 * (box.clientWidth || 320) > 24) box.appendChild(el("span", { class: "mtick", style: "left:" + pos(m) + "%", text: +m.slice(5, 7) + "月" }));
+      if (m > start) box.appendChild(el("span", { class: "mtick", "data-p": pos(m), text: +m.slice(5, 7) + "月" }));
       var y = +m.slice(0, 4), mo = +m.slice(5, 7) + 1; if (mo > 12) { mo = 1; y++; }
       m = y + "-" + (mo < 10 ? "0" : "") + mo + "-01";
     }
@@ -892,7 +898,7 @@ footer .wrap { padding-block: 18px 28px; }
                             "aria-label": "比賽週 " + md(w0) + "–" + md(w1) });
       bindTip(seg, function (n) { showTip(n, md(w0) + " – " + md(w1), weeks.map(function (d, i) { return md(d) + "　" + (i === 0 ? "Week 0 熱身賽" : "第 " + i + " 週賽事"); })); });
       box.appendChild(seg);
-      box.appendChild(label("比賽週", (pos(w0) + pos(w1)) / 2, "hide-sm"));
+      box.appendChild(label("比賽週", (pos(w0) + pos(w1)) / 2, 1));
     }
     var champs = evs.filter(function (e) { return evType(e) === "champs"; })[0];
     if (champs) {
@@ -900,7 +906,7 @@ footer .wrap { padding-block: 18px 28px; }
       var cs = el("div", { class: "seg champs", style: "left:" + pos(champs.date) + "%;width:" + Math.max(1.2, pos(c1) - pos(champs.date)) + "%", tabindex: "0", role: "button", "aria-label": "FIRST 世界賽 " + md(champs.date) });
       bindTip(cs, function (n) { showTip(n, md(champs.date) + " – " + md(c1), ["FIRST 世界賽"]); });
       box.appendChild(cs);
-      box.appendChild(label("世界賽", pos(champs.date)));
+      box.appendChild(label("世界賽", pos(champs.date), 2));
     }
     // 先依日期合併，再把太靠近的日期併成一個標記（手機寬度只有 300 多 px，不併會疊成一團）
     var W = box.clientWidth || 320, GAP = 20;
@@ -946,16 +952,50 @@ footer .wrap { padding-block: 18px 28px; }
       });
       box.appendChild(mk);
     });
-    if (kickDate) box.appendChild(label("Kickoff " + md(kickDate), pos(kickDate)));
+    if (kickDate) box.appendChild(label("Kickoff " + md(kickDate), pos(kickDate), 3));
     var nextDeadline = null;
     for (var di = 0; di < dates.length && !nextDeadline; di++) {
       var dd = dates[di], dn = daysBetween(day.date, dd);
       var k = groups[dd].filter(function (e) { return evType(e) === "deadline"; }).length;
       if (dn >= 0 && k) nextDeadline = { d: dd, p: pos(dd), k: k };
     }
-    if (nextDeadline) box.appendChild(label(md(nextDeadline.d) + " 截止" + (nextDeadline.k > 1 ? " ×" + nextDeadline.k : ""), nextDeadline.p));
+    if (nextDeadline) box.appendChild(label(md(nextDeadline.d) + " 截止" + (nextDeadline.k > 1 ? " ×" + nextDeadline.k : ""), nextDeadline.p, 4, "dl"));
     // 今天
-    box.appendChild(el("div", { class: "today", style: "left:" + pos(day.date) + "%" }, [el("span", { text: "今天 " + md(day.date) })]));
+    box.appendChild(el("div", { class: "today", style: "left:" + pos(day.date) + "%" }));
+    box.appendChild(el("span", { class: "tl up", "data-p": pos(day.date), text: "今天 " + md(day.date) }));
+    fitSeason();
+  }
+  // 量每個標籤的實際寬高再排：不超出邊界、互相重疊時只留優先度高的。
+  // 手機系統字體放大時文字會變寬變高，寫死的位置就會疊在一起，所以一定要量。
+  function fitSeason() {
+    var box = $("season-track"), W = box.clientWidth;
+    if (!W || !box.firstChild) return;
+    function place(n) {
+      n.hidden = false;
+      var w = n.offsetWidth, x = Math.max(0, Math.min(W - w, +n.getAttribute("data-p") / 100 * W - w / 2));
+      n.style.left = x + "px";
+      return { l: x, r: x + w };
+    }
+    function hits(r, list, gap) { return list.some(function (k) { return r.l < k.r + gap && r.r > k.l - gap; }); }
+    var up = box.querySelector(".tl.up"), h1 = 0, todayX = -99;
+    if (up) { place(up); h1 = up.offsetHeight; todayX = +up.getAttribute("data-p") / 100 * W; }
+    var h2 = 0, keptT = [];
+    Array.prototype.forEach.call(box.querySelectorAll(".mtick"), function (t) {
+      var r = place(t);
+      if (hits(r, keptT, 6) || (todayX > r.l - 4 && todayX < r.r + 4)) t.hidden = true;
+      else { keptT.push(r); h2 = Math.max(h2, t.offsetHeight); }
+    });
+    var tick = h1 + 2, rail = tick + h2 + 7;
+    box.style.setProperty("--tick", tick + "px");
+    box.style.setProperty("--rail", rail + "px");
+    var keptL = [], hmax = 0;
+    Array.prototype.slice.call(box.querySelectorAll(".tl:not(.up)"))
+      .sort(function (a, b) { return b.getAttribute("data-prio") - a.getAttribute("data-prio"); })
+      .forEach(function (n) {
+        var r = place(n);
+        if (hits(r, keptL, 8)) n.hidden = true; else { keptL.push(r); hmax = Math.max(hmax, n.offsetHeight); }
+      });
+    box.style.height = (rail + 15 + hmax + 2) + "px";
   }
 
   /* ---------- 趨勢 ---------- */
@@ -1308,5 +1348,6 @@ footer .wrap { padding-block: 18px 28px; }
   var rz; window.addEventListener("resize", function () { clearTimeout(rz); rz = setTimeout(function () { var d = DATA.days[+$("day").value || 0]; renderTrends(d); renderSeason(d); }, 150); });
   show(indexFromHash());
   route();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitSeason);
 })();
 </script>

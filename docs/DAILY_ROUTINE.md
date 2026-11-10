@@ -1,15 +1,41 @@
 # 每日更新流程（給排程執行的 Claude）
 
-每天台灣時間早上約 7 點，排程會開一個新的 Claude 工作階段，照這份文件更新「FRC 2027 情報站」。
+每天台灣時間早上約 7 點，排程會開一個**全新的** Claude 工作階段，照這份文件更新「FRC 2027 情報站」。
 全程不需要問使用者問題；遇到無法處理的狀況，照「出錯時」一節處理。
 
 - 網站（Claude Artifact，已分享給隊伍）：https://claude.ai/artifact/S3zmGKK82y9653mdFuYLom
+- 專案的長期保存：這個 Artifact 的附加檔案 `backup/project.json`（整個專案打包成一個 JSON）
 - 日期一律用台灣時間：`TODAY=$(TZ=Asia/Taipei date +%F)`
 
-## 1. 準備
+## 0. 還原專案（全新的工作階段第一步）
+
+新的工作階段裡沒有專案，先從 Artifact 的備份檔還原：
+
+1. Artifact 工具 `read`，`url` 填上面的網站網址、`path` 填 `backup/project.json`，結果會告訴你存到哪個本機路徑。
+2. 還原（把 `BACKUP` 換成上一步的路徑）：
 
 ```bash
-pip install -q -r requirements.txt
+mkdir -p /home/user/frc2027-tracker && cd /home/user/frc2027-tracker
+BACKUP="<上一步的本機路徑>" python3 -c "
+import json, os, pathlib
+b = json.load(open(os.environ['BACKUP'], encoding='utf-8'))
+root = pathlib.Path('/home/user/frc2027-tracker').resolve()
+for rel, text in b['files'].items():
+    f = (root / rel).resolve()
+    assert root in f.parents, rel
+    f.parent.mkdir(parents=True, exist_ok=True)
+    f.write_text(text, encoding='utf-8')
+print(len(b['files']), 'files restored')
+"
+pip install -q requests beautifulsoup4 PyYAML pytest
+```
+
+備份讀不到或還原失敗時，**不要**重新從頭建立專案（會丟掉歷史資料）；在回覆中說明，等使用者處理。
+
+## 1. 測試
+
+```bash
+cd /home/user/frc2027-tracker
 python -m pytest -q tests
 ```
 
@@ -29,8 +55,6 @@ python -m tracker.main --date "$TODAY" --skip-analysis
 讀 `data/daily/$TODAY.json`，寫 `data/analysis/$TODAY.json`。
 格式參考 `data/analysis/2026-11-07.json`（有精選的一天）與 `2026-11-08.json`（平靜日）。
 
-欄位：
-
 | 欄位 | 內容 |
 |---|---|
 | `method` | `"claude"` |
@@ -46,16 +70,14 @@ python -m tracker.main --date "$TODAY" --skip-analysis
 判讀原則：
 
 - 只看 `baseline` 為 false 的新訊息；官方來源、規則、採購、軟體升級、截止日優先；社群猜測、建造紀錄、舊聞價值低。
-- 只根據資料內容撰寫，不要編造。官方文章摘要不夠時，可以用網頁讀取工具讀原文（使用者代理請用 `frc2027-tracker/0.1`，遵守 robots.txt）。
+- 只根據資料內容撰寫，不要編造。官方文章摘要不夠時，可以讀原文（使用者代理請用 `frc2027-tracker/0.1`，遵守 robots.txt）。
 - 用繁體中文；SystemCore、WPILib、REVLib 等專有名詞保留英文。
 
-寫完後檢查：
+寫完後檢查，有錯就修到通過為止：
 
 ```bash
 python -m tracker.main --check-analysis --date "$TODAY"
 ```
-
-有錯就修到通過為止。
 
 ## 4. SystemCore 專頁（有新官方資訊時才做）
 
@@ -63,24 +85,30 @@ python -m tracker.main --check-analysis --date "$TODAY"
 更新 `data/systemcore.json` 對應的區塊（facts、stats、vendors、gotchas、checklist…），每一條都要附來源網址，
 並把 `updated` 改成今天。沒有新官方資訊就不要動這個檔案。
 
-## 5. 建立網站並保存
+## 5. 建立網站
 
 ```bash
 python -m tracker.main --site-only
-git add -A
-git commit -m "每日更新 $TODAY"
-git push origin main
 ```
 
-push 因網路失敗時，依 2、4、8、16 秒間隔重試最多 4 次。
+如果有 git remote（`git remote get-url origin` 有輸出），再 commit 並 push（失敗時依 2、4、8、16 秒重試最多 4 次）：
 
-## 6. 更新分享的網頁
+```bash
+git add -A && git commit -m "每日更新 $TODAY" && git push origin main
+```
 
-1. 用 Artifact 工具的 `read` 讀一次上面的網站網址（發布前必須先讀過）。
-2. 用 `publish`，`url` 填上面的網站網址、`file_path` 填 `site/fragment.html`，不要帶 `icon`。
+沒有 git remote 時（目前的情況），專案的長期保存靠下一步的 Artifact 備份檔。
+
+## 6. 備份並更新分享的網頁
+
+1. 打包專案：`python -m tracker.backup pack /tmp/frc2027-backup/project.json`
+2. 用 Artifact 工具的 `read` 讀一次網站網址（發布前必須先讀過）。
+3. 用 Artifact 工具的 `publish`：`url` 填網站網址、`file_path` 填 `/home/user/frc2027-tracker/site/fragment.html`、不要帶 `icon`，
+   `files` 填 `{"backup/project.json": {"from": "/tmp/frc2027-backup/project.json", "contentType": "application/json"}}`。
+   **備份檔和網頁要在同一次發布，不能只更新網頁**，否則下一次還原會拿到舊資料。
 
 ## 出錯時
 
 - 第 3 步寫不出分析或檢查一直不通過：執行 `python -m tracker.main --fallback-analysis --date "$TODAY"`，改用規則評分，繼續第 5、6 步。
-- 爬蟲整個失敗或測試失敗：不要 commit 壞掉的資料，不要發布網站；在回覆中寫清楚哪一步、什麼錯誤。
+- 爬蟲整個失敗或測試失敗：不要備份壞掉的資料，不要發布網站；在回覆中寫清楚哪一步、什麼錯誤。
 - 結束時用 2～3 句話回報：今天幾則新消息、精選是哪一則（或平靜日）、網站是否已更新。
