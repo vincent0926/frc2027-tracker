@@ -101,10 +101,10 @@ git add -A && git commit -m "每日更新 $TODAY" && git push origin main
 
 ## 6. 備份並更新分享的網頁
 
-1. 打包專案：`python -m tracker.backup pack /tmp/frc2027-backup/project.json`
+1. 打包專案：`python -m tracker.backup pack /home/user/frc2027-backup/project.json`
 2. 用 Artifact 工具的 `read` 讀一次網站網址（發布前必須先讀過）。
 3. 用 Artifact 工具的 `publish`：`url` 填網站網址、`file_path` 填 `/home/user/frc2027-tracker/site/fragment.html`、不要帶 `icon`，
-   `files` 填 `{"backup/project.json": {"from": "/tmp/frc2027-backup/project.json", "contentType": "application/json"}}`。
+   `files` 填 `{"backup/project.json": {"from": "/home/user/frc2027-backup/project.json", "contentType": "application/json"}}`。
    **備份檔和網頁要在同一次發布，不能只更新網頁**，否則下一次還原會拿到舊資料。
 
 ## 出錯時
