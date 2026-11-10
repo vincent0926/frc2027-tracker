@@ -58,6 +58,9 @@ python -m tracker.main --site-only   # 只用現有資料重建網站
 爬取 → 由 Claude 判讀精選、寫中文標題與重點整理 → 重建網站 → push 回這個 repo → 更新分享出去的網頁連結。
 不需要 API key。
 
+專案同時保存在兩個地方：本 repo（https://github.com/vincent0926/frc2027-tracker ）和網頁的附加檔案 `backup/project.json`。
+排程每天先還原備份、更新、發布網頁與備份，最後再盡力同步到本 repo（流程見 DAILY_ROUTINE.md 第 7 步）。
+
 相關指令：
 
 ```bash
