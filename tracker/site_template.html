@@ -2,56 +2,53 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap">
 <style>
 /* 版面：比賽現場 pit 公告板。由上到下 = 讀者需要的順序：
    30 秒重點 + 最近截止 → 今日精選（紅聯盟條）→ 重要日期 → 分類整理 → 重要訊息（其他收合）→ 監控細節 */
 :root {
-  --bg: #eef1f4;
-  --panel: #ffffff;
-  --ink: #15212c;
-  --muted: #5b6876;
-  --line: #d5dce3;
-  --blue: #1d5bb8;          /* 藍聯盟：互動 */
-  --red: #c4303a;           /* 紅聯盟：精選、截止 */
-  --chip: #e3e9f0;
-  --warn-bg: #fdf0e1; --warn-ink: #8a4b0b;
-  --hi: #c4303a; --mid: #b7791f; --lo: #8592a0;
-  /* 分類色：依 CAT_ORDER 固定順序取自已驗證的類別調色盤（validate_palette.js 淺/深色皆 PASS） */
+  /* 版面：參考 Apple 官網——淺灰底、白色圓角卡片、置中大標題與藥丸按鈕、毛玻璃導覽列。
+     分類色沿用通過色盲驗證的調色盤；狀態色（緊急度）固定，一律搭配圖示＋文字。 */
+  --bg: #f5f5f7; --panel: #ffffff; --ink: #1d1d1f; --muted: #6e6e73; --line: #d2d2d7;
+  --blue: #0066cc; --btn: #0071e3; --red: #d70015; --eyebrow: #b64400; --chip: #e8e8ed;
+  --warn-bg: #fff2e0; --warn-ink: #a24b00; --hi: #d70015; --mid: #a24b00; --lo: #86868b;
   --c-rule: #2a78d6; --c-soft: #eb6834; --c-hard: #1baf7a; --c-admin: #eda100; --c-team: #e87ba4; --c-other: #8b939c;
-  /* 狀態色（緊急度）：固定，不隨主題變，一律搭配圖示＋文字 */
+  --grid: #e8e8ed; --axis: #d2d2d7; --untracked: #f5f5f7; --series: #2a78d6;
+  --k-off-bg: #e3eefc; --k-off-ink: #0a4fa8; --k-vendor-bg: #fff2e0; --k-vendor-ink: #a24b00; --k-rel-bg: #e2f5f0; --k-rel-ink: #0b6650;
+  --glass: rgba(245, 245, 247, .76);
   --st-critical: #d03b3b; --st-serious: #ec835a; --st-warning: #fab219; --st-ink-dark: #0b0b0b;
-  --grid: #e1e0d9; --axis: #c3c2b7; --untracked: #f1f3f5; --series: #2a78d6;
-  --k-off-bg: #dce8f8; --k-off-ink: #164a96; --k-vendor-bg: #fdf0e1; --k-vendor-ink: #8a4b0b; --k-rel-bg: #dcf1f4; --k-rel-ink: #135f6d;
-  --f-display: "Barlow Condensed", "Noto Sans TC", "Arial Narrow", sans-serif;
-  --f-body: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
-  --f-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --f-body: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang TC", "Noto Sans TC", "Helvetica Neue", Arial, sans-serif;
+  --f-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "PingFang TC", "Noto Sans TC", "Helvetica Neue", Arial, sans-serif;
+  --f-mono: var(--f-body);
+  --r-card: 18px; --r-small: 12px;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #0f151b; --panel: #172029; --ink: #e4eaf0; --muted: #94a2b0; --line: #2a3642;
-    --blue: #6aa4f5; --red: #f0626b; --chip: #22303c; --warn-bg: #3a2a16; --warn-ink: #f2c38a;
-    --hi: #f0626b; --mid: #e0a84a; --lo: #7d8a97;
+    --bg: #000000; --panel: #1d1d1f; --ink: #f5f5f7; --muted: #a1a1a6; --line: #424245;
+    --blue: #2997ff; --btn: #0071e3; --red: #ff453a; --eyebrow: #ff9f45; --chip: #2c2c2e;
+    --warn-bg: #3a2a12; --warn-ink: #ffb340; --hi: #ff453a; --mid: #ffb340; --lo: #8e8e93;
     --c-rule: #3987e5; --c-soft: #d95926; --c-hard: #199e70; --c-admin: #c98500; --c-team: #d55181; --c-other: #7d8a97;
-    --grid: #2a3642; --axis: #3b4856; --untracked: #1b252f; --series: #3987e5;
-    --k-off-bg: #1f3550; --k-off-ink: #cfe0f7; --k-vendor-bg: #3a2a16; --k-vendor-ink: #f2c38a; --k-rel-bg: #163a40; --k-rel-ink: #9fdde8;
+    --grid: #2c2c2e; --axis: #48484a; --untracked: #161617; --series: #3987e5;
+    --k-off-bg: #10284a; --k-off-ink: #9ecbff; --k-vendor-bg: #3a2a12; --k-vendor-ink: #ffb340; --k-rel-bg: #0d3329; --k-rel-ink: #7fe0c4;
+    --glass: rgba(0, 0, 0, .72);
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #0f151b; --panel: #172029; --ink: #e4eaf0; --muted: #94a2b0; --line: #2a3642;
-  --blue: #6aa4f5; --red: #f0626b; --chip: #22303c; --warn-bg: #3a2a16; --warn-ink: #f2c38a;
-  --hi: #f0626b; --mid: #e0a84a; --lo: #7d8a97;
+  --bg: #000000; --panel: #1d1d1f; --ink: #f5f5f7; --muted: #a1a1a6; --line: #424245;
+  --blue: #2997ff; --btn: #0071e3; --red: #ff453a; --eyebrow: #ff9f45; --chip: #2c2c2e;
+  --warn-bg: #3a2a12; --warn-ink: #ffb340; --hi: #ff453a; --mid: #ffb340; --lo: #8e8e93;
   --c-rule: #3987e5; --c-soft: #d95926; --c-hard: #199e70; --c-admin: #c98500; --c-team: #d55181; --c-other: #7d8a97;
-  --grid: #2a3642; --axis: #3b4856; --untracked: #1b252f; --series: #3987e5;
-  --k-off-bg: #1f3550; --k-off-ink: #cfe0f7; --k-vendor-bg: #3a2a16; --k-vendor-ink: #f2c38a; --k-rel-bg: #163a40; --k-rel-ink: #9fdde8;
+  --grid: #2c2c2e; --axis: #48484a; --untracked: #161617; --series: #3987e5;
+  --k-off-bg: #10284a; --k-off-ink: #9ecbff; --k-vendor-bg: #3a2a12; --k-vendor-ink: #ffb340; --k-rel-bg: #0d3329; --k-rel-ink: #7fe0c4;
+  --glass: rgba(0, 0, 0, .72);
   color-scheme: dark;
 }
 * { box-sizing: border-box; }
 [hidden] { display: none !important; }
 html { scroll-padding-top: calc(56px + env(safe-area-inset-top, 0px)); }
 body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.65; }
-body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--panel); }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
 a { color: var(--blue); }
 a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible, summary:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
 .wrap { max-width: 1040px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
@@ -378,21 +375,102 @@ footer .wrap { padding-block: 18px 28px; }
   .pick { animation: rise .35s ease-out both; }
   @keyframes rise { from { transform: translateY(6px); } to { transform: none; } }
 }
+
+/* ================= Apple 風格樣式層 ================= */
+body { font-size: 16px; line-height: 1.5; -webkit-font-smoothing: antialiased; letter-spacing: -.003em; }
+a { color: var(--blue); }
+.top { background: var(--bg); }
+.top .wrap.hero { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 16px; padding-block: 44px 20px; }
+.hero h1 { font-family: var(--f-display); font-size: clamp(2.3rem, 8vw, 3.6rem); font-weight: 700; letter-spacing: -.025em; line-height: 1.05; margin: 0; text-wrap: balance; }
+.hero h1 b { color: var(--btn); font-weight: 700; }
+.hero-sub { margin: 0; font-size: clamp(1.15rem, 3.6vw, 1.55rem); font-weight: 500; letter-spacing: -.01em; }
+.hero-sub .n { font-weight: 700; font-variant-numeric: tabular-nums; }
+.cta { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-top: 4px; }
+.btn { display: inline-flex; align-items: center; justify-content: center; min-width: 128px; padding: 11px 24px; border-radius: 980px; font-size: 1.02rem; font-weight: 500; text-decoration: none; border: 1px solid var(--btn); }
+.btn.primary { background: var(--btn); color: #fff; }
+.btn.primary:hover { background: #0077ed; }
+.btn.ghost { color: var(--blue); border-color: var(--blue); background: transparent; }
+.btn.ghost:hover { background: var(--blue); color: var(--panel); }
+.daynav { justify-content: center; gap: 8px; }
+.daynav button, .daynav select { font-family: var(--f-body); font-size: .95rem; height: 38px; border-radius: 980px; border: 0; background: var(--chip); color: var(--ink); padding: 0 16px; }
+.daynav button { width: 38px; padding: 0; font-size: 1.3rem; line-height: 1; }
+.season { width: 100%; max-width: 980px; background: var(--panel); border-radius: var(--r-card); padding: 14px 20px 6px; margin-top: 6px; text-align: left; }
+.season .rail, .season .past { border-radius: 2px; }
+
+/* 毛玻璃導覽列＋分段切換 */
+.jump { background: var(--glass); -webkit-backdrop-filter: saturate(180%) blur(20px); backdrop-filter: saturate(180%) blur(20px); border-bottom: 1px solid var(--line); }
+.jump .wrap { align-items: center; padding-block: 8px; }
+.tabs { background: var(--chip); border-radius: 980px; padding: 3px; gap: 0; }
+.jump .tab { font-size: .85rem; font-weight: 600; padding: 5px 15px; border-radius: 980px; color: var(--muted); }
+.jump .tab[aria-current="page"] { background: var(--panel); color: var(--ink); box-shadow: 0 1px 4px rgba(0, 0, 0, .14); }
+.jump .tab:not([aria-current="page"]):hover { background: transparent; color: var(--ink); }
+.jsep { background: transparent; margin: 0 4px; }
+.jump a:not(.tab) { font-size: .82rem; padding: 6px 10px; }
+
+/* 區塊標題：大字、無分隔線 */
+main .wrap { padding-block: 28px 64px; }
+.view { gap: 56px; }
+.label { font-family: var(--f-display); font-size: clamp(1.4rem, 4.2vw, 1.85rem); font-weight: 700; letter-spacing: -.02em; color: var(--ink); margin: 0 0 16px; }
+.label::after { display: none; }
+
+/* 卡片：白底圓角、不用框線 */
+.pick, .quiet, .nextdl, .hl, .chart-card, .list, details.box, .sc-hero, .facts, .rule, .cgroup, .hwcol, .swlist {
+  border: 0; border-radius: var(--r-card); background: var(--panel); }
+.ev { border: 0; border-left: 5px solid var(--panel); border-radius: 14px; padding: 14px 16px; }
+.gotcha { border: 0; border-top: 4px solid var(--st-serious); border-radius: var(--r-card); }
+.stat, .mult { border: 0; border-radius: 14px; background: var(--bg); }
+.stat:hover { box-shadow: inset 0 0 0 1px var(--blue); }
+.hl.low { background: var(--panel); opacity: .85; }
+.actions { border-radius: 14px; background: var(--bg); }
+.tip { border-radius: var(--r-small); }
+.pick { padding: 28px; gap: 14px; }
+.pick .tag { font-family: var(--f-body); letter-spacing: 0; font-size: .9rem; font-weight: 600; color: var(--eyebrow); }
+.pick h2 { font-size: clamp(1.35rem, 4vw, 1.75rem); letter-spacing: -.015em; }
+.pick h2 a { text-decoration: none; }
+.pick h2 a:hover { text-decoration: underline; }
+.points li::before { background: var(--btn); border-radius: 50%; }
+.impact span { background: var(--bg); }
+.sc-hero { padding: 28px; }
+.sc-hero h2 { font-family: var(--f-display); font-size: clamp(2rem, 6vw, 2.8rem); letter-spacing: -.025em; }
+.stat b { font-family: var(--f-display); letter-spacing: -.02em; }
+
+/* 30 秒重點 */
+.tldr { gap: 14px; }
+.tldr li { font-size: clamp(1.1rem, 3.4vw, 1.35rem); font-weight: 600; letter-spacing: -.01em; }
+.tldr li::before { font-family: var(--f-display); color: var(--btn); }
+.headline { font-size: 1.15rem; }
+
+/* 小標籤與按鈕：藥丸形 */
+.chipbtn { border: 0; background: var(--panel); padding: 6px 14px; }
+.chipbtn[aria-pressed="true"] { background: var(--ink); color: var(--panel); }
+.filters input[type=search] { border: 0; background: var(--panel); border-radius: var(--r-small); height: 40px; }
+.kind, .imp, .lv, .urg, .tagc, .newb { border-radius: 980px; }
+.urg { padding: 1px 8px 1px 6px; }
+.more, .divider button, .chart-head button { color: var(--blue); }
+.divider { background: var(--panel); }
+.ring .n { font-family: var(--f-display); }
+.ring .n small { font-family: var(--f-body); }
+footer { border-top: 0; text-align: center; }
+@media (max-width: 560px) {
+  .top .wrap.hero { padding-block: 28px 14px; gap: 14px; }
+  .season { padding: 12px 14px 4px; }
+  .view { gap: 40px; }
+  .pick, .sc-hero { padding: 20px; }
+}
 </style>
 
 <header class="top">
-  <div class="wrap">
-    <div class="brand">
-      <h1>FRC <b>2027</b> 情報站</h1>
-      <p>每天自動收集 FIRST 官方、WPILib、廠商與 Chief Delphi 上的 2027 賽季變動</p>
-    </div>
-    <div class="countdown" aria-label="距離 2027 Kickoff 天數">
-      <span class="n" id="cd-n">—</span><span class="l">天後<br>2027 KICKOFF · 1/9</span>
+  <div class="wrap hero">
+    <h1>FRC <b>2027</b> 情報站</h1>
+    <p class="hero-sub">距離 1/9 Kickoff 還有 <span class="n" id="cd-n">—</span> 天</p>
+    <div class="cta">
+      <a class="btn primary" href="#s-brief" id="cta-brief">今日重點</a>
+      <a class="btn ghost" href="#systemcore" id="cta-sc">SystemCore</a>
     </div>
     <nav class="daynav" aria-label="切換日期">
-      <button id="prev" type="button" aria-label="前一天">◀</button>
+      <button id="prev" type="button" aria-label="前一天">‹</button>
       <select id="day" aria-label="選擇日期"></select>
-      <button id="next" type="button" aria-label="後一天">▶</button>
+      <button id="next" type="button" aria-label="後一天">›</button>
     </nav>
     <div class="season" id="season" aria-label="2027 賽季時間軸">
       <div class="track-wrap" id="season-track"></div>
@@ -1322,7 +1400,7 @@ footer .wrap { padding-block: 18px 28px; }
     $("prev").disabled = idx >= DATA.days.length - 1;
     $("next").disabled = idx <= 0;
     var k = daysBetween(day.date, "2027-01-09");
-    $("cd-n").textContent = k > 0 ? k : "已開始";
+    $("cd-n").textContent = String(Math.max(0, k));
     renderSeason(day); renderBrief(day); renderPick(day, idx); renderDates(day); renderSummary(day); renderTrends(day);
     renderChips(day); renderList(day); renderPages(day); renderErrors(day);
     var a = day.analysis || {};
@@ -1352,6 +1430,11 @@ footer .wrap { padding-block: 18px 28px; }
     });
   });
   window.addEventListener("hashchange", route);
+  $("cta-brief").addEventListener("click", function (e) {
+    e.preventDefault();
+    if (location.hash === "#systemcore") location.hash = "#d" + DATA.days[+$("day").value || 0].date;
+    setTimeout(function () { $("s-brief").scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" }); }, 30);
+  });
   $("tab-daily").addEventListener("click", function (e) { e.preventDefault(); location.hash = "#d" + DATA.days[+$("day").value || 0].date; });
   $("sc-reset").addEventListener("click", function () { saveChecks({}); renderChecklist(); });
   $("trend-tbl-btn").addEventListener("click", function () {

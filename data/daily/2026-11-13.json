@@ -1,0 +1,436 @@
+{
+ "date": "2026-11-13",
+ "items": [
+  {
+   "id": "https://www.firstinspires.org/community-blog/2026-kit-of-parts-reminder-for-2027",
+   "title": "2027 Kit of Parts Reminders",
+   "url": "https://www.firstinspires.org/community-blog/2026-kit-of-parts-reminder-for-2027",
+   "date": "2026-11-12",
+   "summary": "The BIOCORE TM presented by Haas season is quickly approaching, and with that comes a few Kit of Parts related processes to pay attention to! Below are details about the Virtual Kit of Parts, the new process and timing for Kickoff Kit opt outs, FIRST ® Choice and some additional reminders. Be sure to check out the Kit of Parts webpage for updates and more information.",
+   "source": "FIRST 官方部落格 (RSS)",
+   "categories": [
+    "硬體/控制系統"
+   ],
+   "baseline": false
+  },
+  {
+   "id": "https://www.firstinspires.org/community-blog/2026-join-us-at-the-2027-first-championship",
+   "title": "Join Us at the 2027 FIRST Championship",
+   "url": "https://www.firstinspires.org/community-blog/2026-join-us-at-the-2027-first-championship",
+   "date": "2026-11-12",
+   "summary": "Calling all volunteers! We are looking for your talent, expertise, and passion to help support 336 FIRST ® Tech Challenge teams from around the globe competing at the 2027 FIRST ® Championship in Houston, Texas, April 28 through May 1, 2027. If you are interested in volunteering at the largest robotics event in the world, registration is open. Sign Up today! We are looking for volunteers in all ro…",
+   "source": "FIRST 官方部落格 (RSS)",
+   "categories": [
+    "行政/賽事"
+   ],
+   "baseline": false
+  },
+  {
+   "id": "a17a38d0ff55000530ec1b47560431f1938a1db2",
+   "title": "SystemCoreTesting 更新：Update to include Grapple 2027 updates (#450)",
+   "url": "https://github.com/wpilibsuite/SystemCoreTesting/commit/a17a38d0ff55000530ec1b47560431f1938a1db2",
+   "date": "2026-11-11",
+   "summary": "",
+   "source": "SystemCoreTesting（官方測試 repo：相容表、已知問題、路線圖）",
+   "categories": [
+    "硬體/控制系統"
+   ],
+   "baseline": false
+  },
+  {
+   "id": "www.chiefdelphi.com-topic-526135",
+   "title": "4926 GalacTech | 2027 Build Thread | Open Alliance",
+   "url": "https://www.chiefdelphi.com/t/4926-galactech-2027-build-thread-open-alliance/526135",
+   "date": "2026-11-12",
+   "summary": "Welcome to GalacTech’s 2027 Build Thread, presented by openalliance Our build thread is back for its 6th year with Open Alliance! To those joining us for the first time, welcome! And to those returning for another season, welcome back! Who are we? 4926 GalacTech is a community FRC team based in Columbus, Indiana. We first took to the field in 2014 and are proud members of the FIRST Indiana Distric…",
+   "source": "Chief Delphi 最新討論（篩選 2027 相關）",
+   "categories": [
+    "隊伍建造紀錄"
+   ],
+   "baseline": false
+  },
+  {
+   "id": "www.chiefdelphi.com-topic-526118",
+   "title": "[FRC Blog] 2027 Kit of Parts Reminders",
+   "url": "https://www.chiefdelphi.com/t/frc-blog-2027-kit-of-parts-reminders/526118",
+   "date": "2026-11-12",
+   "summary": "Posted 2026-11-12 on the FRC Blog 2027 Kit of Parts Reminders By FIRST Robotics Competition Staff The BIOCORE™ presented by Haas season is quickly approaching, and with that comes a few Kit of Parts related processes to pay attention to! Below are details about the Virtual Kit of Parts, the new process and timing for Kickoff Kit opt outs, FIRST ® Choice and some additional reminders. Be sure to ch…",
+   "source": "Chief Delphi 最新討論（篩選 2027 相關）",
+   "categories": [
+    "硬體/控制系統"
+   ],
+   "baseline": false
+  },
+  {
+   "id": "www.chiefdelphi.com-topic-526117",
+   "title": "Why I didn't like Rebuilt, and what I want from Biocore",
+   "url": "https://www.chiefdelphi.com/t/why-i-didnt-like-rebuilt-and-what-i-want-from-biocore/526117",
+   "date": "2026-11-12",
+   "summary": "For a while now - basically since the world championship - I’ve been saying that I heavily dislike Rebuilt. I’ve put out a lot of thoughts about it, and I’m using this point to explain myself, get those thoughts organize, and posit what elements Biocore needs to have to be more successful. Top team domination and diminishing returns I’ve posted similar graphs with EPA before, but they’re here with…",
+   "source": "Chief Delphi 最新討論（篩選 2027 相關）",
+   "categories": [
+    "規則/比賽手冊"
+   ],
+   "baseline": false
+  },
+  {
+   "id": "www.chiefdelphi.com-topic-526108",
+   "title": "WPILib 2027 sim on Windows ARM64: vendordeps and vendor status",
+   "url": "https://www.chiefdelphi.com/t/wpilib-2027-sim-on-windows-arm64-vendordeps-and-vendor-status/526108",
+   "date": "2026-11-12",
+   "summary": "Hi, I’m Andrew, a mentor for Team 10913 - my first post here, hope this will be useful I’ve been experimenting with the latest WPILib 2027 alphas on a Snapdragon laptop to test out the newly added Windows ARM64 support. While things are looking promising, there are still a few gaps to bridge - especially around vendordeps. I wanted to share what is actually required for compatibility, plus some up…",
+   "source": "Chief Delphi 最新討論（篩選 2027 相關）",
+   "categories": [
+    "軟體更新"
+   ],
+   "baseline": false
+  },
+  {
+   "id": "www.chiefdelphi.com-topic-526093",
+   "title": "FRC 694 StuyPulse + 516 StuyPlus | 2027 Build Thread | Open Alliance",
+   "url": "https://www.chiefdelphi.com/t/frc-694-stuypulse-516-stuyplus-2027-build-thread-open-alliance/526093",
+   "date": "2026-11-12",
+   "summary": "Hello Chief Delphi! We are FRC Team 694 StuyPulse from Stuyvesant High School in New York City, and we are excited to start our THIRD year as an Open Alliance team for the 2027 BIOCORE Season! Here’s what we’ve been up to! Some Important Team Links: 2027 CAD Github Website Instagram Youtube Offseason Competitions Battlecry @ WPI - May 29-31 Battlecry was our first offseason event, and it went grea…",
+   "source": "Chief Delphi 最新討論（篩選 2027 相關）",
+   "categories": [
+    "隊伍建造紀錄"
+   ],
+   "baseline": false
+  }
+ ],
+ "pages": [
+  {
+   "source": "FIRST 官方部落格 FRC 分類頁",
+   "url": "https://www.firstinspires.org/community-blog/topic/frc",
+   "baseline": false,
+   "added": [
+    "frc",
+    "November 12, 2026",
+    "2027 Kit of Parts Reminders",
+    "Read More",
+    "November 12, 2026",
+    "Join Us at the 2027 FIRST Championship",
+    "Read More",
+    "ftc",
+    "frc",
+    "November 12, 2026",
+    "2027 Kit of Parts Reminders",
+    "Read More"
+   ],
+   "removed": [
+    "frc",
+    "August 24, 2026",
+    "Set your team up for success this season!",
+    "Read More",
+    "ftc",
+    "July 31, 2026",
+    "BIOBUZZ Competition Manual Preview Release",
+    "Read More",
+    "frc",
+    "September 17, 2026",
+    "2027 Season Checkout and Registration Changes",
+    "Read More"
+   ],
+   "new_links": {
+    "https://www.firstinspires.org/community-blog/2026-kit-of-parts-reminder-for-2027": "frc November 12, 2026 2027 Kit of Parts Reminders Read More",
+    "https://www.firstinspires.org/community-blog/2026-join-us-at-the-2027-first-championship": "ftc November 12, 2026 Join Us at the 2027 FIRST Championship Read More"
+   },
+   "gone_links": {
+    "https://www.firstinspires.org/community-blog/2026-set-your-team-up-for-success-this-season": "frc August 24, 2026 Set your team up for success this season! Read More",
+    "https://www.firstinspires.org/community-blog/biobuzz-cm-preview-release": "ftc July 31, 2026 BIOBUZZ Competition Manual Preview Release Read More"
+   }
+  },
+  {
+   "source": "SystemCoreTesting（官方測試 repo：相容表、已知問題、路線圖）",
+   "url": "https://github.com/wpilibsuite/SystemCoreTesting",
+   "baseline": false,
+   "added": [
+    "* [Grapple Robotics](Grapple.md)",
+    "| Grapple | :x: | :x: | 27.0.0 |"
+   ],
+   "removed": [],
+   "new_links": {},
+   "gone_links": {}
+  }
+ ],
+ "errors": [],
+ "baselines": [],
+ "events": [
+  {
+   "date": "2025-09-06",
+   "label": "FIRST Tech Challenge Kickoff",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2026-05-19",
+   "label": "FIRST Signing Day",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2026-06-17",
+   "label": "Team Registration Opens",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2026-09-01",
+   "label": "FIRST Scholarship Program opens",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2026-09-24",
+   "label": "Drive Base & Black Tote Opt Out Opens",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2026-09-24",
+   "label": "First Event Registration - Round 1 Preference",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2026-09-24",
+   "label": "Kit and Kickoff Registration Opens",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2026-10-02",
+   "label": "First Late Registration Opens",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2026-10-15",
+   "label": "Second Event Registration - Round 2 Preference",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2026-10-20",
+   "label": "Digital Animation Award Opens",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2026-10-23",
+   "label": "Second Late Registration Opens",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2026-10-29",
+   "label": "Additional In-District Event Registration Opens",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2026-10-29",
+   "label": "FIRST Impact Award Application Opens",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2026-10-29",
+   "label": "FIRST Leadership Award Application Opens",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2026-10-29",
+   "label": "Unrestricted Regional Event Registration Opens",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2026-10-29",
+   "label": "Woodie Flowers Award Application Opens",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2026-10-30",
+   "label": "Volunteer Registration Opens",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2026-11-05",
+   "label": "Additional Inter-District Event Registration Opens",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2026-11-12",
+   "label": "Pre-Kickoff Virtual Kit Release",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2026-11-17",
+   "label": "All FIRST Robotics Competition District Events and Regional Events Registration Closes",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2026-11-17",
+   "label": "Drive Base & Black Tote Opt Out Closes",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2026-11-17",
+   "label": "Kit and Kickoff Registration Closes",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2026-11-17",
+   "label": "Payment Due - FIRST Robotics Competition Initial Event Registration",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2027-01-09",
+   "label": "2027 FIRST Robotics Competition Kickoff",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2027-01-09",
+   "label": "FIRST Choice: Priority Lists Opens",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2027-01-09",
+   "label": "Kickoff Kit Replacement Parts System Opens",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2027-01-09",
+   "label": "Virtual Kit Kickoff Release",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2027-01-12",
+   "label": "Digital Animation Award Closes",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2027-01-13",
+   "label": "Official Q&A Opens",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2027-01-16",
+   "label": "Kickoff Kit Replacement Parts System Closes",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2027-01-18",
+   "label": "FIRST Choice: Priority Lists Closes",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2027-01-21",
+   "label": "Payment Due - FIRST Robotics Competition Additional Registered Event(s)",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2027-01-29",
+   "label": "FIRST Choice Regular Ordering Opens",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2027-02-11",
+   "label": "FIRST Impact Award Application Closes",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2027-02-20",
+   "label": "Week Zero",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2027-03-03",
+   "label": "Week 1 Competition Events",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2027-03-10",
+   "label": "Week 2 Competition Events",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2027-03-17",
+   "label": "Week 3 Competition Events",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2027-03-24",
+   "label": "Week 4 Competition Events",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2027-03-31",
+   "label": "Week 5 Competition Events",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2027-04-07",
+   "label": "Week 6 Competition Events",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2027-04-14",
+   "label": "Week 7 Competition Events",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2027-04-16",
+   "label": "Payment Due - FIRST Robotics Competition Championship",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2027-04-21",
+   "label": "FIRST Choice Closes",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2027-04-21",
+   "label": "Official Q&A Closes",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  },
+  {
+   "date": "2027-04-28",
+   "label": "FIRST Championship",
+   "source": "FRC Season Materials（手冊、Team Update、規則文件）",
+   "url": "https://www.firstinspires.org/resources/library/frc/season-materials"
+  }
+ ]
+}

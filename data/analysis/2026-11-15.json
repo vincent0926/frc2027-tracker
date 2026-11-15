@@ -1,0 +1,32 @@
+{
+ "method": "claude",
+ "model": "每日排程",
+ "quiet": true,
+ "tldr": [
+  "11/17 賽事報名、Kit 與 Kickoff 報名截止，只剩 2 天",
+  "今天 3 則新消息，都是社群建造紀錄或借電池貼文"
+ ],
+ "top_pick": null,
+ "headline": "今天很平靜，只有 3 則社群討論；最需要注意的是 2 天後的報名截止。",
+ "highlights": [
+  {
+   "category": "行政/賽事",
+   "importance": "high",
+   "points": [
+    "11/17 是賽事報名、Kit 與 Kickoff 報名、底盤退訂、首場報名費的共同截止日"
+   ]
+  },
+  {
+   "category": "其他",
+   "importance": "low",
+   "points": [
+    "1540、26154 隊開出 2027 建造討論串",
+    "Turing Robotics 徵求借用 Gotham Regional 的電池"
+   ]
+  }
+ ],
+ "action_items": [
+  "還沒完成報名或繳費的隊伍，請在 11/17 前處理"
+ ],
+ "items_zh": {}
+}

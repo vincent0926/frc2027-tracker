@@ -1,0 +1,58 @@
+{
+ "method": "claude",
+ "model": "每日排程",
+ "quiet": true,
+ "tldr": [
+  "11/17 賽事報名、Kit 與 Kickoff 報名、底盤退訂截止，剩 3 天",
+  "FIRST 釋出 BIOCORE 賽季預告片，社群正在逐格分析",
+  "Virtual KOP 抵用券已上線，大額 AndyMark、REV 券尚未出現"
+ ],
+ "top_pick": null,
+ "headline": "今天沒有官方規則更新；最需要注意的是 3 天後的報名截止，另有 BIOCORE 預告片討論。",
+ "highlights": [
+  {
+   "category": "行政/賽事",
+   "importance": "high",
+   "points": [
+    "11/17 賽事報名、Kit 與 Kickoff 報名、底盤退訂、首場報名費全部截止",
+    "社群整理 2027 Impact Award 更新與關鍵定義，可供參考"
+   ]
+  },
+  {
+   "category": "規則/比賽手冊",
+   "importance": "medium",
+   "points": [
+    "FIRST 發布 BIOCORE 賽季預告片，Chief Delphi 有 28 則回覆討論"
+   ]
+  },
+  {
+   "category": "硬體/控制系統",
+   "importance": "low",
+   "points": [
+    "Virtual KOP 抵用券已上線，目前僅有 $50 REV 等小額券",
+    "Blocks 圖形化程式（SystemCore 新增選項）徵求範例程式建議"
+   ]
+  }
+ ],
+ "action_items": [
+  "還沒完成報名、Kit 與 Kickoff 報名或繳費的隊伍，請在 11/17 前處理"
+ ],
+ "items_zh": {
+  "https://www.chiefdelphi.com/t/get-ready-to-grow-with-biocore-game-teaser/526167": {
+   "title": "BIOCORE 賽季預告片",
+   "blurb": "FIRST 釋出 2027 賽季 BIOCORE 的預告片，社群正在討論。"
+  },
+  "https://www.chiefdelphi.com/t/lets-over-analyze-the-teaser-trailer-for-biocore/526174": {
+   "title": "逐格解析 BIOCORE 預告片",
+   "blurb": "網友逐段分析預告片的畫面與可能暗示，屬於猜測性質。"
+  },
+  "https://www.chiefdelphi.com/t/understanding-the-2027-first-impact-award-updates-and-key-definitions/526165": {
+   "title": "2027 Impact Award 更新整理",
+   "blurb": "社群依 FIRST 公開資料整理的獎項更新與定義，需對照官方文件。"
+  },
+  "https://www.chiefdelphi.com/t/virtual-kop-vouchers/526138": {
+   "title": "Virtual KOP 抵用券詢問",
+   "blurb": "抵用券已上線，但大額 AndyMark、REV 券尚未出現。"
+  }
+ }
+}

@@ -99,28 +99,10 @@ python -m tracker.main --site-only
    `files` 填 `{"backup/project.json": {"from": "/home/user/frc2027-backup/project.json", "contentType": "application/json"}}`。
    **備份檔和網頁要在同一次發布，不能只更新網頁**，否則下一次還原會拿到舊資料。
 
-## 7. 同步到 GitHub（盡力而為，要在第 6 步成功之後才做）
+## 7. GitHub（排程不做）
 
-GitHub repo：https://github.com/vincent0926/frc2027-tracker （`main` 分支）。這一步失敗**不影響**前面已完成的網頁更新與備份，
-只要在最後的回報中說明；不要因為這一步重做第 6 步，也不要重試超過一次。
-
-1. 呼叫 `add_repo`（`owner: "vincent0926"`, `repo: "frc2027-tracker"`, `access: "push"`）取得推送權限。**只呼叫工具，不要照它的提示 clone**
-   （還原出來的專案資料夾就是要用的內容，不能被覆蓋）。被拒絕就跳過這一步。
-2. 把還原出來的專案接上遠端的歷史，再提交並推送：
-
-```bash
-cd /home/user/frc2027-tracker
-git init -q -b main 2>/dev/null || git init -q
-git remote add origin https://github.com/vincent0926/frc2027-tracker 2>/dev/null || true
-git fetch -q --depth=1 origin main
-git reset -q FETCH_HEAD          # 對齊遠端歷史，工作資料夾內容不變
-git add -A
-git -c user.name="frc2027-tracker-bot" -c user.email="noreply@users.noreply.github.com" \
-    commit -q -m "每日更新 $TODAY" || echo "沒有變動"
-git push origin HEAD:main
-```
-
-推送失敗因網路時，依 2、4、8 秒間隔重試最多 3 次。
+排程開的新工作階段沒有 https://github.com/vincent0926/frc2027-tracker 的推送權限（推送會被代理擋下 403），
+所以排程**不要**嘗試同步 GitHub。GitHub 那份副本由使用者在互動工作階段裡手動同步；專案的正式保存位置是 Artifact 的 `backup/project.json`。
 
 ## 出錯時
 

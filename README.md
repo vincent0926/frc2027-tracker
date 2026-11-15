@@ -59,7 +59,7 @@ python -m tracker.main --site-only   # 只用現有資料重建網站
 不需要 API key。
 
 專案同時保存在兩個地方：本 repo（https://github.com/vincent0926/frc2027-tracker ）和網頁的附加檔案 `backup/project.json`。
-排程每天先還原備份、更新、發布網頁與備份，最後再盡力同步到本 repo（流程見 DAILY_ROUTINE.md 第 7 步）。
+排程每天還原備份、更新、發布網頁與備份；排程沒有本 repo 的推送權限，所以本 repo 是在互動工作階段裡手動同步的副本，正式保存位置是網頁的備份檔。
 
 相關指令：
 

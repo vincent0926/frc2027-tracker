@@ -1,49 +1,18 @@
-# FRC 2027 變更日報 — 2026-11-11
+# FRC 2027 變更日報 — 2026-11-15
 
-**摘要：** 0 則新消息、1 個監控頁面有變動、0 個來源抓取失敗。
+**摘要：** 3 則新消息、0 個監控頁面有變動、0 個來源抓取失敗。
 
-## 🔍 監控頁面變動
+## 📰 新消息（依分類）
 
-### [FRC Season Materials（手冊、Team Update、規則文件）](https://www.firstinspires.org/resources/library/frc/season-materials)
-**新增連結（1）：**
-- [FIRST Help Center](https://help.firstinspires.org/s/?language=en_US)
-**新增內容（38 行，含 2027 關鍵字的優先列出）：**
-- Robotics Competition Season. Acceptable forms of payment are:
-- check (US funds only)
-- Credit Card - Visa, Mastercard, Discover, or American Express credit card
-- Purchase Order
-- See the
-- Help Center
-- for frequently asked questions. If you have any questions, please contact
-- FIRST
-- via phone at either
-- (603) 666-3906 or (800) 871-8326 (
-- Mon-Fri 8:30am - 5:00pm EST/EDT) or via email:
-- customerservice@firstinspires.org
-- Robotics Competition Season.
-- Acceptable forms of payment are:
-- check (US funds only)
-- Credit Card - Visa, Mastercard, Discover, or American Express credit card
-- Purchase Order
-- See the
-- Help Center
-- for frequently asked questions. If you have any questions, please contact
-- FIRST
-- via phone at either
-- (603) 666-3906 or (800) 871-8326 (
-- Mon-Fri 8:30am - 5:00pm EST/EDT) or via email:
-- customerservice@firstinspires.org
-**刪除內容（13 行）：**
-- ~~Robotics Competition Season. Acceptable forms of payment are check (US funds only); Visa, Mastercard, Discover, or American Express credit card; Purchase Order; or commitment letter form Grantor or Sponsor.~~
-- ~~If you have any questions, please contact~~
-- ~~Finance at 1-800-871-8326 ext. 563 or~~
-- ~~ar@firstinspires.org~~
-- ~~Robotics Competition Season. Acceptable forms of payment are check (US funds only); Visa, Mastercard, Discover, or American Express credit card; Purchase Order; or commitment letter form Grantor or Sponsor.~~
-- ~~If you have any questions, please contact~~
-- ~~Finance at 1-800-871-8326 ext. 563 or~~
-- ~~ar@firstinspires.org~~
-- ~~. Acceptable forms of payment are check (US funds only); Visa, Mastercard, Discover, or American Express credit card; Purchase Order; or commitment letter form Grantor or Sponsor.~~
-- ~~If you have any questions, please contact~~
+### 隊伍建造紀錄（2）
+- **[Team 1540 Flaming Chickens | 2027 Build Thread](https://www.chiefdelphi.com/t/team-1540-flaming-chickens-2027-build-thread/526200)** — Chief Delphi 最新討論（篩選 2027 相關） · 2026-11-14
+  > Welcome to Team 1540’s 2027 Open Alliance build thread! We’re excited for our 4th year running our Build Thread! We are Team 1540 from Catlin Gabel School in Portland, Oregon. As always, our posts are written and checked over by students. Let’s hit the ground running with this first post! BIOCORE OnShape Links Main CAD: TBD Off-Season Updates We had a fun off-season with last year’s robot, Hephaes…
+- **[26154 build thread (2026-2027) season](https://www.chiefdelphi.com/t/26154-build-thread-2026-2027-season/526190)** — Chief Delphi 最新討論（篩選 2027 相關） · 2026-11-14
+  > Hello this is the beginning of our adventure of a season ahead! 2 posts - 1 participant Read full topic
+
+### 其他（1）
+- **[Looking to Borrow FRC Batteries in New York for Gotham Regional – Turing Robotics 10141](https://www.chiefdelphi.com/t/looking-to-borrow-frc-batteries-in-new-york-for-gotham-regional-turing-robotics-10141/526185)** — Chief Delphi 最新討論（篩選 2027 相關） · 2026-11-14
+  > Hello everyone! We are Turing Robotics 10141 , an FRC team from Türkiye, and we will be competing at Gotham Regional in April 2027 . We are reaching out to the FRC community in New York to ask for some help with batteries. Unfortunately, due to airline restrictions on transporting FRC batteries, we cannot bring our batteries with us from Türkiye. Therefore, we are looking to borrow a few FRC batte…
 
 ---
 *由 frc2027-tracker 自動產生。內容摘錄自原始來源（英文），請以官方文件為準。*

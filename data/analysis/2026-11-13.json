@@ -1,0 +1,61 @@
+{
+ "method": "claude",
+ "model": "每日排程",
+ "quiet": false,
+ "tldr": [
+  "11/17 下午 5 點（美東）前要完成註冊付款，才能退訂底盤／黑色箱",
+  "FIRST 公布 Kit of Parts 新流程：退訂票券 1/9 Kickoff 後才發放",
+  "Grapple 更新 2027 相容資訊（SystemCoreTesting）"
+ ],
+ "top_pick": {
+  "url": "https://www.firstinspires.org/community-blog/2026-kit-of-parts-reminder-for-2027",
+  "title": "2027 Kit of Parts Reminders",
+  "source": "FIRST 官方部落格 (RSS)",
+  "summary": "官方整理虛擬 Kit、Kickoff Kit 退訂新流程與 FIRST Choice 時程。",
+  "points": [
+   "虛擬 Kit 的 Kickoff 前票券 11/12 中午（美東）上線，Kickoff 票券 1/9 開放",
+   "要退訂底盤或黑色箱，須在 11/17 下午 5 點（美東）前選好註冊選項並完成付款",
+   "過期後只能選完整 Kickoff Kit；退訂票券於 1/9 Kickoff 後才發放",
+   "Kickoff Kit 的賽季專用箱含全新 Systemcore 控制器",
+   "FIRST Choice 與去年相同，1/9 Kickoff 後開放優先清單選擇",
+   "KitBot 購物清單將於未來幾週公布"
+  ],
+  "impact": [
+   "行政/報名",
+   "電控"
+  ]
+ },
+ "headline": "FIRST 發布 Kit of Parts 提醒，退訂底盤／黑色箱的付款期限是 11/17。",
+ "highlights": [
+  {
+   "category": "行政/賽事",
+   "importance": "high",
+   "points": [
+    "11/17 賽事報名、Kit 與 Kickoff 報名、退訂與首場報名費同日截止",
+    "2027 FIRST Championship 4/28–5/1 在休士頓，志工報名開放"
+   ]
+  },
+  {
+   "category": "硬體/控制系統",
+   "importance": "medium",
+   "points": [
+    "SystemCoreTesting 新增 Grapple 2027 更新",
+    "Systemcore 隨 Kickoff Kit 賽季專用箱發給每隊"
+   ]
+  }
+ ],
+ "action_items": [
+  "11/17 前完成報名與付款；要退訂底盤或黑色箱請同時選對註冊選項",
+  "由 Lead Coach 到 FIRST Dashboard 確認虛擬 Kit 票券"
+ ],
+ "items_zh": {
+  "https://www.firstinspires.org/community-blog/2026-kit-of-parts-reminder-for-2027": {
+   "title": "2027 Kit of Parts 提醒",
+   "blurb": "整理虛擬 Kit、Kickoff Kit 退訂新流程、FIRST Choice 時程，退訂須 11/17 前付款。"
+  },
+  "https://github.com/wpilibsuite/SystemCoreTesting/commit/a17a38d0ff55000530ec1b47560431f1938a1db2": {
+   "title": "SystemCoreTesting 加入 Grapple 更新",
+   "blurb": "官方測試 repo 新增 Grapple 2027 相容資訊，使用其產品的隊伍可查看。"
+  }
+ }
+}
