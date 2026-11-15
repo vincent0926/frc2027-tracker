@@ -79,6 +79,29 @@ python -m tracker.main --date "$TODAY" --skip-analysis
 python -m tracker.main --check-analysis --date "$TODAY"
 ```
 
+## 3b. 隊伍分享（每天 2 則）
+
+不限 2027，任何 FRC 主題都可以：機構設計、程式設計、電控、公關行銷、策略、隊務經營等。爬取時已經自動更新候選池，先列出候選：
+
+```bash
+python -m tracker.main --share-candidates --date "$TODAY"
+```
+
+1. 從候選中挑 **2 則**，盡量不同主題。優先選隊伍親自分享的實作經驗、開源 CAD／程式、技術手冊、教學、公關行銷／募款／評審經驗；
+   不要選求助、徵人、借東西、買賣、廠商廣告。已經分享過的不會出現在候選裡。
+2. 讀原文第一篇再寫介紹：`https://www.chiefdelphi.com/raw/<文章編號>/1`（文章網址最後那串數字；使用者代理用 `frc2027-tracker/0.1`）。
+3. 寫進當天分析檔的 `team_shares`（清單，最多 2 則；合格候選不足時可以少於 2 則）：
+
+| 欄位 | 內容 |
+|---|---|
+| `url`、`title`、`source`、`team`、`date` | 原樣從候選複製（`title` 是原文標題） |
+| `topic` | 只能用：機構設計、程式設計、電控、公關行銷、策略、隊務經營、綜合 |
+| `title_zh` | 中文標題，25 字內，直接講出分享的東西 |
+| `summary_zh` | 2～3 句介紹：哪支隊伍、分享了什麼、有什麼特別 |
+| `takeaways` | 2～3 條「可以學到」的具體重點，每條 35 字內，只寫原文裡有的內容 |
+
+範例見 `data/analysis/2026-11-15.json`。寫完一樣用 `--check-analysis` 檢查（會確認網址在候選池裡、沒有重複分享）。
+
 ## 4. SystemCore 專頁（有新官方資訊時才做）
 
 如果今天有新的 SystemCore 官方資訊（FIRST 部落格、WPILib 文件、SystemCoreTesting repo 的相容表或已知問題有變動），

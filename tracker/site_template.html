@@ -457,6 +457,22 @@ footer { border-top: 0; text-align: center; }
   .view { gap: 40px; }
   .pick, .sc-hero { padding: 20px; }
 }
+
+/* 隊伍分享 */
+.shares { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 16px; }
+.share { background: var(--panel); border-radius: var(--r-card); padding: 24px; display: grid; gap: 10px; align-content: start; min-width: 0; }
+.share .eyebrow { font-size: .9rem; font-weight: 600; color: var(--eyebrow); }
+.share h3 { margin: 0; font-size: 1.25rem; line-height: 1.35; letter-spacing: -.01em; text-wrap: balance; overflow-wrap: anywhere; }
+.share h3 a { color: var(--ink); text-decoration: none; }
+.share h3 a:hover { text-decoration: underline; }
+.share .orig { margin: -4px 0 0; font-size: .82rem; color: var(--muted); overflow-wrap: anywhere; }
+.share .who { font-size: .85rem; color: var(--muted); }
+.share p.sum { margin: 0; }
+.share .learn { display: grid; gap: 6px; }
+.share .learn b { font-size: .85rem; color: var(--muted); font-weight: 600; }
+.share .go { justify-self: start; font-weight: 500; text-decoration: none; }
+.share .go:hover { text-decoration: underline; }
+@media (max-width: 560px) { .share { padding: 20px; } }
 </style>
 
 <header class="top">
@@ -487,6 +503,7 @@ footer { border-top: 0; text-align: center; }
     <span id="jump-links">
     <a href="#s-brief">30 秒重點</a>
     <a href="#s-pick">今日精選</a>
+    <a href="#s-share">隊伍分享</a>
     <a href="#s-dates">重要日期</a>
     <a href="#s-sum">分類整理</a>
     <a href="#s-trend">趨勢</a>
@@ -518,6 +535,11 @@ footer { border-top: 0; text-align: center; }
     <section id="s-pick" aria-labelledby="l-pick">
       <p class="label" id="l-pick">今日最有價值</p>
       <div id="pick"></div>
+    </section>
+
+    <section id="s-share" aria-labelledby="l-share">
+      <p class="label" id="l-share">隊伍分享</p>
+      <div class="shares" id="shares"></div>
     </section>
 
     <section id="s-dates" aria-labelledby="l-dates">
@@ -765,6 +787,26 @@ footer { border-top: 0; text-align: center; }
       if (a && a.top_pick) return { date: DATA.days[i].date, pick: a.top_pick };
     }
     return null;
+  }
+  function renderShares(day) {
+    var box = $("shares"); clear(box);
+    var list = (day.analysis && day.analysis.team_shares) || [];
+    $("s-share").hidden = !list.length;
+    list.forEach(function (x) {
+      var who = [x.team, (x.source || "").indexOf("Chief Delphi") === 0 ? "Chief Delphi" : x.source, x.date ? rel(x.date, day.date) : null]
+        .filter(Boolean).join(" · ");
+      var kids = [el("span", { class: "eyebrow", text: x.topic || "分享" }),
+        el("h3", {}, [el("a", { href: x.url, text: x.title_zh || x.title })]),
+        x.title_zh ? el("p", { class: "orig", text: x.title }) : null,
+        el("span", { class: "who", text: who })];
+      if (x.summary_zh || x.summary) kids.push(el("p", { class: "sum", text: x.summary_zh || x.summary }));
+      if (x.takeaways && x.takeaways.length) {
+        var ul = el("ul", { class: "points" }); x.takeaways.forEach(function (t) { ul.appendChild(el("li", { text: t })); });
+        kids.push(el("div", { class: "learn" }, [el("b", { text: "可以學到" }), ul]));
+      }
+      kids.push(el("a", { class: "go", href: x.url, text: "閱讀原文 ›" }));
+      box.appendChild(el("article", { class: "share" }, kids));
+    });
   }
   function renderPick(day, idx) {
     var box = $("pick"); clear(box);
@@ -1401,7 +1443,7 @@ footer { border-top: 0; text-align: center; }
     $("next").disabled = idx <= 0;
     var k = daysBetween(day.date, "2027-01-09");
     $("cd-n").textContent = String(Math.max(0, k));
-    renderSeason(day); renderBrief(day); renderPick(day, idx); renderDates(day); renderSummary(day); renderTrends(day);
+    renderSeason(day); renderBrief(day); renderPick(day, idx); renderShares(day); renderDates(day); renderSummary(day); renderTrends(day);
     renderChips(day); renderList(day); renderPages(day); renderErrors(day);
     var a = day.analysis || {};
     $("foot").textContent = "資料日期 " + day.date + " · 請以官方文件為準";

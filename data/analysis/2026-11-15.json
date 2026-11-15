@@ -28,5 +28,38 @@
  "action_items": [
   "還沒完成報名或繳費的隊伍，請在 11/17 前處理"
  ],
- "items_zh": {}
+ "items_zh": {},
+ "team_shares": [
+  {
+   "url": "https://www.chiefdelphi.com/t/4646-cad-and-code-release-2026/526134",
+   "title": "4646 CAD and Code Release 2026",
+   "source": "Chief Delphi #cad",
+   "topic": "機構設計",
+   "team": "FRC 4646",
+   "date": "2026-11-12",
+   "summary": "Team 4646 Wildcard Robotics is proud to share our 2026 robot Black Fang CAD - Code Events Minnesota Bluff Country Regional Captain of Alliance 2, with 111 WildStang and 525 Swartdogs Excellence in Engineering Award Iowa Regional Winners as captain of Alliance 2, with 3928 Team Ne",
+   "title_zh": "4646 公開 2026 機器人 Black Fang 的 CAD 與程式",
+   "summary_zh": "愛荷華區域賽冠軍隊伍完整公開機器人：420 度旋轉砲塔搭配旋轉儲料盤，可存約 60 顆球；Onshape CAD、GitHub 程式碼和評審簡報都附上。",
+   "takeaways": [
+    "用發泡 TPU（TPU Air）3D 列印滾輪套，靠噴頭溫度和填充設定調整抓力",
+    "儲料盤內外雙動力加攪拌器，多裝 15 顆球，射速從每秒 6 顆提升到 10 顆",
+    "Jetson Orin Nano 搭配 4 台相機以 60fps 做定位，修正 swerve 的位置估計"
+   ]
+  },
+  {
+   "url": "https://www.chiefdelphi.com/t/9137s-guide-to-professional-communication-and-speaking-with-judges/526033",
+   "title": "9137's Guide to Professional Communication and Speaking with Judges!",
+   "source": "Chief Delphi #resources",
+   "topic": "公關行銷",
+   "team": "FRC 9137",
+   "date": "2026-11-10",
+   "summary": "Team 9137 is proud to present a presentation designed to help new and old teams alike teach their members how to communicate professionally and how to properly converse with judges. We made this resource after noticing a lack of understanding in the realm of communication on our ",
+   "title_zh": "9137 的專業溝通與評審面談指南",
+   "summary_zh": "Bionic Vipers 把「怎麼專業溝通、怎麼和評審對話」做成一份可以直接拿來上課的簡報，大約半次到三分之二次聚會就能講完。",
+   "takeaways": [
+    "簡報檔（.pptx）可直接下載，換上自己隊伍的照片就能用",
+    "適合新隊員培訓，也適合準備評審面談的老隊員"
+   ]
+  }
+ ]
 }

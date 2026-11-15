@@ -138,3 +138,22 @@ def test_backup_roundtrip_and_path_safety(tmp_path):
     assert (dst / "data" / "daily" / "2026-11-10.json").read_text("utf-8") == '{"中文": 1}'
     with pytest.raises(ValueError):
         unpack({"files": {"../evil.txt": "x"}}, dst)
+
+
+def test_share_scoring_and_picking():
+    from tracker.shares import pick_shares, score_share, team_of, validate_shares
+    today = "2026-11-15"
+    good = {"url": "u1", "title": "Team 1540 | 2027 Build Thread", "summary": "CAD and code release. 40 posts", "date": "2026-11-14", "topic": "機構設計", "source": "s", "team": team_of("Team 1540 | 2027 Build Thread")}
+    tech = {"url": "u2", "title": "6328 Tech Binder and code release", "summary": "", "date": "2026-11-10", "topic": "程式設計", "source": "s", "team": team_of("6328 Tech Binder")}
+    same = {"url": "u3", "title": "Team 254 CAD release", "summary": "", "date": "2026-11-13", "topic": "機構設計", "source": "s", "team": "FRC 254"}
+    ask = {"url": "u4", "title": "Looking to Borrow FRC Batteries?", "summary": "", "date": "2026-11-14", "topic": "綜合", "source": "s", "team": ""}
+    assert good["team"] == "FRC 1540" and tech["team"] == "FRC 6328"
+    assert score_share(ask, today) <= 0 < score_share(good, today)
+    cands = sorted([dict(x, score=score_share(x, today)) for x in (good, tech, same, ask)], key=lambda x: x["score"], reverse=True)
+    picked = pick_shares(cands)
+    assert len(picked) == 2 and {p["topic"] for p in picked} == {"機構設計", "程式設計"}  # 主題分散
+    assert "u4" not in {p["url"] for p in picked}
+    ok = [dict(picked[0], title_zh="中文", summary_zh="介紹")]
+    assert validate_shares(ok, {"u1", "u2", "u3"}, set()) == []
+    assert any("已經分享過" in e for e in validate_shares(ok, {"u1", "u2", "u3"}, {ok[0]["url"]}))
+    assert any("不在候選池" in e for e in validate_shares([dict(ok[0], url="x")], {"u1"}, set()))

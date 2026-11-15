@@ -228,6 +228,9 @@ def analyze(result: dict, out_dir: Path) -> dict:
         except Exception as e:  # API 出錯時退回規則評分，網站照常更新
             print(f"[分析] Claude 分析失敗，改用規則評分：{e}", file=sys.stderr)
     analysis = analysis or heuristic_analysis(result)
+    if "team_shares" not in analysis:  # 隊伍分享：沒有人工挑選時用規則評分
+        from .shares import candidates, pick_shares
+        analysis["team_shares"] = pick_shares(candidates(out_dir.parent, result["date"]))
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(analysis, ensure_ascii=False, indent=1), "utf-8")
     return analysis

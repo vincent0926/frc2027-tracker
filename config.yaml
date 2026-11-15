@@ -217,3 +217,115 @@ categories:
   "行政/賽事":
     [registration, fee, deadline, event, district, championship, schedule, award,
      volunteer, grant, kickoff, calendar, policy]
+
+# ---------- 隊伍分享（每天挑 2 則，不限 2027、任何 FRC 主題） ----------
+# topic 是預設主題；排程的 Claude 判讀時可以改。
+share_sources:
+  - id: share_top_weekly
+    name: "Chief Delphi 本週熱門"
+    url: "https://www.chiefdelphi.com/top.rss?period=weekly"
+    topic: "綜合"
+  - id: share_cad
+    name: "Chief Delphi #cad"
+    url: "https://www.chiefdelphi.com/tag/cad.rss"
+    topic: "機構設計"
+  - id: share_mechanical
+    name: "Chief Delphi #mechanical"
+    url: "https://www.chiefdelphi.com/tag/mechanical.rss"
+    topic: "機構設計"
+  - id: share_design
+    name: "Chief Delphi #design"
+    url: "https://www.chiefdelphi.com/tag/design.rss"
+    topic: "機構設計"
+  - id: share_swerve
+    name: "Chief Delphi #swerve"
+    url: "https://www.chiefdelphi.com/tag/swerve.rss"
+    topic: "機構設計"
+  - id: share_elevator
+    name: "Chief Delphi #elevator"
+    url: "https://www.chiefdelphi.com/tag/elevator.rss"
+    topic: "機構設計"
+  - id: share_intake
+    name: "Chief Delphi #intake"
+    url: "https://www.chiefdelphi.com/tag/intake.rss"
+    topic: "機構設計"
+  - id: share_drivetrain
+    name: "Chief Delphi #drivetrain"
+    url: "https://www.chiefdelphi.com/tag/drivetrain.rss"
+    topic: "機構設計"
+  - id: share_manufacturing
+    name: "Chief Delphi #manufacturing"
+    url: "https://www.chiefdelphi.com/tag/manufacturing.rss"
+    topic: "機構設計"
+  - id: share_onshape
+    name: "Chief Delphi #onshape"
+    url: "https://www.chiefdelphi.com/tag/onshape.rss"
+    topic: "機構設計"
+  - id: share_programming
+    name: "Chief Delphi #programming"
+    url: "https://www.chiefdelphi.com/tag/programming.rss"
+    topic: "程式設計"
+  - id: share_vision
+    name: "Chief Delphi #vision"
+    url: "https://www.chiefdelphi.com/tag/vision.rss"
+    topic: "程式設計"
+  - id: share_electrical
+    name: "Chief Delphi #electrical"
+    url: "https://www.chiefdelphi.com/tag/electrical.rss"
+    topic: "電控"
+  - id: share_wiring
+    name: "Chief Delphi #wiring"
+    url: "https://www.chiefdelphi.com/tag/wiring.rss"
+    topic: "電控"
+  - id: share_outreach
+    name: "Chief Delphi #outreach"
+    url: "https://www.chiefdelphi.com/tag/outreach.rss"
+    topic: "公關行銷"
+  - id: share_marketing
+    name: "Chief Delphi #marketing"
+    url: "https://www.chiefdelphi.com/tag/marketing.rss"
+    topic: "公關行銷"
+  - id: share_business
+    name: "Chief Delphi #business"
+    url: "https://www.chiefdelphi.com/tag/business.rss"
+    topic: "公關行銷"
+  - id: share_fundraising
+    name: "Chief Delphi #fundraising"
+    url: "https://www.chiefdelphi.com/tag/fundraising.rss"
+    topic: "公關行銷"
+  - id: share_sponsorship
+    name: "Chief Delphi #sponsorship"
+    url: "https://www.chiefdelphi.com/tag/sponsorship.rss"
+    topic: "公關行銷"
+  - id: share_awards
+    name: "Chief Delphi #awards"
+    url: "https://www.chiefdelphi.com/tag/awards.rss"
+    topic: "公關行銷"
+  - id: share_media
+    name: "Chief Delphi #media"
+    url: "https://www.chiefdelphi.com/tag/media.rss"
+    topic: "公關行銷"
+  - id: share_scouting
+    name: "Chief Delphi #scouting"
+    url: "https://www.chiefdelphi.com/tag/scouting.rss"
+    topic: "策略"
+  - id: share_strategy
+    name: "Chief Delphi #strategy"
+    url: "https://www.chiefdelphi.com/tag/strategy.rss"
+    topic: "策略"
+  - id: share_build_blog
+    name: "Chief Delphi #build-blog"
+    url: "https://www.chiefdelphi.com/tag/build-blog.rss"
+    topic: "綜合"
+  - id: share_resources
+    name: "Chief Delphi #resources"
+    url: "https://www.chiefdelphi.com/tag/resources.rss"
+    topic: "綜合"
+  - id: share_whitepaper
+    name: "Chief Delphi #whitepaper"
+    url: "https://www.chiefdelphi.com/tag/whitepaper.rss"
+    topic: "綜合"
+  - id: share_tutorial
+    name: "Chief Delphi #tutorial"
+    url: "https://www.chiefdelphi.com/tag/tutorial.rss"
+    topic: "綜合"

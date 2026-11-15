@@ -13,6 +13,7 @@ import yaml
 
 from .analyze import analyze, validate_analysis
 from .fetch import PoliteFetcher
+from .shares import candidates, update_pool, used_urls, validate_shares
 from .site import build_site
 from .sources import COLLECTORS, classify, diff_snapshots, is_document_link, is_relevant
 
@@ -84,6 +85,8 @@ def run(config_path: Path, data_dir: Path, report_dir: Path, today: str) -> dict
                 result["pages"].append({"source": src["name"], "url": src["url"], **d})
             print(f"[完成] {src['name']}: +{len(d['added'])} / -{len(d['removed'])} 行")
 
+    share_stats = update_pool(cfg, fetcher, data_dir, today)
+    result["errors"].extend(share_stats["errors"])
     save_json(data_dir / "state.json", state)
     result = merge_same_day(load_json(data_dir / "daily" / f"{today}.json", None), result)
     save_json(data_dir / "daily" / f"{today}.json", result)
@@ -195,6 +198,7 @@ def main() -> None:
     ap.add_argument("--skip-analysis", action="store_true", help="爬取後不產生分析檔（由排程中的 Claude 撰寫）")
     ap.add_argument("--check-analysis", action="store_true", help="檢查 --date 當天的分析檔格式")
     ap.add_argument("--fallback-analysis", action="store_true", help="當天沒有分析檔時，用規則評分補上")
+    ap.add_argument("--share-candidates", action="store_true", help="列出 --date 當天可以選的隊伍分享候選（依分數排序）")
     a = ap.parse_args()
     if a.check_analysis:
         r = load_json(a.data / "daily" / f"{a.date}.json", None)
@@ -202,9 +206,16 @@ def main() -> None:
         if r is None or an is None:
             sys.exit(f"找不到 {a.date} 的資料或分析檔")
         errs = validate_analysis(an, r)
+        if "team_shares" in an:
+            pool_urls = set(load_json(a.data / "share_pool.json", {}))
+            errs += validate_shares(an["team_shares"], pool_urls, used_urls(a.data, exclude_date=a.date))
         if errs:
             sys.exit("分析檔有問題：\n- " + "\n- ".join(errs))
         print(f"{a.date} 分析檔檢查通過")
+        return
+    if a.share_candidates:
+        for n, c in enumerate(candidates(a.data, a.date), 1):
+            print(f"{n:2}. [{c['score']:>5}] {c['topic']}｜{c['date']}｜{c.get('team') or '-'}｜{c['title']}\n    {c['url']}\n    {c['summary'][:220]}")
         return
     if a.fallback_analysis:
         r = load_json(a.data / "daily" / f"{a.date}.json", None)
