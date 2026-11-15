@@ -40,3 +40,23 @@ def test_page_diff():
     d = diff_snapshots(s1, s2)
     assert d["added"] == ["Game Manual v2", "Team Update 01"] and d["removed"] == ["Game Manual v1"]
     assert d["new_links"] == {"https://x/tu1.pdf": "Team Update 01"}
+
+
+def test_first_image_skips_emoji_and_small():
+    from tracker.sources import first_image
+    html_ = ('<p><img src="https://x.org/images/emoji/smile.png" width="20">'
+             '<img src="https://x.org/uploads/tiny.png" width="40">'
+             '<img src="https://x.org/uploads/robot.jpeg" width="600"></p>')
+    assert first_image(html_) == "https://x.org/uploads/robot.jpeg"
+    assert first_image("<p>no image</p>") == ""
+
+
+def test_share_thumbnail_is_small_jpeg():
+    import io
+    from PIL import Image
+    from tracker.share_images import MAX_SIDE, to_thumb
+    buf = io.BytesIO()
+    Image.new("RGBA", (1600, 1200), (200, 30, 30, 255)).save(buf, "PNG")
+    data, w, h = to_thumb(buf.getvalue())
+    assert data.startswith("data:image/jpeg;base64,")
+    assert max(w, h) == MAX_SIDE and w > h

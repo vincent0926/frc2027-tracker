@@ -34,6 +34,8 @@ def source_kind(item: dict) -> tuple[str, str]:
 
 def collect_days(data_dir: Path) -> list[dict]:
     days = []
+    imgs_path = data_dir / "share_images.json"
+    imgs = json.loads(imgs_path.read_text("utf-8")) if imgs_path.exists() else {}
     for f in sorted((data_dir / "daily").glob("20*.json"), reverse=True)[:MAX_DAYS]:
         a = data_dir / "analysis" / f.name
         result = json.loads(f.read_text("utf-8"))
@@ -42,11 +44,12 @@ def collect_days(data_dir: Path) -> list[dict]:
             it["kind"], it["src"] = source_kind(it)
         for ev in result.get("events", []):
             ev["zh"] = event_zh(ev["label"])
-        days.append({
-            "date": f.stem,
-            "result": result,
-            "analysis": json.loads(a.read_text("utf-8")) if a.exists() else None,
-        })
+        analysis = json.loads(a.read_text("utf-8")) if a.exists() else None
+        for sh in (analysis or {}).get("team_shares") or []:
+            im = imgs.get(sh.get("url", ""))
+            if im and im.get("data"):
+                sh["img"] = {"data": im["data"], "w": im["w"], "h": im["h"]}
+        days.append({"date": f.stem, "result": result, "analysis": analysis})
     return days
 
 

@@ -14,6 +14,7 @@ import yaml
 from .analyze import analyze, validate_analysis
 from .fetch import PoliteFetcher
 from .shares import candidates, update_pool, used_urls, validate_shares
+from .share_images import update_images
 from .site import build_site
 from .sources import COLLECTORS, classify, diff_snapshots, is_document_link, is_relevant
 
@@ -187,6 +188,16 @@ def notify_discord(webhook: str, r: dict) -> None:
     requests.post(webhook, json={"content": "\n".join(lines)[:1900]}, timeout=20)
 
 
+def refresh_share_images(config_path: Path, data_dir: Path, today: str) -> None:
+    """幫最近的隊伍分享補上配圖。網路出問題時只印警告，不擋網站建置。"""
+    try:
+        cfg = yaml.safe_load(config_path.read_text("utf-8"))
+        fetcher = PoliteFetcher(cfg["user_agent"], cfg.get("request_delay_seconds", 2), cfg.get("timeout_seconds", 30))
+        update_images(data_dir, fetcher, today)
+    except Exception as e:
+        print(f"[警告] 分享配圖沒有更新：{e}", file=sys.stderr)
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description="FRC 2027 變更追蹤器")
     ap.add_argument("--config", default=ROOT / "config.yaml", type=Path)
@@ -198,6 +209,7 @@ def main() -> None:
     ap.add_argument("--skip-analysis", action="store_true", help="爬取後不產生分析檔（由排程中的 Claude 撰寫）")
     ap.add_argument("--check-analysis", action="store_true", help="檢查 --date 當天的分析檔格式")
     ap.add_argument("--fallback-analysis", action="store_true", help="當天沒有分析檔時，用規則評分補上")
+    ap.add_argument("--no-images", action="store_true", help="建網站前不去抓隊伍分享的配圖（離線用）")
     ap.add_argument("--share-candidates", action="store_true", help="列出 --date 當天可以選的隊伍分享候選（依分數排序）")
     a = ap.parse_args()
     if a.check_analysis:
@@ -215,7 +227,7 @@ def main() -> None:
         return
     if a.share_candidates:
         for n, c in enumerate(candidates(a.data, a.date), 1):
-            print(f"{n:2}. [{c['score']:>5}] {c['topic']}｜{c['date']}｜{c.get('team') or '-'}｜{c['title']}\n    {c['url']}\n    {c['summary'][:220]}")
+            print(f"{n:2}. [{c['score']:>5}] {'有圖｜' if c.get('image') else ''}{c['topic']}｜{c['date']}｜{c.get('team') or '-'}｜{c['title']}\n    {c['url']}\n    {c['summary'][:220]}")
         return
     if a.fallback_analysis:
         r = load_json(a.data / "daily" / f"{a.date}.json", None)
@@ -225,12 +237,16 @@ def main() -> None:
         print(f"{a.date} 分析檔已就緒")
         return
     if a.site_only:
+        if not a.no_images:
+            refresh_share_images(a.config, a.data, a.date)
         build_site(a.data, a.site)
         print(f"網站已建立：{a.site / 'index.html'}")
         return
     r = run(a.config, a.data, a.reports, a.date)
     if not a.skip_analysis:
         analyze(r, a.data / "analysis")
+    if not a.no_images:
+        refresh_share_images(a.config, a.data, a.date)
     build_site(a.data, a.site)
     print(f"網站已建立：{a.site / 'index.html'}")
     hook = os.environ.get("DISCORD_WEBHOOK_URL")

@@ -72,6 +72,8 @@ def score_share(item: dict, today: str) -> float:
         s -= 3
     if item.get("team"):
         s += 3
+    if item.get("image"):  # 有圖（常是機器照片或 CAD）比較好呈現
+        s += 2
     m = POSTS_RE.search(item.get("summary", ""))
     if m:
         s += min(3, int(m.group(1)) / 15)
@@ -100,11 +102,14 @@ def update_pool(cfg: dict, fetcher: PoliteFetcher, data_dir: Path, today: str) -
             if not url or url in used:
                 continue
             if url in pool:  # 同一篇出現在多個來源：「綜合」讓位給較具體的主題
+                if i.get("image") and not pool[url].get("image"):
+                    pool[url]["image"] = i["image"]
                 if pool[url]["topic"] == "綜合" and src["topic"] != "綜合":
                     pool[url]["topic"] = src["topic"]
                 continue
             pool[url] = {"url": url, "title": i["title"], "date": i.get("date", ""), "summary": i.get("summary", ""),
-                         "topic": src["topic"], "source": src["name"], "team": team_of(i["title"]), "first_seen": today}
+                         "topic": src["topic"], "source": src["name"], "team": team_of(i["title"]), "first_seen": today,
+                         "image": i.get("image", "")}
             added.add(url)
     # 清掉太舊的，太多時只留分數高的
     for url in list(pool):

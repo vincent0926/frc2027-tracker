@@ -42,6 +42,27 @@ def _strip_html(s: str | None, limit: int = 400) -> str:
     return text[:limit] + ("…" if len(text) > limit else "")
 
 
+IMG_SKIP = ("/emoji/", "avatar", ".svg", "favicon", "logo")
+
+
+def first_image(s: str | None) -> str:
+    """從 RSS 內文 HTML 找第一張像樣的圖（跳過表情符號、頭像、小圖示）。"""
+    if not s:
+        return ""
+    for img in BeautifulSoup(html.unescape(s), "html.parser").find_all("img"):
+        src = img.get("src") or ""
+        try:
+            if int(img.get("width") or 999) < 150:
+                continue
+        except ValueError:
+            pass
+        if src.startswith("//"):
+            src = "https:" + src
+        if src.startswith("https://") and not any(k in src.lower() for k in IMG_SKIP):
+            return src
+    return ""
+
+
 # ---------------- RSS / Atom ----------------
 def parse_feed(xml_text: str) -> list[dict]:
     root = ET.fromstring(xml_text)
@@ -58,6 +79,7 @@ def parse_feed(xml_text: str) -> list[dict]:
                 "url": link.get("href") if link is not None else "",
                 "date": _iso_date(e.findtext(f"{ATOM}updated")),
                 "summary": _strip_html(content.text if content is not None else ""),
+                "image": first_image(content.text if content is not None else ""),
             })
     else:  # RSS 2.0
         for it in root.iter("item"):
@@ -68,6 +90,7 @@ def parse_feed(xml_text: str) -> list[dict]:
                 "url": link,
                 "date": _iso_date(it.findtext("pubDate")),
                 "summary": _strip_html(it.findtext("description")),
+                "image": first_image(it.findtext("description")),
             })
     return items
 

@@ -472,7 +472,10 @@ footer { border-top: 0; text-align: center; }
 .share .learn b { font-size: .85rem; color: var(--muted); font-weight: 600; }
 .share .go { justify-self: start; font-weight: 500; text-decoration: none; }
 .share .go:hover { text-decoration: underline; }
-@media (max-width: 560px) { .share { padding: 20px; } }
+.share .ph { display: block; margin: -24px -24px 6px; border-radius: var(--r-card) var(--r-card) 0 0; overflow: hidden; background: var(--bg); }
+.share .ph img { display: block; width: 100%; max-width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: contain; }
+.share .ph:focus-visible { outline: 2px solid var(--btn); outline-offset: 2px; }
+@media (max-width: 560px) { .share { padding: 20px; } .share .ph { margin: -20px -20px 4px; } }
 </style>
 
 <header class="top">
@@ -795,7 +798,11 @@ footer { border-top: 0; text-align: center; }
     list.forEach(function (x) {
       var who = [x.team, (x.source || "").indexOf("Chief Delphi") === 0 ? "Chief Delphi" : x.source, x.date ? rel(x.date, day.date) : null]
         .filter(Boolean).join(" · ");
-      var kids = [el("span", { class: "eyebrow", text: x.topic || "分享" }),
+      var img = x.img && /^data:image\/jpeg;base64,[A-Za-z0-9+\/=]+$/.test(x.img.data) ? x.img : null;
+      var kids = [img ? el("a", { class: "ph", href: x.url, "aria-label": "看原文：" + (x.title_zh || x.title) }, [
+          el("img", { src: img.data, width: img.w, height: img.h, loading: "lazy", decoding: "async",
+            alt: (x.team ? "FRC " + x.team + " " : "") + "分享的圖片" })]) : null,
+        el("span", { class: "eyebrow", text: x.topic || "分享" }),
         el("h3", {}, [el("a", { href: x.url, text: x.title_zh || x.title })]),
         x.title_zh ? el("p", { class: "orig", text: x.title }) : null,
         el("span", { class: "who", text: who })];
